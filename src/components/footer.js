@@ -1,51 +1,104 @@
 import React from 'react';
 import './footer.css';
 
-const FOOTER_QUICK_LINKS = [
-  { text: 'Home', url: '#' },
-  { text: 'About', url: '#' },
-  { text: 'Services', url: '#' },
-  { text: 'Contact', url: '#' },
-];
 
-const SOCIAL_MEDIA_BUTTONS = [
-  { text: 'FB', bgColor: 'bg-zinc-600', textColor: 'text-white' },
-  { text: 'IG', bgColor: 'bg-zinc-600', textColor: 'text-white' },
-  { text: 'TW', bgColor: 'bg-zinc-600', textColor: 'text-white' },
-];
 
-const Footer = () => {
+const sharedClasses = {
+  textBlue: 'text-blue-800',
+  hoverTextBlue: 'hover:text-blue-600',
+  bgBlue: 'bg-blue-600',
+  darkBgBlue: 'dark:bg-blue-700',
+  textWhite: 'text-white',
+  darkTextWhite: 'dark:text-white',
+  borderZinc: 'border border-zinc-300',
+  darkBorderZinc: 'dark:border-zinc-600',
+  p2: 'p-2',
+  wFull: 'w-full',
+  mb4: 'mb-4',
+  roundedLg: 'rounded-lg',
+  hoverBgBlue: 'hover:bg-blue-500',
+  darkHoverBgBlue: 'dark:hover:bg-blue-600',
+};
+
+const ContactInfo = () => {
   return (
-    <footer className="footer">
-      <div className="container">
-        <div className="quick-links">
-          <h2 className="footer-heading">Quick Links</h2>
-          <ul className="links-list">
-            {FOOTER_QUICK_LINKS.map((link, index) => (
-              <li key={index}>
-                <a href={link.url} className="link">
-                  {link.text}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="social-media">
-          <h2 className="footer-heading">Follow Us</h2>
-          <div className="social-buttons">
-            {SOCIAL_MEDIA_BUTTONS.map((button, index) => (
-              <button
-                key={index}
-                className={`social-button ${button.bgColor} ${button.textColor}`}
-              >
-                {button.text}
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
-    </footer>
+    <div className="md:w-1/2">
+      <h2 className="text-xl font-bold">Contact Info</h2>
+      <p className="mt-2">At xyz Street, Dist. City-5447xx</p>
+      <p className="mt-2">7024588xxx</p>
+      <p className="mt-2">TalentBridge@gmail.com</p>
+    </div>
   );
 };
 
-export default Footer;
+
+const SocialLink = ({ href, text, iconSrc, alt }) => {
+  return (
+    <a href={href} className="text-blue-800 hover:text-blue-600">
+      <img src={iconSrc} alt={alt || text} width="24" height="24" />
+    </a>
+  );
+};
+
+
+
+
+const ContactForm = () => {
+  return (
+    <div className="md:w-1/2 mt-8">
+      <h2 className="text-xl font-bold">Contact Me</h2>
+      <form className="mt-4">
+        <input type="text" placeholder="Name" className={`${sharedClasses.borderZinc} ${sharedClasses.darkBorderZinc} ${sharedClasses.p2} ${sharedClasses.wFull} ${sharedClasses.mb4}`} />
+        <input type="email" placeholder="Email" className={`${sharedClasses.borderZinc} ${sharedClasses.darkBorderZinc} ${sharedClasses.p2} ${sharedClasses.wFull} ${sharedClasses.mb4}`} />
+        <textarea placeholder="Write Message Here ..." className={`${sharedClasses.borderZinc} ${sharedClasses.darkBorderZinc} ${sharedClasses.p2} ${sharedClasses.wFull} ${sharedClasses.mb4}`} rows="4"></textarea>
+        <button type="submit" className={`${sharedClasses.bgBlue} ${sharedClasses.darkBgBlue} ${sharedClasses.textWhite} ${sharedClasses.darkTextWhite} ${sharedClasses.p2} ${sharedClasses.roundedLg} ${sharedClasses.hoverBgBlue} ${sharedClasses.darkHoverBgBlue}`}>Send</button>
+      </form>
+    </div>
+  );
+};
+
+const ContactComponent = () => {
+  return (
+    <div className="flex flex-col md:flex-row p-8 bg-white dark:bg-zinc-800 text-blue-800 dark:text-blue-200">
+      <div className="md:w-1/2">
+        <h1 className="text-xl font-bold">Talent Bridge</h1>
+        <p className="mt-4">
+          There is no passion to be found playing small,
+          <br /> in settling for a life that is less than the one
+          <br /> you are capable of living.
+        </p>
+        <div className="flex space-x-4 mt-6">
+          <SocialLink 
+            href="#" 
+            text="WhatsApp" 
+            iconSrc="./imgg/instagram.png" 
+          />
+          <SocialLink 
+            href="#" 
+            text="Instagram" 
+            alt="Instagram"
+            iconSrc="./imgg/facebook.png" 
+          />
+          <SocialLink 
+            href="#" 
+            text="LinkedIn" 
+            iconSrc="./imgg/gmail.png" 
+          />
+          <SocialLink 
+            href="#" 
+            text="GitHub" 
+            iconSrc="./imgg/twitter.png" 
+          />
+        </div>
+      </div>
+      <ContactInfo />
+      <ContactForm />
+    </div>
+  );
+};
+
+export default ContactComponent;
+
+
+
+
