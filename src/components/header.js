@@ -1,44 +1,39 @@
-import React from "react";
-import "./header.css";
+import React from 'react';
+import './header.css';
 
-function Header() {
+const HEADER_NAV_LINKS = [
+  { text: 'Home', url: '#' },
+  { text: 'About', url: '#' },
+  { text: 'Services', url: '#' },
+  { text: 'Contact', url: '#' },
+];
+
+const BUTTON_CLASSES = 'btn-login';
+
+const Header = () => {
   return (
     <header className="header">
-      <div className="navbar-container">
-        <nav className="navbar">
-          {/* Logo Section */}
-          <div className="navbar-logo">
-            <a href="index.html">
-              <img src="assets/images/logo-dark.png" alt="Logo" />
+      <div className="container">
+        <div className="logo">
+          <img
+            aria-hidden="true"
+            alt="Logo"
+            src="./TB.png"
+          />
+        </div>
+        <nav className="nav-links">
+          {HEADER_NAV_LINKS.map((link, index) => (
+            <a key={index} href={link.url} className="nav-link">
+              {link.text}
             </a>
-          </div>
-
-          {/* Navbar Links Section */}
-          <div className="navbar-links">
-            <ul className="navbar-list">
-              <li>
-                <a href="#home">Home</a>
-              </li>
-              <li>
-                <a href="#about">About</a>
-              </li>
-              <li>
-                <a href="#services">Services</a>
-              </li>
-              <li>
-                <a href="#contact">Contact</a>
-              </li>
-            </ul>
-          </div>
-
-          {/* Login Button Section */}
-          <div className="navbar-login">
-            <button className="login-button">Login</button>
-          </div>
+          ))}
+          <a href="#" className={BUTTON_CLASSES}>
+            Login
+          </a>
         </nav>
       </div>
     </header>
   );
-}
+};
 
 export default Header;

@@ -1,63 +1,55 @@
-/* General Navbar Styles */
-.navbar-container {
-  width: 100%;
+/* Header Container Styles */
+.header {
   background-color: white;
-  padding: 10px 0;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.navbar {
+.container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 20px;
+  max-width: 1700px;
+  margin: 0 auto;
+  padding: 0 20px; /* Added padding for edge spacing */
 }
 
-/* Logo Section */
-.navbar-logo img {
-  max-height: 50px; /* Adjust the logo size */
+
+.logo img {
+  height: 90px; /* Increased logo size */
 }
 
-/* Navbar Links */
-.navbar-links {
-  flex-grow: 1;
-  text-align: center;
-}
-
-.navbar-list {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+/* Navigation Links Styles */
+.nav-links {
   display: flex;
-  justify-content: center;
+  gap: 30px;
+  margin-left: auto ;
 }
 
-.navbar-list li {
-  margin: 0 20px;
-}
-
-.navbar-list li a {
+.nav-link {
   text-decoration: none;
-  font-size: 18px;
-  color: blue;
-  transition: color 0.3s;
+  color: #1d4ed8;
+  font-weight: 600;
+  font-size: 25px; /* Increased font size for navigation links */
+  transition: color 0.2s;
 }
 
-.navbar-list li a:hover {
-  color: #007bff; /* Slightly lighter blue on hover */
+.nav-link:hover {
+  color: #1e40af;
 }
 
-/* Login Button Section */
-.navbar-login .login-button {
-  background-color: blue;
+/* Login Button Styles */
+.btn-login {
+  background-color: #3b82f6;
   color: white;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  border-radius: 5px;
-  font-size: 16px;
-  transition: background-color 0.3s;
+  border-radius: 9999px;
+  padding: 10px 25px; /* Increased padding for a larger button */
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 18px; /* Increased font size for the login button */
+  transition: background-color 0.2s;
 }
 
-.navbar-login .login-button:hover {
-  background-color: #0056b3; /* Darker blue on hover */
+.btn-login:hover {
+  background-color: #2563eb;
 }
