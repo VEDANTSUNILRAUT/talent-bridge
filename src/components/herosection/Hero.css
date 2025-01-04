@@ -2,31 +2,44 @@
     /* background-image: url(../../assets/images/imagesinPlacement/homepageimage.jpg); */
     height: 95vh;
     width: 100vw;
-    background-repeat: no-repeat;
+    /* background-repeat: no-repeat;
     background-position: center;
-     background-size: cover; 
+     background-size: cover;  */
     flex-wrap: wrap;
-    color: white;
+    color: rgb(0, 0, 0);
     object-fit: cover;
     text-transform: uppercase;
-    background-color: black;
+    
 }
 .center{
     padding-top: 30px;
     height: 85vh;
 }
 .HeroPara{
-    font-size: 20px;
-    width: 600px;
-    background-image: linear-gradient(to right, rgb(255, 8, 210),rgb(255, 0, 136), rgb(151, 151, 215),rgb(255, 255, 33));
-    -webkit-background-clip:text;
-    color: transparent;
-    font-weight: 700;
+  font-size: 20px;
+  width: 600px;
+  background-image: linear-gradient(to Bottom, rgb(8, 66, 255),rgb(187, 0, 255), rgb(33, 224, 255));
+  -webkit-background-clip: text;
+  color: transparent;
+  font-weight: 700;
 }
 .headText{
-   -webkit-text-fill-color: transparent;
-    -webkit-text-stroke-width: 1px; 
+   /* -webkit-text-fill-color: transparent;
+    -webkit-text-stroke-width: 1px;  */
+    color: rgb(193, 36, 36);
     font-size: 40px; 
+}
+span{
+  width: 19%;
+  height: 1px;
+  background: #005dff;
+  opacity: 2;
+  display: flex;
+  margin-top: -35px;
+  position: relative;
+  border: 1px solid black;
+  border-radius: 25px;
+  opacity: 1;
 }
 /*  full button compoenent */
 
@@ -45,9 +58,9 @@
     align-items: center;
     justify-content: flex-start;
     gap: 10px;
-    background-image: linear-gradient(to right, rgb(226, 8, 255),rgb(255, 0, 136));
+    background-image: linear-gradient(to right, rgb(8, 255, 255),rgb(218, 197, 197),rgb(0, 255, 255));
     border-radius: 8px;
-    color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
     font-weight: 600;
     border: 2px solid black;
     position: relative;
@@ -70,10 +83,9 @@
   
   .button:hover {
     background-color: rgb(183, 255, 0);
-    box-shadow: 5px 5px 10px rgb(183, 1, 255);
+
     color: rgb(0, 0, 0);
-    -webkit-text-fill-color: transparent;
-    -webkit-text-stroke-width: 1px; 
+    
     transition-duration: .4s;
   }
   

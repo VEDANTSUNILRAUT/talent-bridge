@@ -8,6 +8,7 @@ import { HiArrowSmDown  } from "react-icons/hi";
             <div className="Main">
                  <center className="center">  
                     <h2 className="headText">Student Cell</h2>
+                    <span></span>
                     <p className="HeroPara">Empowering students to build successful careers through comprehensive resources and opportunities.</p>
                     {/* <button type="button" class="btn">
                             Resources <HiArrowSmDown/>                             
