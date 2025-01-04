@@ -1,0 +1,93 @@
+/* Footer Container Styles */
+.footer {
+  background-color: #1c1c1c;
+  color: #a8a8a8;
+  padding: 24px 16px;
+}
+
+.container {
+  max-width: 1700px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+/* Footer Quick Links Styles */
+.quick-links {
+  margin-bottom: 10px;
+}
+
+.footer-heading {
+  color: #ffffff;
+  font-size: 25px;
+  margin-bottom: 10px;
+}
+
+.links-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.links-list .link {
+  color: #a8a8a8;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 8px;
+  transition: color 0.2s;
+  font-size: 18px; /* Default size for the links */
+}
+
+.links-list .link:hover {
+  color: #ffffff;
+}
+
+/* Making Home and Contact links bigger */
+.links-list .link.home,
+.links-list .link.contact {
+  font-size: 27px; /* Increased font size */
+  padding: 12px 20px; 
+  border-radius: 8px;
+  background-color: #3b82f6;
+  color: white;
+  transition: background-color 0.2s;
+}
+
+.links-list .link.home:hover,
+.links-list .link.contact:hover {
+  background-color: #2563eb;
+}
+
+/* Social Media Buttons Styles */
+.social-media {
+  margin-bottom: 20px;
+  text-align: center; 
+}
+
+.social-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center; 
+}
+
+.social-button {
+  border: none;
+  padding: 15px 22px;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.social-button.bg-zinc-600 {
+  background-color: #525252;
+}
+
+.social-button.text-white {
+  color: #ffffff;
+}
+
+.social-button:hover {
+  background-color: #3b82f6;
+}
