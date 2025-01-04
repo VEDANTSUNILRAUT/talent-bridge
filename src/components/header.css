@@ -1,0 +1,63 @@
+/* General Navbar Styles */
+.navbar-container {
+  width: 100%;
+  background-color: white;
+  padding: 10px 0;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+/* Logo Section */
+.navbar-logo img {
+  max-height: 50px; /* Adjust the logo size */
+}
+
+/* Navbar Links */
+.navbar-links {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.navbar-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.navbar-list li {
+  margin: 0 20px;
+}
+
+.navbar-list li a {
+  text-decoration: none;
+  font-size: 18px;
+  color: blue;
+  transition: color 0.3s;
+}
+
+.navbar-list li a:hover {
+  color: #007bff; /* Slightly lighter blue on hover */
+}
+
+/* Login Button Section */
+.navbar-login .login-button {
+  background-color: blue;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.navbar-login .login-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
