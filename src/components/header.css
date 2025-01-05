@@ -1,8 +1,8 @@
 /* Header Container Styles */
 .header {
   background-color: white;
-  padding: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1px;
+  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.1);
 }
 
 .container {
@@ -15,7 +15,7 @@
 }
 
 .logo img {
-  height: 90px; /* Increased logo size */
+  height: 80px; /* Increased logo size */
 }
 
 /* Navigation Links Styles */
@@ -42,9 +42,9 @@
   background-color: #3b82f6;
   color: white;
   border-radius: 9999px;
-  padding: 10px 25px; /* Increased padding for a larger button */
+  padding: 8px 25px; /* Increased padding for a larger button */
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 100;
   font-size: 20px; /* Increased font size for the login button */
   transition: background-color 0.2s;
 }

@@ -1,93 +1,137 @@
-/* Footer Container Styles */
-.footer {
-  background-color: #1c1c1c;
-  color: #a8a8a8;
-  padding: 24px 16px;
+/* Shared classes */
+.text-blue-800 {
+  color: #1e40af; /* Blue text for light mode */
 }
 
-.container {
-  max-width: 1700px;
-  margin: 0 auto;
+.hover\:text-blue-600:hover {
+  color: #2563eb; /* Hover blue text for light mode */
+}
+
+.bg-blue-600 {
+  background-color: #2563eb; /* Blue background */
+}
+
+.dark\:bg-blue-700 {
+  background-color: #1d4ed8; /* Dark blue background */
+}
+
+.text-white {
+  color: #ffffff; /* White text */
+}
+
+.dark\:text-white {
+  color: #ffffff; /* Dark mode white text */
+}
+
+.border {
+  border-width: 1px; /* Default border */
+}
+
+.border-zinc-300 {
+  border-color: #d4d4d8; /* Light zinc border */
+}
+
+.dark\:border-zinc-600 {
+  border-color: #52525b; /* Dark zinc border */
+}
+
+.p-2 {
+  padding: 0.5rem; /* Padding */
+}
+
+.w-full {
+  width: 90%; /* Full width */
+}
+
+.mb-4 {
+  margin-bottom: 1rem; /* Margin bottom */
+}
+
+.rounded-lg {
+  border-radius: 0.5rem; /* Large border radius */
+}
+
+.hover\:bg-blue-500:hover {
+  background-color: #3b82f6; /* Hover blue background */
+}
+
+.dark\:hover\:bg-blue-600:hover {
+  background-color: #2563eb; /* Dark hover blue background */
+}
+
+/* Component-specific styles */
+.flex {
   display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
 }
 
-/* Footer Quick Links Styles */
-.quick-links {
-  margin-bottom: 10px;
+.custom-line-spacing {
+  line-height: 5.75; /* Adjust as needed */
 }
 
-.footer-heading {
-  color: #ffffff;
-  font-size: 25px;
-  margin-bottom: 10px;
+
+.flex-col {
+  flex-direction: column;
 }
 
-.links-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.md\:flex-row {
+  flex-direction: row;
 }
 
-.links-list .link {
-  color: #a8a8a8;
-  text-decoration: none;
-  display: block;
-  margin-bottom: 8px;
-  transition: color 0.2s;
-  font-size: 18px; /* Default size for the links */
+.p-8 {
+  padding: 2em;
 }
 
-.links-list .link:hover {
-  color: #ffffff;
+.bg-white {
+  background-color: #ffffff;
 }
 
-/* Making Home and Contact links bigger */
-.links-list .link.home,
-.links-list .link.contact {
-  font-size: 27px; /* Increased font size */
-  padding: 12px 20px; 
-  border-radius: 8px;
-  background-color: #3b82f6;
-  color: white;
-  transition: background-color 0.2s;
+.dark\:bg-zinc-800 {
+  background-color: #18181b; /* Dark zinc background */
 }
 
-.links-list .link.home:hover,
-.links-list .link.contact:hover {
-  background-color: #2563eb;
+.text-blue-800 {
+  color: #1e40af;
 }
 
-/* Social Media Buttons Styles */
-.social-media {
-  margin-bottom: 20px;
-  text-align: center; 
+.dark\:text-blue-200 {
+  color: #c7d2fe;
 }
 
-.social-buttons {
+.md\:w-1\/2 {
+  width: 100%;
+}
+
+.mb-8 {
+  margin-bottom: 0.8rem;
+}
+
+.mt-4 {
+  margin-top: 1rem;
+}
+
+/* Spacing between sections */
+.section-spacing {
+  margin-top: 10px; /* Add space between sections */
+}
+
+/* Subword styling */
+.subwords {
+  font-size: 0.875rem; /* Smaller font size for subwords */
+  line-height: 1.25rem; /* Adjust line height */
+  color: #6b7280; /* Lighter gray text */
+}
+
+/* Center the Send button */
+.form-submit-wrapper {
   display: flex;
-  gap: 10px;
-  justify-content: center; 
+  justify-content: center;
+  margin-top: 1.5rem;
 }
 
-.social-button {
-  border: none;
-  padding: 15px 22px;
-  border-radius: 9999px;
-  font-size: 0.875rem;
-  cursor: pointer;
-  transition: background-color 0.2s;
+.space-x-4 > :not([hidden]) ~ :not([hidden]) {
+  margin-left: 2rem;
 }
 
-.social-button.bg-zinc-600 {
-  background-color: #525252;
-}
-
-.social-button.text-white {
-  color: #ffffff;
-}
-
-.social-button:hover {
-  background-color: #3b82f6;
+.mt-6 {
+  margin-top: 1.5rem;
 }
