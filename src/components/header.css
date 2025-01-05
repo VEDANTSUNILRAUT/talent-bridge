@@ -14,7 +14,6 @@
   padding: 0 20px; /* Added padding for edge spacing */
 }
 
-
 .logo img {
   height: 80px; /* Increased logo size */
 }
@@ -23,7 +22,7 @@
 .nav-links {
   display: flex;
   gap: 30px;
-  margin-left: auto ;
+  margin-left: auto;
 }
 
 .nav-link {
