@@ -1,35 +1,52 @@
-import React from 'react';
-import './header.css';
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
+import "./header.css";
 
+// Define navigation links with proper paths
 const HEADER_NAV_LINKS = [
-  { text: 'Home', url: '#' },
-  { text: 'About', url: '#' },
-  { text: 'Services', url: '#' },
-  { text: 'Contact', url: '#' },
+  { text: "Home", url: "/home" },
+  { text: "About", url: "/about" },
+  { text: "Services", url: "/services" },
+  { text: "Contact", url: "/contact" },
 ];
 
-const BUTTON_CLASSES = 'btn-login';
+const BUTTON_CLASSES = "btn-login";
 
 const Header = () => {
+  const navigate = useNavigate();
+
+  const handleLoginRedirect = () => {
+    navigate("/login");
+  };
+
   return (
     <header className="header">
       <div className="container">
+        {/* Logo Section */}
         <div className="logo">
           <img
             aria-hidden="true"
             alt="Logo"
-            src="./TB.png"
+            src="/TB.png" // Correct path for images in the public folder
           />
         </div>
+
+        {/* Navigation Links */}
         <nav className="nav-links">
           {HEADER_NAV_LINKS.map((link, index) => (
-            <a key={index} href={link.url} className="nav-link">
+            <Link key={index} to={link.url} className="nav-link">
               {link.text}
-            </a>
+            </Link>
           ))}
-          <a href="#" className={BUTTON_CLASSES}>
+
+          {/* Login Button */}
+          <button
+            className={BUTTON_CLASSES}
+            onClick={handleLoginRedirect}
+            aria-label="Login"
+          >
             Login
-          </a>
+          </button>
         </nav>
       </div>
     </header>
