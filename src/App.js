@@ -1,27 +1,26 @@
 import React from "react";
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import Header from "./components/header";
 import Home from "./pages/home";
 import Footer from "./components/footer";
 
-// import Job from "./pages/job";
+import Login from "./Authentication/login";
+import Signup from "./Authentication/signup";
+
 function App() {
   return (
-    <Router>
+    <>
+      <Header />
       <Routes>
-      <Route path="/" element={<Home />} />
-      
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
       </Routes>
-    </Router>
+      <Footer />
+    </>
+
   );
 }
 
 export default App;
-
-
-
-
-
-
-
-
