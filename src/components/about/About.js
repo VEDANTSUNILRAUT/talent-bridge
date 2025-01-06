@@ -14,7 +14,7 @@ import img10 from "../../assets/images/imagesinPlacement/client/clinet-10.png";
 import img11 from "../../assets/images/imagesinPlacement/client/clinet-11.png";
 import img12 from "../../assets/images/imagesinPlacement/client/clinet-12.png";
 
-import imgAbout  from "../../assets/images/imagesinPlacement/hero-carousel-3.svg"
+import imgAbout  from "../../assets/images/imagesinPlacement/homePageMainImage.png"
 export default function About(){
     return(
         
