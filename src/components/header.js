@@ -4,7 +4,7 @@ import "./header.css";
 
 // Define navigation links with proper paths
 const HEADER_NAV_LINKS = [
-  { text: "Home", url: "/home" },
+  { text: "Home", url: "/" },
   { text: "About", url: "/about" },
   { text: "Services", url: "/services" },
   { text: "Contact", url: "/contact" },
