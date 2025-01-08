@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./header.css";
 
 const HEADER_NAV_LINKS = [
-  { text: "Home", url: "/home" },
+  { text: "Home", url: "/" },
   { text: "About", url: "/about" },
   { text: "Services", url: "/services" },
   { text: "Contact", url: "/contact" },

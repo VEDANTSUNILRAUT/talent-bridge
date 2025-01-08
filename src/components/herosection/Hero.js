@@ -1,14 +1,14 @@
 import React from "react";
 import "./Hero.css";
 import { Link } from "react-router-dom";
-import img from "../../assets/images/imagesinPlacement/homePageMainImage.png";
+import img from "../../assets/images/imagesinPlacement/hero-carousel-3.svg";
 import { HiArrowSmDown  } from "react-icons/hi";
  export default function Hero(){
         return(
             <div className="Main">
                  <center className="center">  
                     <h2 className="headText">Student Cell</h2>
-                    <span></span>
+                    <span className="spanhero"></span>
                     <p className="HeroPara">Empowering students to build successful careers through comprehensive resources and opportunities.</p>
                     {/* <button type="button" class="btn">
                             Resources <HiArrowSmDown/>                             

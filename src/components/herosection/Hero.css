@@ -18,7 +18,7 @@
 .HeroPara{
   font-size: 20px;
   width: 600px;
-  background-image: linear-gradient(to Bottom, rgb(8, 66, 255),rgb(187, 0, 255), rgb(33, 224, 255));
+  background-image: linear-gradient(to Bottom, rgb(0, 0, 0),rgb(74, 37, 127), rgb(16, 190, 218));
   -webkit-background-clip: text;
   color: transparent;
   font-weight: 700;
@@ -29,7 +29,7 @@
     color: rgb(193, 36, 36);
     font-size: 40px; 
 }
-span{
+.spanhero{
   width: 19%;
   height: 1px;
   background: #005dff;
