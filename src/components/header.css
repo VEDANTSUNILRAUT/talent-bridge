@@ -52,3 +52,52 @@
 .btn-login:hover {
   background-color: #2563eb;
 }
+/* css for role choice */
+/* Styles for the modal background overlay */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensures it appears above other elements */
+}
+
+/* Styles for the modal content box */
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Button styles inside the modal */
+.modal-content button {
+  margin: 10px 5px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.modal-content button:hover {
+  background-color: #0056b3;
+}
+
+/* Close button style */
+.modal-content button:last-child {
+  background-color: #dc3545;
+}
+
+.modal-content button:last-child:hover {
+  background-color: #c82333;
+}

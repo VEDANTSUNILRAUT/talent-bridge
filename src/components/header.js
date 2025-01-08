@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./header.css";
 
-// Define navigation links with proper paths
 const HEADER_NAV_LINKS = [
   { text: "Home", url: "/home" },
   { text: "About", url: "/about" },
@@ -13,25 +12,34 @@ const HEADER_NAV_LINKS = [
 const BUTTON_CLASSES = "btn-login";
 
 const Header = () => {
+  const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
 
   const handleLoginRedirect = () => {
-    navigate("/login");
+    setShowModal(true);
   };
+
+  const handleLoginChoice = (role) => {
+    setShowModal(false);
+    if (role === 'admin') {
+      navigate('/adminlogin'); // Redirect to admin login page
+    } else if (role === 'student') {
+      navigate('/login'); // Redirect to student login page
+    }
+  };
+  
 
   return (
     <header className="header">
       <div className="container">
-        {/* Logo Section */}
         <div className="logo">
           <img
             aria-hidden="true"
             alt="Logo"
-            src="/TB.png" // Correct path for images in the public folder
+            src="/TB.png"
           />
         </div>
 
-        {/* Navigation Links */}
         <nav className="nav-links">
           {HEADER_NAV_LINKS.map((link, index) => (
             <Link key={index} to={link.url} className="nav-link">
@@ -39,7 +47,6 @@ const Header = () => {
             </Link>
           ))}
 
-          {/* Login Button */}
           <button
             className={BUTTON_CLASSES}
             onClick={handleLoginRedirect}
@@ -49,6 +56,17 @@ const Header = () => {
           </button>
         </nav>
       </div>
+
+      {showModal && (
+        <div className="modal">
+          <div className="modal-content">
+            <h2>Login As</h2>
+            <button onClick={() => handleLoginChoice('student')}>Student</button>
+            <button onClick={() => handleLoginChoice('admin')}>Admin</button>
+            <button onClick={() => setShowModal(false)}>Close</button>
+          </div>
+        </div>
+      )}
     </header>
   );
 };
