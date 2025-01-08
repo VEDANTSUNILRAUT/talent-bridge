@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./header.css";
 
+import User from "../../assets/images/LoginModal/user.png";
+import Admin from "../../assets/images/LoginModal/admin.png";
+
 const HEADER_NAV_LINKS = [
   { text: "Home", url: "/" },
   { text: "About", url: "/about" },
@@ -15,19 +18,28 @@ const Header = () => {
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
 
-  const handleLoginRedirect = () => {
-    setShowModal(true);
-  };
-
-  const handleLoginChoice = (role) => {
+  // Handle login redirection based on user role
+  const handleLoginRedirect = (role) => {
     setShowModal(false);
-    if (role === 'admin') {
-      navigate('/adminlogin'); // Redirect to admin login page
-    } else if (role === 'student') {
-      navigate('/login'); // Redirect to student login page
+    if (role === "admin") {
+      navigate("/adminlogin");
+    } else if (role === "student") {
+      navigate("/login");
+    } else {
+      console.error("Invalid login role:", role); // Handle invalid role
     }
   };
-  
+
+  const handleSignupChoice = (role) => {
+    setShowModal(false);
+    if (role === "admin") {
+      navigate("/adminsignup");
+    } else if (role === "student") {
+      navigate("/signup");
+    } else {
+      console.error("Invalid signup role:", role); // Handle invalid role
+    }
+  }
 
   return (
     <header className="header">
@@ -36,7 +48,7 @@ const Header = () => {
           <img
             aria-hidden="true"
             alt="Logo"
-            src="/TB.png"
+            src="/TB.png" // Replace with your logo path
           />
         </div>
 
@@ -49,7 +61,7 @@ const Header = () => {
 
           <button
             className={BUTTON_CLASSES}
-            onClick={handleLoginRedirect}
+            onClick={() => setShowModal(true)}
             aria-label="Login"
           >
             Login
@@ -59,11 +71,30 @@ const Header = () => {
 
       {showModal && (
         <div className="modal">
+          <button className="close-button" onClick={() => setShowModal(false)}>
+            &times;
+          </button>
           <div className="modal-content">
-            <h2>Login As</h2>
-            <button onClick={() => handleLoginChoice('student')}>Student</button>
-            <button onClick={() => handleLoginChoice('admin')}>Admin</button>
-            <button onClick={() => setShowModal(false)}>Close</button>
+            <div className="modal-box">
+              <img src={User} alt="Student" />
+              <p>Welcome, Student!</p>
+              <button className="login" onClick={() => handleLoginRedirect("student")}>
+                Login
+              </button>
+              <button className="signup" onClick={() => handleSignupChoice("student")}>
+                Sign Up
+              </button>
+            </div>
+            <div className="modal-box">
+              <img src={Admin} alt="Admin" />
+              <p>Welcome, Admin!</p>
+              <button className="login" onClick={() => handleLoginRedirect("admin")}>
+                Login
+              </button>
+              <button className="signup" onClick={() => handleSignupChoice("admin")}>
+                Sign Up
+              </button>
+            </div>
           </div>
         </div>
       )}
