@@ -4,6 +4,7 @@ import "./header.css";
 
 import User from "../../assets/images/LoginModal/user.png";
 import Admin from "../../assets/images/LoginModal/admin.png";
+import Header_logo from "../../assets/images/Header_Logo/TB.png";
 
 const HEADER_NAV_LINKS = [
   { text: "Home", url: "/" },
@@ -48,7 +49,7 @@ const Header = () => {
           <img
             aria-hidden="true"
             alt="Logo"
-            src="/TB.png" // Replace with your logo path
+            src={Header_logo} 
           />
         </div>
 

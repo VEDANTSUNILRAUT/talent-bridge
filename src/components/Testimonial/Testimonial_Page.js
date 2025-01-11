@@ -1,5 +1,6 @@
 import React from "react";
 import "./Testimonial_Page.css";
+import Testimonial_BreadCrumb from "../../assets/images/Testimonial_BG/testi_BG.png";
 
 const testimonialData = [
   {
@@ -71,7 +72,7 @@ const Testimonials = () => (
     <div
       className="header-section"
       style={{
-        backgroundImage: "url('./imgg/testi_BG.png')", // Replace this link with your background image URL
+        backgroundImage: `url(${Testimonial_BreadCrumb})`, // Replace this link with your background image URL
       }}
     >
       <h1>Testimonials</h1>

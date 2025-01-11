@@ -1,24 +1,9 @@
 import React from 'react';
 import './footer.css';
-
-
-
-// const sharedClasses = {
-//   textBlue: 'text-blue-800',
-//   hoverTextBlue: 'hover:text-blue-600',
-//   bgBlue: 'bg-blue-600',
-//   darkBgBlue: 'dark:bg-blue-700',
-//   textWhite: 'text-white',
-//   darkTextWhite: 'dark:text-white',
-//   borderZinc: 'border border-zinc-300',
-//   darkBorderZinc: 'dark:border-zinc-600',
-//   p2: 'p-2',
-//   wFull: 'w-full',
-//   mb4: 'mb-4',
-//   roundedLg: 'rounded-lg',
-//   hoverBgBlue: 'hover:bg-blue-500',
-//   darkHoverBgBlue: 'dark:hover:bg-blue-600',
-// };
+import instagram from '../../assets/images/Social_Media/instagram.png';
+import facebook from '../../assets/images/Social_Media/facebook.png';
+import gmail from '../../assets/images/Social_Media/gmail.png';
+import twitter from '../../assets/images/Social_Media/twitter.png';
 
 const ContactInfo = () => {
   return (
@@ -31,7 +16,6 @@ const ContactInfo = () => {
   );
 };
 
-
 const SocialLink = ({ href, text, iconSrc, alt }) => {
   return (
     <a href={href} className="text-blue-800 hover:text-blue-600">
@@ -39,9 +23,6 @@ const SocialLink = ({ href, text, iconSrc, alt }) => {
     </a>
   );
 };
-
-
-
 
 const Contactmedia = () => {
   return (
@@ -51,23 +32,23 @@ const Contactmedia = () => {
           <SocialLink 
             href="#" 
             text="WhatsApp" 
-            iconSrc="./imgg/instagram.png" 
+            iconSrc={instagram} 
           />
           <SocialLink 
             href="#" 
             text="Instagram" 
             alt="Instagram"
-            iconSrc="./imgg/facebook.png" 
+            iconSrc={facebook} 
           />
           <SocialLink 
             href="#" 
             text="LinkedIn" 
-            iconSrc="./imgg/gmail.png" 
+            iconSrc={gmail} 
           />
           <SocialLink 
             href="#" 
             text="GitHub" 
-            iconSrc="./imgg/twitter.png" 
+            iconSrc={twitter} 
           />
         </div>
     </div>
@@ -92,7 +73,3 @@ const ContactComponent = () => {
 };
 
 export default ContactComponent;
-
-
-
-
