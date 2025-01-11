@@ -22,11 +22,11 @@ const sharedClasses = {
 
 const ContactInfo = () => {
   return (
-    <div className="md:w-1/2">
-      <h2 className="text-xl font-bold">Contact Info</h2>
-      <p className="mt-2">At xyz Street, Dist. City-5447xx</p>
-      <p className="mt-2">7024588xxx</p>
+    <div className="md:w-1/2 m-block">
+      <h1 className="text-xl font-bold">Contact Info</h1>
       <p className="mt-2">TalentBridge@gmail.com</p>
+      <p className="mt-2">No. (+91) 7024588587</p>
+      <p className="mt-2">At xyz Street, Dist. City-5447xx</p>
     </div>
   );
 };
@@ -35,7 +35,7 @@ const ContactInfo = () => {
 const SocialLink = ({ href, text, iconSrc, alt }) => {
   return (
     <a href={href} className="text-blue-800 hover:text-blue-600">
-      <img src={iconSrc} alt={alt || text} width="24" height="24" />
+      <img src={iconSrc} alt={alt || text} width="50" height="50" />
     </a>
   );
 };
@@ -43,31 +43,11 @@ const SocialLink = ({ href, text, iconSrc, alt }) => {
 
 
 
-const ContactForm = () => {
+const Contactmedia = () => {
   return (
-    <div className="md:w-1/2 mt-8">
-      <h2 className="text-xl font-bold">Contact Me</h2>
-      <form className="mt-4">
-        <input type="text" placeholder="Name" className={`${sharedClasses.borderZinc} ${sharedClasses.darkBorderZinc} ${sharedClasses.p2} ${sharedClasses.wFull} ${sharedClasses.mb4}`} />
-        <input type="email" placeholder="Email" className={`${sharedClasses.borderZinc} ${sharedClasses.darkBorderZinc} ${sharedClasses.p2} ${sharedClasses.wFull} ${sharedClasses.mb4}`} />
-        <textarea placeholder="Write Message Here ..." className={`${sharedClasses.borderZinc} ${sharedClasses.darkBorderZinc} ${sharedClasses.p2} ${sharedClasses.wFull} ${sharedClasses.mb4}`} rows="4"></textarea>
-        <button type="submit" className={`${sharedClasses.bgBlue} ${sharedClasses.darkBgBlue} ${sharedClasses.textWhite} ${sharedClasses.darkTextWhite} ${sharedClasses.p2} ${sharedClasses.roundedLg} ${sharedClasses.hoverBgBlue} ${sharedClasses.darkHoverBgBlue}`}>Send</button>
-      </form>
-    </div>
-  );
-};
-
-const ContactComponent = () => {
-  return (
-    <div className="flex flex-col md:flex-row p-8 bg-white dark:bg-zinc-800 text-blue-800 dark:text-blue-200">
-      <div className="md:w-1/2">
-        <h1 className="text-xl font-bold">Talent Bridge</h1>
-        <p className="mt-4">
-          There is no passion to be found playing small,
-          <br /> in settling for a life that is less than the one
-          <br /> you are capable of living.
-        </p>
-        <div className="flex space-x-4 mt-6">
+    <div className="md:w-1/2">
+        <h1 className="text-xl font-bold m-block">Social media </h1>
+     <div className="flex space-x-4 mt-6">
           <SocialLink 
             href="#" 
             text="WhatsApp" 
@@ -90,9 +70,23 @@ const ContactComponent = () => {
             iconSrc="./imgg/twitter.png" 
           />
         </div>
+    </div>
+  );
+};
+
+const ContactComponent = () => {
+  return (
+    <div className="flex flex-col md:flex-row p-8 bg-white dark:bg-zinc-800 text-blue-800 dark:text-blue-200">
+      <div className="md:w-1/2">
+        <h1 className="text-xl font-bold">Talent Bridge</h1>
+        <p className="mt-4">
+          There is no passion to be found playing small,
+          <br /> in settling for a life that is less than the one
+          <br /> you are capable of living.
+        </p>
       </div>
       <ContactInfo />
-      <ContactForm />
+      <Contactmedia />
     </div>
   );
 };

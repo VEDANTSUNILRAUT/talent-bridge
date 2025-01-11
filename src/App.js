@@ -18,6 +18,9 @@ import AdminSignup from "./Authentication/Admin/adminsignup";
 // Resume
 import Resume from "./pages/resume";
 
+// Testimonials
+import Testimonials from "./pages/testimonial";
+
 function App() {
   return (
     <>
