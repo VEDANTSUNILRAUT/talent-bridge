@@ -12,31 +12,19 @@
 }
 
 .dark\:bg-blue-700 {
-  background-color: #1d4ed8; /* Dark blue background */
+  background-color: #1d4ed8; /* Dark blue background for dark mode */
 }
 
 .text-white {
-  color: #ffffff; /* White text */
+  color: #ffffff; /* White text for light mode */
 }
 
 .dark\:text-white {
-  color: #ffffff; /* Dark mode white text */
+  color: #ffffff; /* White text for dark mode */
 }
 
-.border {
-  border-width: 1px; /* Default border */
-}
-
-.border-zinc-300 {
-  border-color: #d4d4d8; /* Light zinc border */
-}
-
-.dark\:border-zinc-600 {
-  border-color: #52525b; /* Dark zinc border */
-}
-
-.p-2 {
-  padding: 0.5rem; /* Padding */
+.p-8 {
+  padding: 2rem; /* Large padding */
 }
 
 .w-full {
@@ -44,7 +32,7 @@
 }
 
 .mb-4 {
-  margin-bottom: 1rem; /* Margin bottom */
+  margin-bottom: 1rem; /* Space below the element */
 }
 
 .rounded-lg {
@@ -52,86 +40,62 @@
 }
 
 .hover\:bg-blue-500:hover {
-  background-color: #3b82f6; /* Hover blue background */
+  background-color: #3b82f6; /* Hover blue background for light mode */
 }
 
 .dark\:hover\:bg-blue-600:hover {
-  background-color: #2563eb; /* Dark hover blue background */
+  background-color: #2563eb; /* Hover blue background for dark mode */
 }
 
-/* Component-specific styles */
+/* Layout-specific styles */
 .flex {
-  display: flex;
+  display: flex; /* Flex container */
 }
-
-.custom-line-spacing {
-  line-height: 5.75; /* Adjust as needed */
-}
-
 
 .flex-col {
-  flex-direction: column;
+  flex-direction: column; /* Column layout */
 }
 
 .md\:flex-row {
-  flex-direction: row;
+  flex-direction: row; /* Row layout for medium screens */
+
+}
+.m-block{
+  margin-left: 7rem;
 }
 
-.p-8 {
-  padding: 2em;
-}
 
 .bg-white {
-  background-color: #ffffff;
+  background-color: #ffffff; /* Light background */
 }
 
 .dark\:bg-zinc-800 {
-  background-color: #18181b; /* Dark zinc background */
+  background-color: #18181b; /* Dark background */
 }
 
 .text-blue-800 {
-  color: #1e40af;
+  color: #1e40af; /* Blue text */
 }
 
 .dark\:text-blue-200 {
-  color: #c7d2fe;
+  color: #c7d2fe; /* Light blue text for dark mode */
 }
 
 .md\:w-1\/2 {
-  width: 100%;
-}
-
-.mb-8 {
-  margin-bottom: 0.8rem;
+  width: 100%; /* Half width on medium screens */
 }
 
 .mt-4 {
-  margin-top: 1rem;
+  margin-top: 1rem; /* Margin at the top */
 }
 
-/* Spacing between sections */
-.section-spacing {
-  margin-top: 10px; /* Add space between sections */
+.text-xl {
+  color: #628eeb; /* Light blue color for titles */
 }
 
-/* Subword styling */
-.subwords {
-  font-size: 0.875rem; /* Smaller font size for subwords */
-  line-height: 1.25rem; /* Adjust line height */
-  color: #6b7280; /* Lighter gray text */
+/* Social media links */
+.flex.space-x-4 {
+  justify-content: center; /* Center align icons horizontally */
+  gap: 2rem; /* Space between icons */
 }
 
-/* Center the Send button */
-.form-submit-wrapper {
-  display: flex;
-  justify-content: center;
-  margin-top: 1.5rem;
-}
-
-.space-x-4 > :not([hidden]) ~ :not([hidden]) {
-  margin-left: 2rem;
-}
-
-.mt-6 {
-  margin-top: 1.5rem;
-}

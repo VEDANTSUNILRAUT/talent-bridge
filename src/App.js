@@ -18,8 +18,14 @@ import Signup from "./Authentication/Student/signup";
 import AdminLogin from "./Authentication/Admin/adminlogin";
 import AdminSignup from "./Authentication/Admin/adminsignup";
 
+<<<<<<< HEAD
+// Testimonials
+import Testimonials from "./pages/testimonial";
+
+=======
 // Job Detailes Page
 import JobDetails from "./components/JobComponent/job_details";
+>>>>>>> d50c5c15d73d008c33dc262199e7c269bb9afe92
 function App() {
   return (
     <>
