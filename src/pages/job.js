@@ -1,10 +1,10 @@
 import React from 'react';
-import JobComponent from '../components/JobComponent/job';
+import Jobpage from '../components/JobComponent/job_page';
 
 function Job() {
   return (
     <>
-      <JobComponent />
+      <Jobpage />
     </>
   );
 }

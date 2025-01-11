@@ -14,22 +14,21 @@ body {
 .job-header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   margin-bottom: 20px;
-  gap: 15px;
-  position: relative;
+  gap: 30rem;
 }
 
 /* Filter Button */
 .filter-button {
+  width: 4rem;
   background-color: #007bff;
   color: white;
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
-  position: absolute;
-  left: 0;
+  transition: background-color 0.3s;
 }
 
 .filter-button:hover {
@@ -38,14 +37,12 @@ body {
 
 /* Search Box */
 .search-box {
-  margin: 0 auto;
-  width: 100%;
+  flex-grow: 1;
   max-width: 400px;
   padding: 10px;
   border: 2px solid #007bff;
   border-radius: 5px;
   font-size: 16px;
-  flex-grow: 1;
 }
 
 /* Companies Section */
@@ -60,10 +57,7 @@ body {
 
 .company-list {
   display: grid;
-  grid-template-columns: repeat(
-    auto-fit,
-    minmax(250px, 1fr)
-  ); /* Responsive columns */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
 }
 
@@ -96,8 +90,8 @@ body {
 }
 
 .company-card p {
-  margin: 5px 0;
   color: #555;
+  margin: 5px 0;
 }
 
 /* Job Listings Container */
@@ -144,6 +138,7 @@ body {
 
 .details-button,
 .apply-button {
+  width: 7rem;
   background-color: #007bff;
   color: white;
   border: none;
@@ -151,18 +146,7 @@ body {
   border-radius: 5px;
   cursor: pointer;
   font-size: 14px;
-}
-
-.viewdetail-btn {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 14px;
-  position: relative;
-  left: 70px;
+  transition: background-color 0.3s;
 }
 
 .details-button:hover {
@@ -182,24 +166,23 @@ body {
   margin: 20px 0;
   padding: 10px 0;
   background-color: #f9f9f9;
-  overflow: hidden; /* Ensure the sliding text stays within the section */
-  position: relative;
+  overflow: hidden;
 }
 
 .sliding-company-names {
   display: flex;
   white-space: nowrap;
-  animation: slide-left 25s linear infinite; /* Adjust duration for speed */
+  animation: slide-left 25s linear infinite;
 }
 
 .sliding-company {
-  margin-right: 30px; /* Space between company names */
+  margin-right: 30px;
   font-size: 1.2rem;
   font-weight: bold;
   color: #333;
 }
 
-/* Keyframes for right-to-left sliding */
+/* Keyframes for sliding animation */
 @keyframes slide-left {
   from {
     transform: translateX(100%);
@@ -207,15 +190,4 @@ body {
   to {
     transform: translateX(-100%);
   }
-}
-/* Hamburegr sign Style */
-.hamburger-button {
-  background: none;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
-  margin-left: 10px;
-}
-.hamburger-button:hover {
-  color: #007bff;
 }

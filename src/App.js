@@ -18,6 +18,8 @@ import Signup from "./Authentication/Student/signup";
 import AdminLogin from "./Authentication/Admin/adminlogin";
 import AdminSignup from "./Authentication/Admin/adminsignup";
 
+// Job Detailes Page
+import JobDetails from "./components/JobComponent/job_details";
 function App() {
   return (
     <>
@@ -30,6 +32,7 @@ function App() {
         <Route path="/adminsignup" element={<AdminSignup />} />
         <Route path="/resume" element={<Resume/>}/>
         <Route path="/job" element={<Job />} />
+        <Route path="/job_details/:jobId" element={<JobDetails />} />
       </Routes>
       <Footer />
     </>
