@@ -3,22 +3,22 @@ import './footer.css';
 
 
 
-const sharedClasses = {
-  textBlue: 'text-blue-800',
-  hoverTextBlue: 'hover:text-blue-600',
-  bgBlue: 'bg-blue-600',
-  darkBgBlue: 'dark:bg-blue-700',
-  textWhite: 'text-white',
-  darkTextWhite: 'dark:text-white',
-  borderZinc: 'border border-zinc-300',
-  darkBorderZinc: 'dark:border-zinc-600',
-  p2: 'p-2',
-  wFull: 'w-full',
-  mb4: 'mb-4',
-  roundedLg: 'rounded-lg',
-  hoverBgBlue: 'hover:bg-blue-500',
-  darkHoverBgBlue: 'dark:hover:bg-blue-600',
-};
+// const sharedClasses = {
+//   textBlue: 'text-blue-800',
+//   hoverTextBlue: 'hover:text-blue-600',
+//   bgBlue: 'bg-blue-600',
+//   darkBgBlue: 'dark:bg-blue-700',
+//   textWhite: 'text-white',
+//   darkTextWhite: 'dark:text-white',
+//   borderZinc: 'border border-zinc-300',
+//   darkBorderZinc: 'dark:border-zinc-600',
+//   p2: 'p-2',
+//   wFull: 'w-full',
+//   mb4: 'mb-4',
+//   roundedLg: 'rounded-lg',
+//   hoverBgBlue: 'hover:bg-blue-500',
+//   darkHoverBgBlue: 'dark:hover:bg-blue-600',
+// };
 
 const ContactInfo = () => {
   return (

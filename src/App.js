@@ -10,6 +10,7 @@ import Footer from "./components/Footer/footer";
 import Home from "./Pages/home";
 import Resume from "./Pages/resume";
 import Job from "./Pages/job";
+import Testimonial from "./Pages/testimonial";
 
 // Student Login
 import Login from "./Authentication/Student/login";
@@ -18,14 +19,10 @@ import Signup from "./Authentication/Student/signup";
 import AdminLogin from "./Authentication/Admin/adminlogin";
 import AdminSignup from "./Authentication/Admin/adminsignup";
 
-<<<<<<< HEAD
-// Testimonials
-import Testimonials from "./pages/testimonial";
 
-=======
 // Job Detailes Page
 import JobDetails from "./components/JobComponent/job_details";
->>>>>>> d50c5c15d73d008c33dc262199e7c269bb9afe92
+
 function App() {
   return (
     <>
@@ -39,6 +36,7 @@ function App() {
         <Route path="/resume" element={<Resume/>}/>
         <Route path="/job" element={<Job />} />
         <Route path="/job_details/:jobId" element={<JobDetails />} />
+        <Route path="/testimonial" element={<Testimonial />} />
       </Routes>
       <Footer />
     </>
