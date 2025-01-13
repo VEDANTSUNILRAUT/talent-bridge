@@ -43,7 +43,7 @@ const Header = () => {
   }
 
   return (
-    <header className="header">
+    <header className="header11">
       <div className="container">
         <div className="logo">
           <img

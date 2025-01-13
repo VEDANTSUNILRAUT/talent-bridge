@@ -12,6 +12,10 @@ import Resume from "./Pages/resume";
 import Job from "./Pages/job";
 import Testimonial from "./Pages/testimonial";
 
+// Admin Dashboard
+import Admin from "./Pages/Admin_Dash";
+import StudentProfile from "./components/Admin/StudentProfile";
+
 // Student Login
 import Login from "./Authentication/Student/login";
 import Signup from "./Authentication/Student/signup";
