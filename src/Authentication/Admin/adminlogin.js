@@ -1,17 +1,25 @@
-// adminLogin.js
 import React, { useState } from "react";
-import "./adminlogin.css"; // Assuming the same CSS is used for styling
+import "./adminlogin.css";
 
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  // Hardcoded admin credentials
+  const adminEmail = "admin@gmail.com";
+  const adminPassword = "pass1234";
 
   const handleAdminSubmit = (event) => {
     event.preventDefault();
-    // Here you would typically make an API call to your backend to authenticate the admin user
-    console.log("Admin Email:", email);
-    console.log("Admin Password:", password);
-    // ... your admin authentication logic here ...
+
+    // Simple client-side authentication
+    if (email === adminEmail && password === adminPassword) {
+      console.log("Authentication successful");
+      // Redirect to the admin dashboard or perform another action
+    } else {
+      setError("Invalid email or password");
+    }
   };
 
   return (
@@ -44,11 +52,11 @@ const AdminLogin = () => {
             required
           />
         </div>
+        {error && <p className="error-message">{error}</p>}
         <button type="submit" className="login-button">
           Login
         </button>
       </form>
-      <p>If you are an admin, please <a href="./adminSignup">register</a></p>
     </div>
   );
 };

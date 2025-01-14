@@ -1,18 +1,25 @@
 // Login.js
 import React, { useState } from "react";
+import axios from "axios";
 import "./login.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Here you would typically make an API call to your backend to authenticate the user
-    console.log("Email:", email);
-    console.log("Password:", password);
-    // ... your authentication logic here ...
-  };
+  function handleSubmit(e) {
+    e.preventDefault();
+    axios
+      .post("http://localhost:5000/student_login", { email, password })
+      .then((res) => {
+        console.log(res);
+        alert("Login Successful!"); // Alert on successful login
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("Login Failed! Please check your credentials."); // Alert on failed login
+      });
+  }
 
   return (
     <div className="login-container">
