@@ -1,7 +1,7 @@
 import React from 'react';
 // import { Link } from 'react-router-dom';
 import Hero from '../components/Herosection/Hero';
-import About from '../components/About/about';
+import About from '../components/About/About';
 
 export default function Home() {
   return (
