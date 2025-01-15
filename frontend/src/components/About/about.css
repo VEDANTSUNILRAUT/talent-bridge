@@ -1,7 +1,7 @@
 .aboutMain{
     display: flex;
     flex-wrap: wrap;
-    padding: 100px;
+    /* padding: 100px; */
     height: 100vh;
 }
 .aboutPart1{
@@ -16,16 +16,24 @@
     animation: moveTopBottom 1s infinite alternate ease-in-out;
 }
 .aboutpart2{
-    width:60% 
+    width:50% ;
     
+}
+.aboutpart2 p{
+    font-size: 20px;
+
 }
 .aboutheader{
     color: #6a6aff;
+  font-size: 36px;
+  font-weight: 600;
 }
 .Companysection{
    width: 100%;
-   height: 40%;
+  height: 54%;
   
+  margin-top: 30px;
+
 }
 .allimages{
     height:120px ;

@@ -1,116 +1,139 @@
 .Main{
-    /* background-image: url(../../assets/images/imagesinPlacement/homepageimage.jpg); */
-    height: 95vh;
-    width: 100vw;
-    /* background-repeat: no-repeat;
-    background-position: center;
-     background-size: cover;  */
-    flex-wrap: wrap;
-    color: rgb(0, 0, 0);
-    object-fit: cover;
-    text-transform: uppercase;
-    
+  /* background-image: url(../../assets/images/imagesinPlacement/homepageimage.jpg); */
+  height: 95vh;
+  width: 100vw;
+  /* background-repeat: no-repeat;
+  background-position: center;
+   background-size: cover;  */
+   display: flex;
+   justify-content: space-around;
+   align-items: center;
+  flex-wrap: wrap;
+  color: rgb(0, 0, 0); 
+  padding: 0 5% 0 5%;  
 }
-.center{
-    padding-top: 30px;
-    height: 85vh;
+.Mainpart1{
+width: 50%;
+height: 100vh;
+display: flex;
+flex-direction: column;
+justify-content: center;
+}
+.Mainpart2{
+width: 50%;
+width: 50%;
+height: 100vh;
+display: flex;
+
+}
+/* .center{
+  padding-top: 30px;
+  height: 85vh;
+} */
+.headText{
+background-clip: text;
+background-image: linear-gradient(to right, #ff9e48,#5d07db,#000);
+color: transparent;
+font-size: 50px;
+display: flex;
+margin: 0px;
+}
+.img1{
+width: 100px;
+height: 100px;
+margin-top: -17px;
+
 }
 .HeroPara{
-  font-size: 20px;
-  width: 600px;
-  background-image: linear-gradient(to Bottom, rgb(0, 0, 0),rgb(74, 37, 127), rgb(16, 190, 218));
-  -webkit-background-clip: text;
-  color: transparent;
-  font-weight: 700;
+font-size: 32px;
+margin-top: 35px;
+background-image: linear-gradient(to Bottom, rgb(0, 0, 0),rgb(74, 37, 127), rgb(16, 190, 218));
+background-clip: text;
+color: transparent;
+font-weight: 700;
 }
-.headText{
-   /* -webkit-text-fill-color: transparent;
-    -webkit-text-stroke-width: 1px;  */
-    color: rgb(193, 36, 36);
-    font-size: 40px; 
-}
+
 .spanhero{
-  width: 19%;
-  height: 1px;
-  background: #005dff;
-  opacity: 2;
-  display: flex;
-  margin-top: -35px;
-  position: relative;
-  border: 1px solid black;
-  border-radius: 25px;
-  opacity: 1;
+background-color: #fdb7ef;
+height: 40px;
+width: 42%;
+margin-top: -59px;
+z-index: -1;
+opacity: 0.5;
 }
 /*  full button compoenent */
 
 /* From Uiverse.io by StealthWorm */ 
 /* .btn{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
 } */
- /* From Uiverse.io by vinodjangid07 */ 
+/* From Uiverse.io by vinodjangid07 */ 
+.buttondiv{
+display: flex;
+align-items: center;
+justify-content: space-around;
+}
 .button {
-    width: 191px;
-    height: 37px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 10px;
-    background-image: linear-gradient(to right, rgb(8, 255, 255),rgb(218, 197, 197),rgb(0, 255, 255));
-    border-radius: 8px;
-    color: rgb(0, 0, 0);
-    font-weight: 600;
-    border: 2px solid black;
-    position: relative;
-    cursor: pointer;
-    transition-duration: .2s;
-    box-shadow: 5px 5px 10px rgba(209, 200, 129, 0.12);
-    padding-left: 8px;
-    transition-duration: .5s;
-    font-size: 20px;
-  }
-  
-  .svgIcon {
-    height: 25px;
-    transition-duration: 1.5s;
-  }
-  
-  .bell path {
-    fill: rgb(19, 19, 19);
-  }
-  
-  .button:hover {
-    background-color: rgb(183, 255, 0);
+width: 350px;
+height: 50px;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 10px;
+background-color: #6dff51;
+border-radius: 4px;
+color: rgb(0, 0, 0);
+font-weight: 600;
+border: 2px solid black;
+cursor: pointer;
+transition-duration: .2s;
+box-shadow: 1px 1px 10px 6px rgba(1, 1, 1, 0.12);
+padding-left: 8px;
+transition-duration: .5s;
+font-size: 22px;
+margin: 30px 0px;
+}
 
-    color: rgb(0, 0, 0);
-    
-    transition-duration: .4s;
-  }
+.svgIcon {
+  height: 25px;
+  transition-duration: 1.5s;
+}
+
+.bell path {
+  fill: rgb(19, 19, 19);
+}
+
+.button:hover {
+  background-color: rgb(183, 255, 0);
+
+  color: rgb(0, 0, 0);
   
-  .button:active {
-    transform: scale(0.97);
-    transition-duration: .2s;
-  }
-  
-  .button:hover .svgIcon {
-    transform: rotate(250deg);
-    transition-duration: 1.5s;
-  }
-  
-  
+  transition-duration: .4s;
+}
+
+.button:active {
+  transform: scale(0.97);
+  transition-duration: .2s;
+}
+
+.button:hover .svgIcon {
+  transform: rotate(250deg);
+  transition-duration: 1.5s;
+}
+
+
 .imghero{
-    width: 37%;
-    padding: 0px 0px 0 40px;
-    animation: moveLeftRight 1s infinite alternate ease-in-out;
+  width: 75%;
+  animation: moveLeftRight 0.5s infinite alternate ease-in-out;
 }
 @keyframes moveLeftRight {
-    0% {
-        transform: translateX(0.5cm); /* Moves 5cm left */
-    }
-    100% {
-        transform: translateX(0m); /* Moves 5cm right */
-    }
+  0% {
+      transform: translateY(0.5cm); /* Moves 5cm left */
+  }
+  100% {
+      transform: translateY(0.5m); /* Moves 5cm right */
+  }
 }
- 
