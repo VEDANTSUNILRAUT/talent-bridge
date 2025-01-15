@@ -14,8 +14,6 @@ import Testimonial from "./Pages/testimonial";
 
 // Admin Dashboard
 import Admin from "./Pages/Admin_Dash";
-// import StudentProfile from "./components/Admin/StudentProfile";
-
 // Student Login
 import Login from "./Authentication/Student/login";
 import Signup from "./Authentication/Student/signup";
@@ -37,6 +35,7 @@ function App() {
         <Route path="/resume" element={<Resume/>}/>
         <Route path="/job" element={<Job />} />
         <Route path="/testimonial" element={<Testimonial />} />
+        <Route path="/admin" element={<Admin />} />
       </Routes>
       <Footer />
     </>
