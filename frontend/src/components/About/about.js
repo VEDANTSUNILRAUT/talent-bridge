@@ -24,13 +24,10 @@ export default function About(){
                 <img src={imgAbout} alt="NotLoad" className="imgAbout" />
             </div>
             <div className="aboutpart2">
-                <h2 className="aboutheader"> About Student Cell</h2>
-                 <p>
-                    Key Changes & Explanation:
-                    ✅ Fade-in Animation: The .Main container now fades in on page load using the fadeIn keyframe.
-                    ✅ Button Animation: The button enlarges slightly and changes color when hovered.
-                    ✅ Image Animation: The image rotates slightly and scales up on hover.
-                    ✅ Text Animation: The heading (.headText) changes color when hovered.</p>
+                <h2 className="aboutheader"> About Talent-Bridge</h2>
+                
+                 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                 At Talent Bridge Technology, we are committed to empowering students by providing exceptional job opportunities and career growth. We offer the best platform for college students, helping them connect with top companies and secure promising careers. Our platform is managed in collaboration with colleges, ensuring students receive the right guidance and resources for success. Talent Bridge has successfully placed numerous students in reputed firms, bridging the gap between education and employment. Our mission is to empower the next generation of professionals, making career dreams a reality through quality placements and continuous support.</p>
 
             </div>
             <div className="Companysection">
