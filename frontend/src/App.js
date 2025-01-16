@@ -23,7 +23,8 @@ import Signup from "./Authentication/Student/signup";
 // Admin Login
 import AdminLogin from "./Authentication/Admin/adminlogin";
 import AdminSignup from "./Authentication/Admin/adminsignup";
-
+//profile
+import Profile from "./Pages/Student_Profile";
 
 function App() {
   return (
@@ -39,8 +40,9 @@ function App() {
         <Route path="/resume" element={<Resume/>}/>
         <Route path="/job" element={<Job />} />
         <Route path="/testimonial" element={<Testimonial />} />
-        <Route path="/admin" element={<Admin />} />
-        <Route path="/admin-profile" element={<AdminProfile />} />
+        <Route path="/admin" element={<Admin />} /
+        <Route path="/studentprofile" element={<Profile/>}/>
+        <Route path="/admin-profile" element={<AdminProfile />
       </Routes>
       <Footer />
     </>

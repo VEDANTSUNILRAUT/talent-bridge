@@ -11,19 +11,17 @@
   align-items: center;
   max-width: 1700px;
   margin: 0 auto;
-  padding: 0 20px; /* Edge spacing */
+  padding: 0 20px; /* Added padding for edge spacing */
 }
 
-/* Logo Styles */
 .logo img {
-  height: 80px; /* Logo size */
+  height: 80px; /* Increased logo size */
 }
 
 /* Navigation Links Styles */
 .nav-links {
   display: flex;
   gap: 30px;
-  align-items: center;
   margin-left: auto;
 }
 
@@ -31,57 +29,58 @@
   text-decoration: none;
   color: #1d4ed8;
   font-weight: 600;
-  font-size: 25px;
+  font-size: 25px; /* Increased font size for navigation links */
   transition: color 0.2s;
 }
 
 .nav-link:hover {
-  color: #2563eb;
+  color: #1e40af;
 }
 
 /* Login Button Styles */
 .btn-login {
+  margin-top: -5px;
   background-color: #3b82f6;
   color: white;
-  border-radius: 9999px;
-  padding: 8px 25px; /* Larger button */
-  font-weight: 100;
-  font-size: 20px;
+  border-radius: 4px;
+  padding: 8px 25px; /* Increased padding for a larger button */
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 20px; /* Increased font size for the login button */
   transition: background-color 0.2s;
-  align-self: center;
 }
 
 .btn-login:hover {
   background-color: #2563eb;
 }
 
-/* Modal Background Styles */
+/* Styles for the modal background overlay */
 .modal {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent */
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000; /* Ensures modal above other content */
+  z-index: 1000; /* Ensures it appears above other elements */
 }
 
-/* Modal Content Styles */
+/* Centering the modal content */
 .modal-content {
   background-color: white;
   padding: 20px;
   border-radius: 8px;
   width: 600px;
-  display: flex;
-  justify-content: space-between;
   text-align: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between; /* Space between the two boxes */
 }
 
-/* Modal Box Styles */
+/* Individual modal box styles */
 .modal-box {
   width: 280px;
   border: 1px solid #ccc;
@@ -110,7 +109,6 @@
   font-size: 14px;
 }
 
-/* Button Styles */
 .modal-box button.login {
   background-color: #007bff;
   color: white;
@@ -129,7 +127,7 @@
   background-color: #218838;
 }
 
-/* Close Button Styles */
+/* Close button styles */
 .close-button {
   width: 2rem;
   height: 2rem;
@@ -141,6 +139,7 @@
   padding: 0;
   cursor: pointer;
   font-size: 2rem;
+  text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -149,21 +148,11 @@
 
 .close-button:hover {
   background-color: #c82333 !important;
+   /* Ensure it overrides other hover effects */
 }
-
-/* Profile Icon Styles */
-.profile-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.profile button {
-  margin-left: 10px;
-  background-color: #f00;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  cursor: pointer;
+.profileimg{
+   height: 38px;
+    border: 2px solid black;
+    border-radius: 50%;
+    margin-top: -5px;
 }
