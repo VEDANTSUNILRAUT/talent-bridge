@@ -1,77 +1,64 @@
-/* General page styles */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f5f5f5;
+  background-color: #f9f9f9;
 }
 
-/* Header Section */
 .header {
-  display: flex; /* Flexbox for layout */
-  justify-content: space-between; /* Space between title and navigation */
-  align-items: center; /* Align items vertically */
-  background-color: #141a8c; /* Purple background */
-  padding: 15px 20px; /* Add spacing around header */
-  color: #fff; /* White text color */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  position: sticky; /* Stick header to the top on scroll */
-  top: 0; /* Top position for sticky effect */
-  z-index: 1000; /* Ensure header stays above other elements */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #4f6fef;
+  color: #fff;
+  padding: 15px 20px;
 }
 
-.header h1 {
-  font-size: 24px; /* Font size for title */
-  margin: 0; /* Remove default margin */
+.profile-section {
+  display: flex;
+  align-items: center;
 }
 
-.nav {
-  display: flex; /* Flexbox for navigation links */
-  gap: 20px; /* Space between navigation links */
+.profile-photo {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
 }
 
-.nav a {
-  text-decoration: none; /* Remove underline */
-  color: #fff; /* White text color */
-  font-size: 16px; /* Font size for links */
-  padding: 8px 12px; /* Add padding around links */
-  border-radius: 5px; /* Rounded corners */
-  transition: background-color 0.3s, color 0.3s; /* Smooth hover effect */
+.profile-info h2,
+.profile-info p {
+  margin: 0;
+  color: #fff;
 }
 
-.nav a.active {
-  background-color: #fff; /* White background for active link */
-  color: #4a148c; /* Purple text for active link */
-  font-weight: bold; /* Make active link bold */
-}
-
-.nav a:hover {
-  background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent white background */
-}
-
-/* Dashboard container */
-.dashboard {
-  display: flex; /* Align sidebar and main content side by side */
-  align-items: flex-start; /* Align content to the top */
-  gap: 20px; /* Add space between sidebar and main content */
-  padding: 20px; /* Add space around the page */
-  flex-wrap: wrap; /* Allow wrapping for responsiveness */
-}
-
-/* Sidebar styles */
-.sidebar {
-  width: 250px; /* Fixed width for sidebar */
+.view-profile {
+  width: 7rem;
   background-color: #fff;
+  color: #4f6fef;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+.dashboard {
+  display: flex;
+  gap: 20px;
   padding: 20px;
-  min-height: 100vh; /* Full vertical height */
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-  border-radius: 10px; /* Rounded corners for sidebar */
-  flex-shrink: 0; /* Prevent sidebar from shrinking */
+}
+
+.sidebar {
+  background-color: #fff;
+  width: 250px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .sidebar h2 {
-  color: #141a8c; /* Purple color for title */
   margin-bottom: 20px;
+  color: #4f6fef;
 }
 
 .sidebar ul {
@@ -80,94 +67,110 @@ body {
 }
 
 .sidebar ul li {
-  margin-bottom: 15px;
-}
-
-.sidebar ul li a {
-  text-decoration: none;
-  color: #555;
-  font-size: 16px;
-  display: flex;
-  align-items: center;
   padding: 10px 15px;
+  margin-bottom: 10px;
+  cursor: pointer;
   border-radius: 5px;
-  transition: background-color 0.3s, color 0.3s;
 }
 
-.sidebar ul li a:hover {
-  background-color: #141a8c; /* Purple hover color */
+.sidebar ul li.active,
+.sidebar ul li:hover {
+  background-color: #4f6fef;
   color: #fff;
 }
 
-.sidebar ul li.active a {
-  background-color: #141a8c; /* Purple color for active link */
-  color: #fff;
-}
-
-.sidebar ul li a .icon {
-  margin-right: 10px; /* Space between icon and text */
-}
-
-/* Main content area */
 .content {
-  flex: 1; /* Expand to fill available space */
-  padding: 20px;
-  border-radius: 10px; /* Rounded corners */
+  flex: 1;
   background-color: #fff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-}
-
-.content-box h2 {
-  color: #14268c; /* Purple color for title */
-  margin-bottom: 20px;
-  font-size: 24px;
-}
-
-/* Stats grid for statistics boxes */
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive grid */
-  gap: 20px; /* Space between grid items */
-}
-
-/* Individual stat boxes */
-.stat-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   padding: 20px;
   border-radius: 10px;
-  color: #fff;
-  text-align: center;
-  font-size: 16px;
-  font-weight: bold;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+.job-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.job-table th,
+.job-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+.job-table th {
+  background-color: #4f6fef;
+  color: #fff;
+}
+
+/* General container styles */
+.dashboard-grid-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+}
+
+/* Dashboard title */
+.dashboard-title {
+  text-align: center;
+  font-size: 24px;
+  color: #14268c;
+  margin-bottom: 20px;
+}
+
+/* Stats grid for layout */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 4rem;
+  justify-items: center;
+}
+
+/* Individual stat box */
+.stat-box {
+  width: 100%;
+  max-width: 250px;
+  padding: 20px;
+  text-align: center;
+  color: #fff;
+  border-radius: 10px;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
 .stat-box h3 {
-  margin: 10px 0;
+  margin-bottom: 10px;
   font-size: 18px;
 }
 
 .stat-box p {
-  font-size: 20px;
+  font-size: 24px;
   margin: 0;
 }
 
 /* Specific colors for stat boxes */
-.stat-box.red {
-  background-color: #e53935; /* Red */
-}
-
-.stat-box.green {
-  background-color: #43a047; /* Green */
-}
-
 .stat-box.blue {
-  background-color: #1e88e5; /* Blue */
+  background-color: #1e88e5;
 }
 
 .stat-box.orange {
-  background-color: #fb8c00; /* Orange */
+  background-color: #fb8c00;
+}
+
+.stat-box.green {
+  background-color: #43a047;
+}
+
+.stat-box.red {
+  background-color: #e53935;
+}
+
+.stat-box.purple {
+  background-color: #8e24aa;
+}
+
+.stat-box.teal {
+  background-color: #00897b;
 }

@@ -88,7 +88,7 @@ const Header = () => {
             </div>
             <div className="modal-box">
               <img src={Admin} alt="Admin" />
-              <p>Welcome, Admin!</p>
+              <p>Welcome, TPO </p>
               <button className="login" onClick={() => handleLoginRedirect("admin")}>
                 Login
               </button>

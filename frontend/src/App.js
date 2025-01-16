@@ -15,7 +15,7 @@ import About from "./Pages/aboutss";
 
 // Admin Dashboard
 import Admin from "./Pages/Admin_Dash";
-// import StudentProfile from "./components/Admin/StudentProfile";
+import AdminProfile from "./components/Admin/adminProfile";
 
 // Student Login
 import Login from "./Authentication/Student/login";
@@ -40,6 +40,7 @@ function App() {
         <Route path="/job" element={<Job />} />
         <Route path="/testimonial" element={<Testimonial />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/admin-profile" element={<AdminProfile />} />
       </Routes>
       <Footer />
     </>

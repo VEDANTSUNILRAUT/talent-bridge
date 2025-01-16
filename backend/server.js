@@ -70,8 +70,84 @@ app.get('/jobs', (req, res) => {
     if (err) return res.json(err);
     return res.json(data);
   });
+});
+
+// Current Jobs fetch API : http://localhost:5000/jobs/current
+app.get('/current', (req, res) => {
+  const sql = `
+    SELECT 
+      job_id,
+      title, 
+      company_name, 
+      location, 
+      salary, 
+      posted_date 
+    FROM jobs 
+    WHERE company_type = 'current'
+  `;
+  
+  db.query(sql, (err, data) => {
+    if (err) return res.json(err);
+    return res.json(data);
+  });
+});
+//upcoming jobs fetch API : http://localhost:5000/jobs/upcoming
+app.get('/upcoming', (req, res) => {
+  const sql = `
+    SELECT 
+      job_id,
+      title, 
+      company_name, 
+      location, 
+      salary, 
+      posted_date 
+    FROM jobs 
+    WHERE company_type = 'upcoming'
+  `;
+  
+  db.query(sql, (err, data) => {
+    if (err) return res.json(err);
+    return res.json(data);
+  }); 
+});
+//
+app.get('/partner', (req, res) => {
+  const sql = `
+    SELECT 
+      job_id,
+      title, 
+      company_name, 
+      location, 
+      salary, 
+      posted_date 
+    FROM jobs 
+    WHERE company_type = 'partner'
+  `;
+  
+  db.query(sql, (err, data) => {
+    if (err) return res.json(err);
+    return res.json(data);
+  });
+});
   // Jobs fetch code ends here.
 
+// student fetch API : http://localhost:5000/student
+  app.get('/student', (req, res) => {
+    const sql = "SELECT * FROM student";
+    db.query(sql, (err, data) => {
+      if (err) return res.json(err);
+      return res.json(data);
+    });
+});
+// student fetch code ends here.
+
+// Admin Profile API : http://localhost:5000/admin-profile
+app.get('/admin-profile', (req, res) => {
+  const sql = "SELECT * FROM tpo";
+  db.query(sql, (err, data) => {
+    if (err) return res.json(err);
+    return res.json(data[0]);
+  });
 });
 
 app.get('/', (req, res) => {
