@@ -1,11 +1,19 @@
 const express = require('express');
 const mysql = require('mysql');
 const cors = require('cors');
+const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser');
 
 const app = express();
-app.use(cors());
-app.use(express.json()); // For parsing application/json
+app.use(cors({
+  origin:["http://localhost:3000"],
+  method:["POST","GET"],
+  credentials:true
+}
 
+));
+app.use(express.json()); // For parsing application/json
+app.use(cookieParser());
 const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
@@ -49,18 +57,22 @@ app.post('/student_signup', (req, res) => {
 // Student Login API : http://localhost:5000/student_login
 const bcrypt = require('bcrypt'); // Import bcrypt for password hashing
 app.post('/student_login', (req, res) => {
-
   const sql = "SELECT * FROM student WHERE email = ? AND password = ?";
-
   db.query(sql, [req.body.email, req.body.password], (err, data) => {
-    if (err) return res.json("Error");
-    if(data.length > 0){
-      return res.json("Student Login Successfully");
-    }else{
-      return res.json("Invalid Credentials");
-    }
-  })
+      if (err) return res.json("Error");
+      if(data.length > 0){
+          const token = jwt.sign({ id: data[0].email }, "jwt-secret-key", { expiresIn: '1d' });
+          res.cookie('token', token, {
+              httpOnly: true,
+              secure: false,
+              maxAge: 24 * 60 * 60 * 1000
+          });
+          return res.json({Status:"Success"});
+      } else {
+          return res.json("Invalid Credentials");
+      }
   });
+});
 // Student Login API Ends Here.
 
 // Jobs Fetch API : http://localhost:5000/jobs
@@ -73,6 +85,49 @@ app.get('/jobs', (req, res) => {
   // Jobs fetch code ends here.
 
 });
+
+// Getting the Data of user : http://localhost:5000/student
+// Fetch Student Profile API : http://localhost:5000/student_profile
+//app.get('/student_profile', (req, res) => {
+//   // Assuming you pass the student's email in the query parameter to identify them
+//   const sql = "SELECT * FROM student";
+
+//   db.query(sql, [req.query.email], (err, data) => {
+//     if (err) return res.json("Error fetching profile");
+//     if (data.length > 0) {
+//       return res.json(data[0]); // Send the first student's data if found
+//     } else {
+//       return res.json("Student not found");
+//     }
+//   });
+// });
+// Verify Token Middleware for Protected Routes
+const verifyToken = (req, res, next) => {
+  const token = req.cookies.token; 
+  if (!token) {
+      return res.status(401).json("Unauthorized: No token provided");
+  }
+
+  jwt.verify(token, "jwt-secret-key", (err, decoded) => {
+      if (err) return res.status(401).json("Invalid Token");
+      req.user = decoded; 
+      next();
+  });
+};
+// ✅ Apply the middleware to protect the student profile route
+app.get('/student_profile', verifyToken, (req, res) => {
+  const sql = "SELECT * FROM student WHERE email = ?";
+  db.query(sql, [req.user.id], (err, data) => {
+      if (err) return res.status(500).json("Error fetching profile");
+      if (data.length > 0) {
+          return res.json(data[0]);
+      } else {
+          return res.status(404).json("User not found");
+      }
+  });
+});
+
+
 
 app.get('/', (req, res) => {
   return res.json("Backend is working");
