@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./adminlogin.css";
 
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate(); // Initialize the navigate function
 
   // Hardcoded admin credentials
   const adminEmail = "admin@gmail.com";
@@ -13,10 +15,10 @@ const AdminLogin = () => {
   const handleAdminSubmit = (event) => {
     event.preventDefault();
 
-    // Simple client-side authentication
-    if (email === adminEmail && password === adminPassword) {
+    if (email.trim() === adminEmail && password === adminPassword) {
       console.log("Authentication successful");
-      // Redirect to the admin dashboard or perform another action
+      setError("");
+      navigate("/admin"); // Navigate to the admin dashboard
     } else {
       setError("Invalid email or password");
     }
