@@ -2,18 +2,27 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./login.css";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const navigator=useNavigate();
+  axios.defaults.withCredentials=true;
   function handleSubmit(e) {
     e.preventDefault();
     axios
       .post("http://localhost:5000/student_login", { email, password })
       .then((res) => {
-        console.log(res);
+        if(res.data.Status==="Success"){
+          console.log(res);
         alert("Login Successful!"); // Alert on successful login
+        navigator("/"); 
+        window.location.reload(); 
+        }
+          
+          
+       
       })
       .catch((err) => {
         console.log(err);
