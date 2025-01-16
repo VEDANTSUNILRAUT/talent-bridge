@@ -11,7 +11,7 @@ import Home from "./Pages/home";
 import Resume from "./Pages/resume";
 import Job from "./Pages/job";
 import Testimonial from "./Pages/testimonial";
-import About from "./Pages/aboutss";
+import About from "./Pages/aboutss"; // Ensure this path matches your file structure
 
 // Admin Dashboard
 import Admin from "./Pages/Admin_Dash";
@@ -23,7 +23,7 @@ import Signup from "./Authentication/Student/signup";
 // Admin Login
 import AdminLogin from "./Authentication/Admin/adminlogin";
 import AdminSignup from "./Authentication/Admin/adminsignup";
-//profile
+// Profile
 import Profile from "./Pages/Student_Profile";
 
 function App() {
@@ -32,21 +32,20 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About/>}/>
+        <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/adminlogin" element={<AdminLogin/>}/>
+        <Route path="/adminlogin" element={<AdminLogin />} />
         <Route path="/adminsignup" element={<AdminSignup />} />
-        <Route path="/resume" element={<Resume/>}/>
+        <Route path="/resume" element={<Resume />} />
         <Route path="/job" element={<Job />} />
         <Route path="/testimonial" element={<Testimonial />} />
-        <Route path="/admin" element={<Admin />} /
-        <Route path="/studentprofile" element={<Profile/>}/>
-        <Route path="/admin-profile" element={<AdminProfile />
+        <Route path="/admin" element={<Admin />} />
+        <Route path="/studentprofile" element={<Profile />} />
+        <Route path="/admin-profile" element={<AdminProfile />} />
       </Routes>
       <Footer />
     </>
-
   );
 }
 
