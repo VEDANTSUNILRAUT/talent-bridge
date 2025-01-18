@@ -1,0 +1,67 @@
+/* Profile Container */
+.student-profile-container {
+  background-color: #ffffff; /* White card background */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+  padding: 20px;
+  margin: 20px;
+  border: 2px solid #007acc; /* Blue border */
+  position: relative;
+  left: 32rem;
+}
+
+.student-profile-container h2 {
+  text-align: center;
+  color: #007acc; /* Blue heading color */
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Profile Details */
+.student-profile-container .profile-detail {
+  margin-bottom: 15px;
+  font-size: 16px;
+  color: #333; /* Dark gray text */
+}
+
+.student-profile-container .profile-detail strong {
+  color: #007acc; /* Blue label color */
+}
+
+/* Border separator for profile details */
+.student-profile-container .profile-detail:not(:last-child) {
+  border-bottom: 1px solid #e0f0ff; /* Light blue separator */
+  padding-bottom: 10px;
+}
+
+/* Loading Message */
+.loading-message {
+  font-size: 18px;
+  color: #007acc; /* Blue text */
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .student-profile-container {
+    padding: 15px;
+  }
+
+  .student-profile-container h2 {
+    font-size: 20px;
+  }
+
+  .student-profile-container .profile-detail {
+    font-size: 14px;
+  }
+}
+.student-closebtn {
+  width: auto;
+  height: auto;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}

@@ -174,3 +174,42 @@ body {
 .stat-box.teal {
   background-color: #00897b;
 }
+.view-button {
+  background-color: rgb(89, 185, 236);
+  border: none;
+  padding: 5px 10px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.remove-button {
+  background-color: red;
+  border: none;
+  padding: 5px 10px;
+  color: white;
+  cursor: pointer;
+}
+.mainbutton {
+  width: auto;
+  margin-bottom: 1rem;
+  position: absolute;
+  right: 3rem;
+  top: 215px;
+}
+/* Admin-Actions */
+.admin-actions {
+  display: flex;
+  gap: 2rem;
+}
+.admin-actions-btn {
+  width: auto;
+  background-color: #f0f4ff;
+  color: #14268c;
+  font-size: 1rem;
+  border-radius: 7px;
+}
+.admin-actions-btn:hover {
+  color: #f0f4ff;
+  background-color: #4f6fef;
+  border: 1px solid #f0f4ff;
+}
