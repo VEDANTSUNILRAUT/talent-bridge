@@ -244,6 +244,54 @@ app.get("/dashboard-stats", (req, res) => {
     return res.json(data[0]); // Send the counts as a JSON response
   });
 });
+// Logout Functionality
+app.get("/logout", (req, res) => {
+  res.clearCookie("token", { httpOnly: true, secure: false }); // Clear the JWT token cookie
+  return res.status(200).json({ Status: "Success", message: "Logged out successfully" });
+});
+
+// Edit Functionality
+// Update Student Profile API : http://localhost:5000/update_student_profile
+app.put("/update_student_profile", verifyToken, (req, res) => {
+  const { first_name, last_name, email, phone_number, city,state, skills, dob, passing_year, qaulification,stream } = req.body;
+
+  const sql = `
+    UPDATE student 
+    SET 
+      first_name = ?, 
+      last_name = ?, 
+      phone_number = ?, 
+      city = ?,
+      state = ?, 
+      skills = ?, 
+      dob = ?, 
+      passing_year = ?, 
+      qaulification = ?,
+      stream = ?
+    WHERE email = ?
+  `;
+
+  const values = [
+    first_name,
+    last_name,
+    phone_number,
+    city,
+    state,
+    skills,
+    dob,
+    passing_year,
+    qaulification,
+    stream,
+    email,
+    
+  ];
+
+  db.query(sql, values, (err, result) => {
+    if (err) return res.status(500).json("Error updating profile");
+    return res.status(200).json("Profile updated successfully");
+  });
+});
+
 
 app.get("/", (req, res) => {
   return res.json("Backend is working");

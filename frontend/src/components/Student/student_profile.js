@@ -5,7 +5,12 @@ import "./student_profile.css";
 
 const StudentProfile = () => {
   const [profile, setProfile] = useState(null);
+  const [isEditing, setIsEditing] = useState(false); // For toggling between view and edit mode
+  const [formData, setFormData] = useState({});
   const navigate = useNavigate();
+
+  // Fields to exclude from being displayed
+  const excludedFields = ["password","id"];
 
   useEffect(() => {
     axios.defaults.withCredentials = true;
@@ -13,6 +18,7 @@ const StudentProfile = () => {
       .get("http://localhost:5000/student_profile")
       .then((response) => {
         setProfile(response.data);
+        setFormData(response.data); // Initialize form data
       })
       .catch((error) => console.error("Error:", error));
   }, []);
@@ -20,6 +26,41 @@ const StudentProfile = () => {
   if (!profile) {
     return <p className="loading-message">Loading profile...</p>;
   }
+
+  // Handle field changes in the form
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  // Handle save changes
+  const handleSave = () => {
+    axios
+      .put("http://localhost:5000/update_student_profile", formData) // Backend endpoint for updating the profile
+      .then((response) => {
+        setProfile(formData); // Update the profile with new data
+        setIsEditing(false); // Exit edit mode
+        //window.location.reload(true);
+      })
+      .catch((error) => {
+        console.error("Error updating profile:", error);
+        alert("Failed to update profile. Please try again.");
+      });
+  };
+
+  // Logout Functionality
+  const handleLogOut = () => {
+    axios
+      .get("http://localhost:5000/logout")
+      .then(() => {
+        navigate("/"); // Redirect to login after logout
+        window.location.reload(true);
+      })
+      .catch((err) => {
+        console.error("Logout Error:", err);
+        alert("Logout failed. Please try again.");
+      });
+  };
 
   return (
     <div className="student-profile-container">
@@ -30,34 +71,39 @@ const StudentProfile = () => {
         <h2>Student Profile</h2>
       </div>
       <div className="student-profile-details">
-        <p className="profile-detail">
-          <strong>First Name:</strong> {profile.first_name}
-        </p>
-        <p className="profile-detail">
-          <strong>Last Name:</strong> {profile.last_name}
-        </p>
-        <p className="profile-detail">
-          <strong>Email:</strong> {profile.email}
-        </p>
-        <p className="profile-detail">
-          <strong>Phone Number:</strong> {profile.phone_number}
-        </p>
-        <p className="profile-detail">
-          <strong>City:</strong> {profile.city}
-        </p>
-        <p className="profile-detail">
-          <strong>Skills:</strong> {profile.skills}
-        </p>
-        <p className="profile-detail">
-          <strong>Date of Birth:</strong> {profile.dob}
-        </p>
-        <p className="profile-detail">
-          <strong>Passing Year:</strong> {profile.passing_year}
-        </p>
-        <p className="profile-detail">
-          <strong>Qualification:</strong> {profile.qaulification}
-        </p>
+        {isEditing ? (
+          // Edit mode
+          <>
+            {Object.keys(formData)
+              .filter((key) => !excludedFields.includes(key)) // Exclude specific fields
+              .map((key) => (
+                <p className="profile-detail" key={key}>
+                  <strong>{key.replace("_", " ").toUpperCase()}:</strong>
+                  <input
+                    type="text"
+                    name={key}
+                    value={formData[key] || ""}
+                    onChange={handleChange}
+                  />
+                </p>
+              ))}
+            <button onClick={handleSave}>Save Changes</button>
+          </>
+        ) : (
+          // View mode
+          <>
+            {Object.keys(profile)
+              .filter((key) => !excludedFields.includes(key)) // Exclude specific fields
+              .map((key) => (
+                <p className="profile-detail" key={key}>
+                  <strong>{key.replace("_", " ").toUpperCase()}:</strong> {profile[key]}
+                </p>
+              ))}
+            <button onClick={() => setIsEditing(true)}>Edit Profile</button>
+          </>
+        )}
       </div>
+      <button onClick={handleLogOut}>Logout</button>
     </div>
   );
 };
