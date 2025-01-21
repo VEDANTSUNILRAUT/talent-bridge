@@ -96,6 +96,16 @@ const AdminDashboard = () => {
           <button className="admin-actions-btn">Add Student</button>
           <button className="admin-actions-btn">Add Company Drive</button>
           <button className="admin-actions-btn">Add Coordinator</button>
+          <button className="admin-actions-btn" onClick={() => navigate("/")}>
+            Home
+          </button>
+          <button
+            className="admin-actions-btn"
+            onClick={() => navigate("/job")}
+          >
+            Jobs
+          </button>
+
           <button
             className="admin-actions-btn"
             onClick={() => navigate("/admin-profile")}
@@ -127,11 +137,11 @@ const AdminDashboard = () => {
 
         <main className="content">
           <h2>{activeSection.toUpperCase()}</h2>
-          {activeSection !== "dashboard" && (
+          {/* {activeSection !== "dashboard" && (
             <button className="mainbutton">
               ADD {activeSection.toUpperCase()}
             </button>
-          )}
+          )} */}
 
           {activeSection === "dashboard" && (
             <div className="dashboard-grid-container">

@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import "./App.css";
 
 // Components
@@ -27,9 +27,15 @@ import AdminSignup from "./Authentication/Admin/adminsignup";
 import Profile from "./Pages/Student_Profile";
 
 function App() {
+  const location = useLocation();
+
+  // Define routes where you don't want the Header and Footer
+  const adminRoutes = ["/admin", "/admin-profile"];
+
   return (
     <>
-      <Header />
+      {/* <Header /> */}
+      {!adminRoutes.includes(location.pathname) && <Header />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
@@ -44,7 +50,8 @@ function App() {
         <Route path="/studentprofile" element={<Profile />} />
         <Route path="/admin-profile" element={<AdminProfile />} />
       </Routes>
-      <Footer />
+      {!adminRoutes.includes(location.pathname) && <Footer />}
+      {/* <Footer /> */}
     </>
   );
 }

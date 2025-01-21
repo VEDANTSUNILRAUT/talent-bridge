@@ -18,30 +18,31 @@ const HEADER_NAV_LINKS = [
 const BUTTON_CLASSES = "btn-login";
 
 const Header = () => {
-    const [showModal, setShowModal] = useState(false);
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const navigate = useNavigate();
+  const [showModal, setShowModal] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
 
-    useEffect(() => {
-      const checkLoginStatus = async () => {
-          try {
-              const response = await axios.get("http://localhost:5000/student_profile", { withCredentials: true });
-              if (response.status === 200) {
-                  setIsLoggedIn(true);
-              }
-          } catch (error) {
-              setIsLoggedIn(false);
-              console.error("Error checking login status:", error);
-          }
-      };
-  
-      checkLoginStatus();
+  useEffect(() => {
+    const checkLoginStatus = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:5000/student_profile",
+          { withCredentials: true }
+        );
+        if (response.status === 200) {
+          setIsLoggedIn(true);
+        }
+      } catch (error) {
+        setIsLoggedIn(false);
+        console.error("Error checking login status:", error);
+      }
+    };
+
+    checkLoginStatus();
   }, []);
-  
 
-    // ✅ Updated this function to directly set login state
-    const handleLoginRedirect = (role) => {
-      
+  // ✅ Updated this function to directly set login state
+  const handleLoginRedirect = (role) => {
     setShowModal(false);
     if (role === "admin") {
       navigate("/adminlogin");
@@ -52,78 +53,93 @@ const Header = () => {
     }
   };
 
-    const handleSignupChoice = (role) => {
-        setShowModal(false);
-        if (role === "admin") {
-            navigate("/adminsignup");
-        } else if (role === "student") {
-            navigate("/signup");
-        }
-    };
+  const handleSignupChoice = (role) => {
+    setShowModal(false);
+    if (role === "admin") {
+      navigate("/adminsignup");
+    } else if (role === "student") {
+      navigate("/signup");
+    }
+  };
 
+  return (
+    <header className="header11">
+      <div className="container">
+        <div className="logo">
+          <img aria-hidden="true" alt="Logo" src={Header_logo} />
+        </div>
 
-    return (
-        <header className="header11">
-            <div className="container">
-                <div className="logo">
-                    <img aria-hidden="true" alt="Logo" src={Header_logo} />
-                </div>
+        <nav className="nav-links">
+          {HEADER_NAV_LINKS.map((link, index) => (
+            <Link key={index} to={link.url} className="nav-link">
+              {link.text}
+            </Link>
+          ))}
 
-                <nav className="nav-links">
-                    {HEADER_NAV_LINKS.map((link, index) => (
-                        <Link key={index} to={link.url} className="nav-link">
-                            {link.text}
-                        </Link>
-                    ))}
+          {/* ✅ Real-time Profile Button Display */}
+          {isLoggedIn ? (
+            <>
+              <img
+                src={ProfileImg}
+                onClick={() => navigate("/studentprofile")}
+                alt="notload"
+                className="profileimg"
+              />
+            </>
+          ) : (
+            <button
+              className={BUTTON_CLASSES}
+              onClick={() => setShowModal(true)}
+              aria-label="Login"
+            >
+              Login
+            </button>
+          )}
+        </nav>
+      </div>
 
-                    {/* ✅ Real-time Profile Button Display */}
-                    {isLoggedIn ? (
-                        <>
-                            
-                            <img src={ProfileImg} onClick={()=>navigate("/studentprofile")} alt="notload" className="profileimg"/>
-                        </>
-                    ) : (
-                        <button
-                            className={BUTTON_CLASSES}
-                            onClick={() => setShowModal(true)}
-                            aria-label="Login"
-                        >
-                            Login
-                        </button>
-                    )}
-                </nav>
+      {showModal && (
+        <div className="modal">
+          <button className="close-button" onClick={() => setShowModal(false)}>
+            &times;
+          </button>
+          <div className="modal-content">
+            <div className="modal-box">
+              <img src={User} alt="Student" />
+              <p>Welcome, Student!</p>
+              <button
+                className="login"
+                onClick={() => handleLoginRedirect("student")}
+              >
+                Login
+              </button>
+              <button
+                className="signup"
+                onClick={() => handleSignupChoice("student")}
+              >
+                Sign Up
+              </button>
             </div>
-
-            {showModal && (
-                <div className="modal">
-                    <button className="close-button" onClick={() => setShowModal(false)}>
-                        &times;
-                    </button>
-                    <div className="modal-content">
-                        <div className="modal-box">
-                            <img src={User} alt="Student" />
-                            <p>Welcome, Student!</p>
-                            <button className="login" onClick={() => handleLoginRedirect("student")}>
-                                Login
-                            </button>
-                            <button className="signup" onClick={() => handleSignupChoice("student")}>
-                                Sign Up
-                            </button>
-                        </div>
-                        <div className="modal-box">
-                            <img src={Admin} alt="Admin" />
-                            <p>Welcome, Admin!</p>
-                            <button className="login" onClick={() => handleLoginRedirect("admin")}>
-                                Login
-                            </button>
-                            <button className="signup" onClick={() => handleSignupChoice("admin")}>
-                                Sign Up
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            )}
-        </header>
+            <div className="modal-box">
+              <img src={Admin} alt="Admin" />
+              <p>Welcome, TPO!</p>
+              <button
+                className="login"
+                onClick={() => handleLoginRedirect("admin")}
+              >
+                Login
+              </button>
+              <button
+                className="signup"
+                onClick={() => handleSignupChoice("admin")}
+              >
+                Sign Up
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </header>
   );
 };
 
