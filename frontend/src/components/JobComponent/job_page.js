@@ -40,7 +40,10 @@ function Job() {
                 >
                   View Details
                 </button>
-                <button className="apply-button" aria-label={`Apply for ${job.title} at ${job.company_name}`}>
+                <button
+                  className="apply-button"
+                  aria-label={`Apply for ${job.title} at ${job.company_name}`}
+                >
                   Apply
                 </button>
               </div>
@@ -54,7 +57,9 @@ function Job() {
   return (
     <div className="job-page">
       <div className="job-header">
-        <button className="filter-button" aria-label="Filter Jobs">Filter</button>
+        <button className="filter-button" aria-label="Filter Jobs">
+          Filter
+        </button>
         <input
           type="text"
           className="search-box"
@@ -62,10 +67,10 @@ function Job() {
           aria-label="Search Jobs"
         />
       </div>
-      
-      {renderJobSection("Upcoming Companies", "upcoming")}
-      {renderJobSection("Current Companies", "current")}
-      {renderJobSection("Partner Companies", "partner")}
+
+      {renderJobSection("Upcoming Companies", "Upcoming")}
+      {renderJobSection("Current Companies", "Current")}
+      {renderJobSection("Partner Companies", "Partner")}
 
       {selectedJob && (
         <div className="popup">
@@ -74,19 +79,56 @@ function Job() {
               &times;
             </button>
             <h2>{selectedJob.title}</h2>
-            <p><strong>Job ID:</strong> {selectedJob.job_id}</p>
-            <p><strong>Description:</strong> {selectedJob.description}</p>
-            <p><strong>Company:</strong> {selectedJob.company_name}</p>
-            <p><strong>Location:</strong> {selectedJob.location}</p>
-            <p><strong>Employment Type:</strong> {selectedJob.employment_type}</p>
-            <p><strong>Salary:</strong> {selectedJob.salary ? `$${selectedJob.salary}` : "Salary not specified"}</p>
-            <p><strong>Posted Date:</strong> {selectedJob.posted_date}</p>
-            <p><strong>Closing Date:</strong> {selectedJob.closing_date}</p>
-            <p><strong>Skills Required:</strong> {selectedJob.skills_required}</p>
-            <p><strong>Experience Required:</strong> {selectedJob.experience_required}</p>
-            <p><strong>Job Category:</strong> {selectedJob.job_category}</p>
-            <p><strong>Application Link:</strong> <a href={selectedJob.application_link} target="_blank" rel="noopener noreferrer">{selectedJob.application_link}</a></p>
-            <p><strong>Company Type:</strong> {selectedJob.company_type}</p>
+            <p>
+              <strong>Job ID:</strong> {selectedJob.job_id}
+            </p>
+            <p>
+              <strong>Description:</strong> {selectedJob.description}
+            </p>
+            <p>
+              <strong>Company:</strong> {selectedJob.company_name}
+            </p>
+            <p>
+              <strong>Location:</strong> {selectedJob.location}
+            </p>
+            <p>
+              <strong>Employment Type:</strong> {selectedJob.employment_type}
+            </p>
+            <p>
+              <strong>Salary:</strong>{" "}
+              {selectedJob.salary
+                ? `$${selectedJob.salary}`
+                : "Salary not specified"}
+            </p>
+            <p>
+              <strong>Posted Date:</strong> {selectedJob.posted_date}
+            </p>
+            <p>
+              <strong>Closing Date:</strong> {selectedJob.closing_date}
+            </p>
+            <p>
+              <strong>Skills Required:</strong> {selectedJob.skills_required}
+            </p>
+            <p>
+              <strong>Experience Required:</strong>{" "}
+              {selectedJob.experience_required}
+            </p>
+            <p>
+              <strong>Job Category:</strong> {selectedJob.job_category}
+            </p>
+            <p>
+              <strong>Application Link:</strong>{" "}
+              <a
+                href={selectedJob.application_link}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {selectedJob.application_link}
+              </a>
+            </p>
+            <p>
+              <strong>Company Type:</strong> {selectedJob.company_type}
+            </p>
           </div>
         </div>
       )}

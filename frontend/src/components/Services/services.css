@@ -1,0 +1,164 @@
+/* Services.css */
+.services-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+  font-family: "Arial", sans-serif;
+}
+
+.services-title {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #333;
+  margin-top: 7rem;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.service-card {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px #007bff;
+}
+
+.service-icon {
+  font-size: 3rem;
+  margin-bottom: 10px;
+  color: #007bff;
+}
+
+.service-title {
+  font-size: 1.5rem;
+  margin: 10px 0;
+  color: #333;
+}
+
+.service-description {
+  font-size: 1rem;
+  color: #555;
+}
+.service-button {
+  margin-top: 10px;
+  padding: 10px 15px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+}
+
+.service-button:hover {
+  background-color: #0056b3;
+}
+.breadcrumb-section {
+  position: relative;
+  margin-top: 40px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.breadcrumb-image {
+  width: 100%; /* Makes it fully responsive */
+  object-fit: cover; /* Ensures the image maintains aspect ratio */
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Adds subtle shadow for a polished look */
+}
+
+.breadcrumb-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px 30px; /* Added horizontal padding for better readability */
+  border-radius: 12px; /* Slightly increased border radius for a modern look */
+  color: #fff;
+  text-align: center;
+  width: 80%; /* Adjusts overlay width to fit within most screen sizes */
+  max-width: 600px; /* Prevents the overlay from becoming too large */
+}
+
+.breadcrumb-title {
+  font-size: 2.5rem; /* Slightly larger font size for emphasis */
+  font-weight: bold;
+  margin: 0;
+}
+
+.breadcrumb-subtitle {
+  font-size: 1.2rem;
+  margin: 10px 0 0;
+  line-height: 1.5; /* Improves readability for multiline subtitles */
+}
+
+.breadcrumb-photo {
+  width: 100%;
+  height: auto;
+  max-height: 60vh; /* Limits the height to maintain responsiveness */
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Matches the breadcrumb image's shadow */
+}
+.breadcrumb-maintitle {
+  color: white;
+  font-size: 3rem;
+  font-weight: bolder;
+}
+.services-intro {
+  text-align: center;
+  margin: 20px auto;
+  max-width: 800px;
+}
+
+.services-intro-text {
+  font-size: 1.1rem;
+  color: #555;
+  margin-top: 10px;
+  margin-bottom: 7rem;
+}
+
+.services-cta {
+  text-align: center;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  margin-top: 8rem;
+}
+
+.cta-title {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.cta-description {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.cta-button:hover {
+  background-color: #0056b3;
+}

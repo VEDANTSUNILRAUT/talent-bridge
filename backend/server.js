@@ -401,12 +401,10 @@ app.post("/contact", (req, res) => {
       return res
         .status(500)
         .json({ Status: "Error", message: "Error saving contact details" });
-    return res
-      .status(201)
-      .json({
-        Status: "Success",
-        message: "Contact details saved successfully",
-      });
+    return res.status(201).json({
+      Status: "Success",
+      message: "Contact details saved successfully",
+    });
   });
 });
 

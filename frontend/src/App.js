@@ -5,6 +5,7 @@ import "./App.css";
 // Components
 import Header from "./components/Header/header";
 import Footer from "./components/Footer/footer";
+import Services from "./components/Services/services";
 
 // Pages
 import Home from "./Pages/home";
@@ -35,6 +36,8 @@ import AddCordinator from "./components/Crud/CordCrud/addCordinator";
 // Contact Form
 import ContactForm from "./components/Contact/contact";
 
+// Services
+
 function App() {
   const location = useLocation();
 
@@ -58,13 +61,12 @@ function App() {
         <Route path="/admin" element={<Admin />} />
         <Route path="/studentprofile" element={<Profile />} />
         <Route path="/admin-profile" element={<AdminProfile />} />
-
         <Route path="/add-student" element={<AddStudent />} />
         <Route path="/view-student/:id" element={<ViewStudnet />} />
-
         <Route path="/add-company" element={<AddCompany />} />
         <Route path="/add-cordinator" element={<AddCordinator />} />
         <Route path="/contact" element={<ContactForm />} />
+        <Route path="/services" element={<Services />} />
       </Routes>
       {!adminRoutes.includes(location.pathname) && <Footer />}
       {/* <Footer /> */}
