@@ -32,6 +32,9 @@ import ViewStudnet from "./components/Crud/StudentCrud/viewStudent";
 
 import AddCompany from "./components/Crud/CompanyCrud/addCompany";
 import AddCordinator from "./components/Crud/CordCrud/addCordinator";
+// Contact Form
+import ContactForm from "./components/Contact/contact";
+
 function App() {
   const location = useLocation();
 
@@ -61,6 +64,7 @@ function App() {
 
         <Route path="/add-company" element={<AddCompany />} />
         <Route path="/add-cordinator" element={<AddCordinator />} />
+        <Route path="/contact" element={<ContactForm />} />
       </Routes>
       {!adminRoutes.includes(location.pathname) && <Footer />}
       {/* <Footer /> */}

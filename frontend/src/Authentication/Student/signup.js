@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./signup.css";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
  const [values, setValues] = useState({
@@ -18,6 +19,7 @@ const Signup = () => {
   stream: '',
  })
 
+ const navigate=useNavigate();
  const handleChange = (event) => {
   setValues({
    ...values,
@@ -30,7 +32,8 @@ const Signup = () => {
   axios
     .post('http://localhost:5000/student_signup', values)
     .then((res) => {
-      alert("User registered successfully!"); // Success alert
+      alert("User registered successfully!");// Success alert
+      navigate("/login");
     })
     .catch((err) => {
       alert("Error in registering user. Please try again."); // Error alert
