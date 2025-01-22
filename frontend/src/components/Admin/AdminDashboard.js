@@ -63,15 +63,13 @@ const AdminDashboard = () => {
   }, []);
 
   const handleView = (id) => {
-    console.log("View clicked for ID:", id);
-    // Implement the view functionality
+    navigate(`/view-student/${id}`);
   };
 
   const handleRemove = (id) => {
     console.log("Remove clicked for ID:", id);
     // Implement the remove functionality
   };
-
   const menuItems = [
     { name: "Dashboard", icon: "🏠", section: "dashboard" },
     { name: "Students", icon: "👩‍🎓", section: "students" },
@@ -93,9 +91,24 @@ const AdminDashboard = () => {
           </div>
         </div>
         <div className="admin-actions">
-          <button className="admin-actions-btn">Add Student</button>
-          <button className="admin-actions-btn">Add Company Drive</button>
-          <button className="admin-actions-btn">Add Coordinator</button>
+          <button
+            className="admin-actions-btn"
+            onClick={() => navigate("/add-student")}
+          >
+            Add Student
+          </button>
+          <button
+            className="admin-actions-btn"
+            onClick={() => navigate("/add-company")}
+          >
+            Add Company Drive
+          </button>
+          <button
+            className="admin-actions-btn"
+            onClick={() => navigate("/add-cordinator")}
+          >
+            Add Coordinator
+          </button>
           <button className="admin-actions-btn" onClick={() => navigate("/")}>
             Home
           </button>
@@ -275,10 +288,7 @@ const AdminDashboard = () => {
                     <td>{Pdrive.phone_number}</td>
                     <td>{Pdrive.stream}</td>
                     <td>
-                      <button
-                        className="view-button"
-                        onClick={() => handleView(Pdrive.id)}
-                      >
+                      <button onClick={() => handleView(Pdrive.id)}>
                         View
                       </button>
                       <button

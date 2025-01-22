@@ -247,13 +247,27 @@ app.get("/dashboard-stats", (req, res) => {
 // Logout Functionality
 app.get("/logout", (req, res) => {
   res.clearCookie("token", { httpOnly: true, secure: false }); // Clear the JWT token cookie
-  return res.status(200).json({ Status: "Success", message: "Logged out successfully" });
+  return res
+    .status(200)
+    .json({ Status: "Success", message: "Logged out successfully" });
 });
 
 // Edit Functionality
 // Update Student Profile API : http://localhost:5000/update_student_profile
 app.put("/update_student_profile", verifyToken, (req, res) => {
-  const { first_name, last_name, email, phone_number, city,state, skills, dob, passing_year, qaulification,stream } = req.body;
+  const {
+    first_name,
+    last_name,
+    email,
+    phone_number,
+    city,
+    state,
+    skills,
+    dob,
+    passing_year,
+    qaulification,
+    stream,
+  } = req.body;
 
   const sql = `
     UPDATE student 
@@ -283,7 +297,6 @@ app.put("/update_student_profile", verifyToken, (req, res) => {
     qaulification,
     stream,
     email,
-    
   ];
 
   db.query(sql, values, (err, result) => {
@@ -292,6 +305,83 @@ app.put("/update_student_profile", verifyToken, (req, res) => {
   });
 });
 
+// API endpoint to fetch student details by ID
+app.get("/student/:id", (req, res) => {
+  const studentId = req.params.id;
+
+  const query = "SELECT * FROM student WHERE id = ?";
+  db.execute(query, [studentId], (err, result) => {
+    if (err) {
+      console.error("Error fetching student data:", err); // Log the error for debugging
+      return res
+        .status(500)
+        .json({ error: "Database error", details: err.message });
+    }
+
+    if (result.length === 0) {
+      return res.status(404).json({ error: "Student not found" });
+    }
+
+    res.json(result[0]); // Return the student data
+  });
+});
+
+// Crud api to add coridatior
+app.post("/add_cordinator", (req, res) => {
+  const sql =
+    "INSERT INTO coordinator (`full_name`, `email`, `phone_number`, `designation`, `institution_name`, `institution_address`, `institution_contact`, `institution_email`, `username`, `password`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+  const values = [
+    req.body.full_name,
+    req.body.email,
+    req.body.phone_number,
+    req.body.designation,
+    req.body.institution_name,
+    req.body.institution_address,
+    req.body.institution_contact,
+    req.body.institution_email,
+    req.body.username,
+    req.body.password,
+  ];
+
+  db.query(sql, values, (err, data) => {
+    if (err) {
+      console.error("Database Error: ", err);
+      return res.status(500).json({ message: "Internal Server Error" });
+    }
+    return res
+      .status(200)
+      .json({ message: "Coordinator added successfully!", data });
+  });
+});
+
+// Crud company api for crete company : https://localhost:5000/add_company
+app.post("/add_company", (req, res) => {
+  const sql =
+    "INSERT INTO jobs (`title`, `description`, `company_name`, `location`, `employment_type`, `salary`, `posted_date`, `closing_date`, `skills_required`, `experience_required`, `job_category`, `application_link`, `company_type`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+  const values = [
+    req.body.title,
+    req.body.description,
+    req.body.company_name,
+    req.body.location,
+    req.body.employment_type,
+    req.body.salary,
+    req.body.posted_date,
+    req.body.closing_date,
+    req.body.skills_required,
+    req.body.experience_required,
+    req.body.job_category,
+    req.body.application_link,
+    req.body.company_type,
+  ];
+
+  db.query(sql, values, (err, data) => {
+    if (err) {
+      console.error("Database Error: ", err);
+      return res.status(500).json({ message: "Internal Server Error" });
+    }
+    return res.status(200).json({ message: "Job added successfully!", data });
+  });
+});
 
 app.get("/", (req, res) => {
   return res.json("Backend is working");

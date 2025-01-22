@@ -26,6 +26,12 @@ import AdminSignup from "./Authentication/Admin/adminsignup";
 // Profile
 import Profile from "./Pages/Student_Profile";
 
+// CRUD
+import AddStudent from "./components/Crud/StudentCrud/addStudent";
+import ViewStudnet from "./components/Crud/StudentCrud/viewStudent";
+
+import AddCompany from "./components/Crud/CompanyCrud/addCompany";
+import AddCordinator from "./components/Crud/CordCrud/addCordinator";
 function App() {
   const location = useLocation();
 
@@ -49,6 +55,12 @@ function App() {
         <Route path="/admin" element={<Admin />} />
         <Route path="/studentprofile" element={<Profile />} />
         <Route path="/admin-profile" element={<AdminProfile />} />
+
+        <Route path="/add-student" element={<AddStudent />} />
+        <Route path="/view-student/:id" element={<ViewStudnet />} />
+
+        <Route path="/add-company" element={<AddCompany />} />
+        <Route path="/add-cordinator" element={<AddCordinator />} />
       </Routes>
       {!adminRoutes.includes(location.pathname) && <Footer />}
       {/* <Footer /> */}
