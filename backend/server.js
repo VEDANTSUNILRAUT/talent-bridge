@@ -292,6 +292,26 @@ app.put("/update_student_profile", verifyToken, (req, res) => {
   });
 });
 
+//Post reuirest for the contact form
+// POST API to store contact details: http://localhost:5000/contact
+app.post("/contact", (req, res) => {
+  const sql = `
+    INSERT INTO contactdetail (name, email, message) 
+    VALUES (?, ?, ?)
+  `;
+
+  const values = [
+    req.body.name,
+    req.body.email, // Change "address" to "email"
+    req.body.message,
+  ];
+
+  db.query(sql, values, (err, result) => {
+    if (err) return res.status(500).json({ Status: "Error", message: "Error saving contact details" });
+    return res.status(201).json({ Status: "Success", message: "Contact details saved successfully" });
+  });
+});
+
 
 app.get("/", (req, res) => {
   return res.json("Backend is working");

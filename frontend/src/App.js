@@ -26,6 +26,9 @@ import AdminSignup from "./Authentication/Admin/adminsignup";
 // Profile
 import Profile from "./Pages/Student_Profile";
 
+// Contact Form
+import ContactForm from "./components/Contact/contact"
+
 function App() {
   const location = useLocation();
 
@@ -49,6 +52,7 @@ function App() {
         <Route path="/admin" element={<Admin />} />
         <Route path="/studentprofile" element={<Profile />} />
         <Route path="/admin-profile" element={<AdminProfile />} />
+        <Route path="/contact" element={<ContactForm/>}/>
       </Routes>
       {!adminRoutes.includes(location.pathname) && <Footer />}
       {/* <Footer /> */}
