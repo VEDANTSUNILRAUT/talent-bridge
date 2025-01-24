@@ -6,14 +6,14 @@ function ViewStudent() {
   // Use the useParams hook to capture the student's ID from the URL
   const { id } = useParams();
 
-  const [student, setStudent] = useState(null);
+  const [student, setStudent] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     // Fetch the student details from the API based on the ID
     axios
-      .get(`http://localhost:5000/student/${id}`) // Replace with the actual backend API endpoint
+      .get(`http://localhost:5000/students/${id}`) // Replace with the actual backend API endpoint
       .then((response) => {
         setStudent(response.data); // Set the student data to state
         setLoading(false);
