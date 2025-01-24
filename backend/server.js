@@ -306,11 +306,11 @@ app.put("/update_student_profile", verifyToken, (req, res) => {
 });
 
 // API endpoint to fetch student details by ID
-app.get("/student/:id", (req, res) => {
+app.get("/students/:id", (req, res) => {
   const studentId = req.params.id;
-
-  const query = "SELECT * FROM student WHERE id = ?";
-  db.execute(query, [studentId], (err, result) => {
+  //console.log(studentId);
+  const sql = "SELECT * FROM student WHERE id = ?";
+  db.query(sql, [studentId], (err, result) => {
     if (err) {
       console.error("Error fetching student data:", err); // Log the error for debugging
       return res
@@ -505,6 +505,7 @@ app.delete("/coordinaterremove/:id", (req, res) => {
   });
 });
 
+// working on the View page
 
 
 app.get("/", (req, res) => {
