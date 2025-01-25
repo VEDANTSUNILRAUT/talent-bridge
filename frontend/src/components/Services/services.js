@@ -1,8 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./services.css";
-import breadcrumbImg from "../../assets/images/Breadcrump/breadcrumb.png";
-
+// import breadcrumbImg from "../../assets/images/Breadcrump/breadcrumb.png";
 const servicesData = [
   {
     id: 1,
@@ -43,14 +42,14 @@ const Services = () => {
   return (
     <div className="services-container">
       {/* Breadcrumb Section */}
-      <div className="breadcrumb-section">
+      {/* <div className="breadcrumb-section">
         <img
           src={breadcrumbImg}
           alt="Breadcrumb Banner"
           className="breadcrumb-photo"
         />
         <div className="breadcrumb-overlay"></div>
-      </div>
+      </div> */}
 
       {/* Introduction Section */}
       <section className="services-intro">
