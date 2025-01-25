@@ -326,6 +326,29 @@ app.get("/students/:id", (req, res) => {
   });
 });
 
+// for View of the Drive  .get(`http://localhost:5000/drive/${id}`)
+app.get("/drive/:id", (req, res) => {
+  const driveId = req.params.id;
+  //console.log(driveId);
+  const sql = "SELECT * FROM jobs WHERE job_id = ?";
+  db.query(sql, [driveId], (err, result) => {
+    if (err) {
+      console.error("Error fetching student data:", err); // Log the error for debugging
+      return res
+        .status(500)
+        .json({ error: "Database error", details: err.message });
+    }
+
+    if (result.length === 0) {
+      return res.status(404).json({ error: "Student not found" });
+    }
+
+    res.json(result[0]); // Return the student data
+  });
+});
+
+
+
 // Crud api to add coridatior
 app.post("/add_cordinator", (req, res) => {
   const sql =

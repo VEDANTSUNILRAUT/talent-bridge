@@ -9,7 +9,7 @@ const AdminDashboard = () => {
   const navigate = useNavigate();
   const [adminProfile, setAdminProfile] = useState({});
   const [activeDrives, setActiveDrives] = useState([]);
-  console.log("Current drives:", activeDrives);
+  //console.log("Current drives:", activeDrives);
   const [upcomingCompany, setUpcomingCompany] = useState([]);
   const [partnerdrive, setpartnerdrive] = useState([]);
   const [coordinatorData, setCoordinatorData] = useState([]);
@@ -63,10 +63,13 @@ const AdminDashboard = () => {
 
     fetchAdminData();
   }, []);
-
+/// view pages
   const handleView = (id) => {
     navigate(`/view-student/${id}`);
   };
+  const handleDrive =(id)=>{
+    navigate(`/view-drive/${id}`);
+  }
 //
 
 
@@ -328,7 +331,7 @@ const handleCoordinaterDriveRemove = async (id) => {
                     <td>
                       <button
                         className="view-button"
-                        onClick={() => handleView(drive.job_id)}
+                        onClick={() => handleDrive(drive.job_id)}
                       >
                         View
                       </button>
@@ -371,7 +374,7 @@ const handleCoordinaterDriveRemove = async (id) => {
                     <td>
                       <button
                         className="view-button"
-                        onClick={() => handleView(Udrive.job_id)}
+                        onClick={() => handleDrive(Udrive.job_id)}
                       >
                         View
                       </button>
