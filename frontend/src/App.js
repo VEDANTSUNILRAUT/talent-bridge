@@ -30,9 +30,10 @@ import Profile from "./Pages/Student_Profile";
 // CRUD
 import AddStudent from "./components/Crud/StudentCrud/addStudent";
 import ViewStudnet from "./components/Crud/StudentCrud/viewStudent";
-import ViewDrive from "./components/Crud/StudentCrud/viewDrive";
+import ViewDrive from "./components/Crud/CompanyCrud/viewDrive";
 import AddCompany from "./components/Crud/CompanyCrud/addCompany";
 import AddCordinator from "./components/Crud/CordCrud/addCordinator";
+import ViewCordinator from "./components/Crud/CordCrud/viewCordinator";
 // Contact Form
 import ContactForm from "./components/Contact/contact";
 
@@ -63,9 +64,10 @@ function App() {
         <Route path="/admin-profile" element={<AdminProfile />} />
         <Route path="/add-student" element={<AddStudent />} />
         <Route path="/view-student/:id" element={<ViewStudnet />} />
-        <Route path="/view-drive/:id" element={<ViewDrive/>}/>
+        <Route path="/view-drive/:id" element={<ViewDrive />} />
         <Route path="/add-company" element={<AddCompany />} />
         <Route path="/add-cordinator" element={<AddCordinator />} />
+        <Route path="/view-cordinator" element={<ViewCordinator />} />
         <Route path="/contact" element={<ContactForm />} />
         <Route path="/services" element={<Services />} />
       </Routes>

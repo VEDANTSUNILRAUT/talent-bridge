@@ -37,7 +37,7 @@ const AdminDashboard = () => {
         const fetchStudentdata = await axios.get(
           "http://localhost:5000/student"
         );
-        
+
         setStudent(fetchStudentdata.data);
 
         const fetchCoordinatorData = await axios.get(
@@ -63,134 +63,151 @@ const AdminDashboard = () => {
 
     fetchAdminData();
   }, []);
-/// view pages
+  /// view pages
   const handleView = (id) => {
     navigate(`/view-student/${id}`);
   };
-  const handleDrive =(id)=>{
+  const handleDrive = (id) => {
     navigate(`/view-drive/${id}`);
-  }
-//
+  };
+  const handleCordinator = (id) => {
+    navigate(`/view-cordinator/${id}`);
+  };
+  //
 
+  //HandleRemove function
+  const handleRemove = async (id) => {
+    console.log(id);
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this student?"
+    );
+    if (confirmDelete) {
+      try {
+        // Make DELETE request to the backend
+        const response = await axios.delete(
+          `http://localhost:5000/studentremove/${id}`
+        );
 
-//HandleRemove function
-const handleRemove = async (id) => {
-  console.log(id);
-  const confirmDelete = window.confirm("Are you sure you want to delete this student?");
-  if (confirmDelete) {
-    try {
-      // Make DELETE request to the backend
-      const response = await axios.delete(`http://localhost:5000/studentremove/${id}`);
-      
-      if (response.status === 200) {
-        alert("Student deleted successfully!");
-        
-        // Optional: Remove student from local state to update the UI
-        setStudent((prevStudents) => prevStudents.filter((student) => student.id !== id));
+        if (response.status === 200) {
+          alert("Student deleted successfully!");
+
+          // Optional: Remove student from local state to update the UI
+          setStudent((prevStudents) =>
+            prevStudents.filter((student) => student.id !== id)
+          );
+        }
+      } catch (error) {
+        console.error("Error deleting student:", error);
+        alert("Failed to delete student. Please try again.");
       }
-    } catch (error) {
-      console.error("Error deleting student:", error);
-      alert("Failed to delete student. Please try again.");
     }
-  }
-};
+  };
 
-//Removing the drive 
-const handleDriveRemove = async (id) => {
-  console.log(id);
-  const confirmDelete = window.confirm("Are you sure you want to delete this student?");
-  if (confirmDelete) {
-    try {
-      // Make DELETE request to the backend
-      const response = await axios.delete(`http://localhost:5000/driveremove/${id}`);
-      //for the Drive
-      if (response.status === 200) {
-        window.location.reload();
-        alert("Drive deleted successfully!");
-        // Optional: Remove student from local state to update the UI
-        // not work setActiveTric update ui
-        // setActiveDrives((prevDrives) =>
-        //   prevDrives.filter((drive) => drive.id !== id)
-        // );
+  //Removing the drive
+  const handleDriveRemove = async (id) => {
+    console.log(id);
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this student?"
+    );
+    if (confirmDelete) {
+      try {
+        // Make DELETE request to the backend
+        const response = await axios.delete(
+          `http://localhost:5000/driveremove/${id}`
+        );
+        //for the Drive
+        if (response.status === 200) {
+          window.location.reload();
+          alert("Drive deleted successfully!");
+          // Optional: Remove student from local state to update the UI
+          // not work setActiveTric update ui
+          // setActiveDrives((prevDrives) =>
+          //   prevDrives.filter((drive) => drive.id !== id)
+          // );
+        }
+      } catch (error) {
+        console.error("Error deleting Drive:", error);
+        alert("Failed to delete Drive. Please try again.");
       }
-    } catch (error) {
-      console.error("Error deleting Drive:", error);
-      alert("Failed to delete Drive. Please try again.");
     }
-  }
-};
-//Remove Upcomming Drive
+  };
+  //Remove Upcomming Drive
 
-const handleupcommingDriveRemove = async (id) => {
-  console.log(id);
-  const confirmDelete = window.confirm("Are you sure you want to delete this student?");
-  if (confirmDelete) {
-    try {
-      // Make DELETE request to the backend
-      const response = await axios.delete(`http://localhost:5000/upcommingdriveremove/${id}`);
-      //for the Drive
-      if (response.status === 200) {
-        window.location.reload();
-        alert("Drive deleted successfully!");
-        // setUpcomingCompany((prevDrives) =>
-        //   prevDrives.filter((drive) => drive.id !== id)
-        // );
+  const handleupcommingDriveRemove = async (id) => {
+    console.log(id);
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this student?"
+    );
+    if (confirmDelete) {
+      try {
+        // Make DELETE request to the backend
+        const response = await axios.delete(
+          `http://localhost:5000/upcommingdriveremove/${id}`
+        );
+        //for the Drive
+        if (response.status === 200) {
+          window.location.reload();
+          alert("Drive deleted successfully!");
+          // setUpcomingCompany((prevDrives) =>
+          //   prevDrives.filter((drive) => drive.id !== id)
+          // );
+        }
+      } catch (error) {
+        console.error("Error deleting Drive:", error);
+        alert("Failed to delete Drive. Please try again.");
       }
-    } catch (error) {
-      console.error("Error deleting Drive:", error);
-      alert("Failed to delete Drive. Please try again.");
     }
-  }
-};
+  };
 
-// Remove the Partner
-const handlePartnerDriveRemove = async (id) => {
-  console.log(id);
-  const confirmDelete = window.confirm("Are you sure you want to delete this student?");
-  if (confirmDelete) {
-    try {
-      // Make DELETE request to the backend
-     
-      const response = await axios.delete(`http://localhost:5000/partnerremove/${id}`);
-      //for the Drive
-      if (response.status === 200) {
-        window.location.reload();
-        alert("Partner deleted successfully!");
+  // Remove the Partner
+  const handlePartnerDriveRemove = async (id) => {
+    console.log(id);
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this student?"
+    );
+    if (confirmDelete) {
+      try {
+        // Make DELETE request to the backend
 
+        const response = await axios.delete(
+          `http://localhost:5000/partnerremove/${id}`
+        );
+        //for the Drive
+        if (response.status === 200) {
+          window.location.reload();
+          alert("Partner deleted successfully!");
+        }
+      } catch (error) {
+        console.error("Error deleting Partner:", error);
+        alert("Failed to delete Partner. Please try again.");
       }
-    } catch (error) {
-      console.error("Error deleting Partner:", error);
-      alert("Failed to delete Partner. Please try again.");
     }
-  }
-};
+  };
 
-// Coordinater remove
-const handleCoordinaterDriveRemove = async (id) => {
-  console.log(id);
-  const confirmDelete = window.confirm("Are you sure you want to delete this student?");
-  if (confirmDelete) {
-    try {
-      // Make DELETE request to the backend
-     
-      const response = await axios.delete(`http://localhost:5000/coordinaterremove/${id}`);
-      //for the Drive
-      if (response.status === 200) {
-        window.location.reload();
-        alert("coordinater deleted successfully!");
+  // Coordinater remove
+  const handleCoordinaterDriveRemove = async (id) => {
+    console.log(id);
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this student?"
+    );
+    if (confirmDelete) {
+      try {
+        // Make DELETE request to the backend
 
+        const response = await axios.delete(
+          `http://localhost:5000/coordinaterremove/${id}`
+        );
+        //for the Drive
+        if (response.status === 200) {
+          window.location.reload();
+          alert("coordinater deleted successfully!");
+        }
+      } catch (error) {
+        console.error("Error deleting coordinater:", error);
+        alert("Failed to delete coordinater. Please try again.");
       }
-    } catch (error) {
-      console.error("Error deleting coordinater:", error);
-      alert("Failed to delete coordinater. Please try again.");
     }
-  }
-};
-
-
-
-
-
+  };
 
   const menuItems = [
     { name: "Dashboard", icon: "🏠", section: "dashboard" },
@@ -380,7 +397,9 @@ const handleCoordinaterDriveRemove = async (id) => {
                       </button>
                       <button
                         className="remove-button"
-                        onClick={() => handleupcommingDriveRemove(Udrive.job_id)}
+                        onClick={() =>
+                          handleupcommingDriveRemove(Udrive.job_id)
+                        }
                       >
                         Remove
                       </button>
@@ -390,7 +409,7 @@ const handleCoordinaterDriveRemove = async (id) => {
               </tbody>
             </table>
           )}
-{/* for the student information */}
+          {/* for the student information */}
           {activeSection === "students" && (
             <table className="job-table">
               <thead>
@@ -455,7 +474,7 @@ const handleCoordinaterDriveRemove = async (id) => {
                     <td>
                       <button
                         className="view-button"
-                        onClick={() => handleView(Udrive.job_id)}
+                        onClick={() => handleDrive(Udrive.job_id)}
                       >
                         View
                       </button>
@@ -498,13 +517,19 @@ const handleCoordinaterDriveRemove = async (id) => {
                     <td>
                       <button
                         className="view-button"
-                        onClick={() => handleView(coordinator.coordinator_id)}
+                        onClick={() =>
+                          handleCordinator(coordinator.coordinator_id)
+                        }
                       >
                         View
                       </button>
                       <button
                         className="remove-button"
-                        onClick={() => handleCoordinaterDriveRemove(coordinator.coordinator_id)}
+                        onClick={() =>
+                          handleCoordinaterDriveRemove(
+                            coordinator.coordinator_id
+                          )
+                        }
                       >
                         Remove
                       </button>

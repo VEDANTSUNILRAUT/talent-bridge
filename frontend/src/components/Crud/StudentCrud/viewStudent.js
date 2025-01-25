@@ -1,40 +1,38 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom"; // To access the ID from the URL
+import { useParams, useNavigate } from "react-router-dom"; // Import useNavigate for navigation
+import "./viewStudent.css";
 
 function ViewStudent() {
-  // Use the useParams hook to capture the student's ID from the URL
   const { id } = useParams();
-
+  const navigate = useNavigate(); // For navigation
   const [student, setStudent] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Fetch the student details from the API based on the ID
     axios
-      .get(`http://localhost:5000/students/${id}`) // Replace with the actual backend API endpoint
+      .get(`http://localhost:5000/students/${id}`)
       .then((response) => {
-        setStudent(response.data); // Set the student data to state
+        setStudent(response.data);
         setLoading(false);
       })
       .catch((error) => {
         setError("Error fetching student data: " + error.message);
         setLoading(false);
       });
-  }, [id]); // Re-fetch the data whenever the ID changes
+  }, [id]);
 
-  // Show loading message while data is being fetched
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <div className="loading">Loading...</div>;
+  if (error) return <div className="error">{error}</div>;
 
-  // Show error message if there's an issue fetching the data
-  if (error) return <div>{error}</div>;
-
-  // Display the student details
   return (
-    <div>
-      <h1>Student Details</h1>
-      <div>
+    <div className="view-student-container">
+      <button className="cancel-button" onClick={() => navigate(-1)}>
+        X
+      </button>
+      <h1 className="view-student-header">Student Details</h1>
+      <div className="view-student-details">
         <p>
           <strong>First Name:</strong> {student.first_name}
         </p>

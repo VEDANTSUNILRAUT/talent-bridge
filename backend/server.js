@@ -347,7 +347,22 @@ app.get("/drive/:id", (req, res) => {
   });
 });
 
-
+app.get("/cordinator/:id", (req, res) => {
+  const cordinatorId = req.params.id;
+  const sql = "SELECT * FROM cordinator WHERE coordinator_id = ?";
+  db.query(sql, [cordinatorId], (err, result) => {
+    if (err) {
+      console.error("Error fetching coordinator data:", err);
+      return res
+        .status(500)
+        .json({ error: "Database error", details: err.message });
+    }
+    if (result.length === 0) {
+      return res.status(404).json({ error: "Coordinator not found" });
+    }
+    res.json(result[0]); // Return a single object
+  });
+});
 
 // Crud api to add coridatior
 app.post("/add_cordinator", (req, res) => {
@@ -413,11 +428,7 @@ app.post("/contact", (req, res) => {
     VALUES (?, ?, ?)
   `;
 
-  const values = [
-    req.body.name,
-    req.body.email,
-    req.body.message,
-  ];
+  const values = [req.body.name, req.body.email, req.body.message];
 
   db.query(sql, values, (err, result) => {
     if (err)
@@ -439,7 +450,9 @@ app.delete("/studentremove/:id", (req, res) => {
   db.query(sql, [studentId], (err, result) => {
     if (err) {
       console.error("Error deleting student:", err);
-      return res.status(500).json({ error: "Database error", details: err.message });
+      return res
+        .status(500)
+        .json({ error: "Database error", details: err.message });
     }
 
     if (result.affectedRows === 0) {
@@ -457,7 +470,9 @@ app.delete("/driveremove/:id", (req, res) => {
   db.query(sql, [driveid], (err, result) => {
     if (err) {
       console.error("Error deleting Drive:", err);
-      return res.status(500).json({ error: "Database error", details: err.message });
+      return res
+        .status(500)
+        .json({ error: "Database error", details: err.message });
     }
 
     if (result.affectedRows === 0) {
@@ -468,7 +483,6 @@ app.delete("/driveremove/:id", (req, res) => {
   });
 });
 
-
 // const response = await axios.delete(`http://localhost:5000/upcommingdriveremove/${id}`);
 app.delete("/upcommingdriveremove/:id", (req, res) => {
   const driveid = req.params.id;
@@ -477,7 +491,9 @@ app.delete("/upcommingdriveremove/:id", (req, res) => {
   db.query(sql, [driveid], (err, result) => {
     if (err) {
       console.error("Error deleting Drive:", err);
-      return res.status(500).json({ error: "Database error", details: err.message });
+      return res
+        .status(500)
+        .json({ error: "Database error", details: err.message });
     }
 
     if (result.affectedRows === 0) {
@@ -497,7 +513,9 @@ app.delete("/partnerremove/:id", (req, res) => {
   db.query(sql, [driveid], (err, result) => {
     if (err) {
       console.error("Error deleting partner:", err);
-      return res.status(500).json({ error: "Database error", details: err.message });
+      return res
+        .status(500)
+        .json({ error: "Database error", details: err.message });
     }
 
     if (result.affectedRows === 0) {
@@ -517,19 +535,22 @@ app.delete("/coordinaterremove/:id", (req, res) => {
   db.query(sql, [driveid], (err, result) => {
     if (err) {
       console.error("Error deleting Coordinater:", err);
-      return res.status(500).json({ error: "Database error", details: err.message });
+      return res
+        .status(500)
+        .json({ error: "Database error", details: err.message });
     }
 
     if (result.affectedRows === 0) {
       return res.status(404).json({ error: " Coordinater not found" });
     }
 
-    return res.status(200).json({ message: "Coordinater  deleted successfully!" });
+    return res
+      .status(200)
+      .json({ message: "Coordinater  deleted successfully!" });
   });
 });
 
 // working on the View page
-
 
 app.get("/", (req, res) => {
   return res.json("Backend is working");
