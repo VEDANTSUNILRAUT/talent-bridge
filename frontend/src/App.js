@@ -5,7 +5,7 @@ import "./App.css";
 // Components
 import Header from "./components/Header/header";
 import Footer from "./components/Footer/footer";
-import Services from "./components/Services/services";
+//import Services from "./components/Services/services";
 
 // Pages
 import Home from "./Pages/home";
@@ -36,6 +36,7 @@ import AddCordinator from "./components/Crud/CordCrud/addCordinator";
 import ViewCordinator from "./components/Crud/CordCrud/viewCordinator";
 // Contact Form
 import ContactForm from "./components/Contact/contact";
+import ServiceSection from "./Pages/serviceSection";
 
 // Services
 
@@ -69,7 +70,7 @@ function App() {
         <Route path="/add-cordinator" element={<AddCordinator />} />
         <Route path="/view-cordinator" element={<ViewCordinator />} />
         <Route path="/contact" element={<ContactForm />} />
-        <Route path="/services" element={<Services />} />
+        <Route path="/services" element={<ServiceSection />} />
       </Routes>
       {!adminRoutes.includes(location.pathname) && <Footer />}
       {/* <Footer /> */}
