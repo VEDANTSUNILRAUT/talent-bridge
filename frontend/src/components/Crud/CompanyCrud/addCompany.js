@@ -15,7 +15,7 @@ function AddCompany() {
     experience_required: "",
     job_category: "",
     application_link: "",
-    company_type: "",
+    company_type: "", // This will be a dropdown
   });
 
   const handleChange = (e) => {
@@ -49,7 +49,7 @@ function AddCompany() {
           experience_required: "",
           job_category: "",
           application_link: "",
-          company_type: "",
+          company_type: "", // Reset the dropdown value
         });
       } else {
         const errorData = await response.json();
@@ -90,6 +90,19 @@ function AddCompany() {
                 onChange={handleChange}
                 required
               ></textarea>
+            ) : key === "company_type" ? (
+              <select
+                id={key}
+                name={key}
+                value={formData[key]}
+                onChange={handleChange}
+                required
+              >
+                <option value="">Select Company Type</option>
+                <option value="current">Current</option>
+                <option value="upcoming">Upcoming</option>
+                <option value="partner">Partner</option>
+              </select>
             ) : (
               <input
                 type={key.includes("date") ? "date" : "text"}
