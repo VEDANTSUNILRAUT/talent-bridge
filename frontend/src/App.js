@@ -40,6 +40,9 @@ import ServiceSection from "./Pages/serviceSection";
 
 // Services
 
+import Test from "./components/Services/Test/Test";
+
+
 function App() {
   const location = useLocation();
 
@@ -71,6 +74,7 @@ function App() {
         <Route path="/view-cordinator" element={<ViewCordinator />} />
         <Route path="/contact" element={<ContactForm />} />
         <Route path="/services" element={<ServiceSection />} />
+        <Route path="/test" element={<Test/>}/>
       </Routes>
       {!adminRoutes.includes(location.pathname) && <Footer />}
       {/* <Footer /> */}
