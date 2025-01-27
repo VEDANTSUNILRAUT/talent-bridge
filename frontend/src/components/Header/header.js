@@ -1,3 +1,4 @@
+// Header.jsx
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -5,7 +6,7 @@ import "./header.css";
 
 import User from "../../assets/images/LoginModal/user.png";
 import Admin from "../../assets/images/LoginModal/admin.png";
-import Header_logo from "../../assets/images/Header_Logo/TB.png";
+import HeaderLogo from "../../assets/images/Header_Logo/TB.png";
 import ProfileImg from "../../assets/images/Header_Logo/profile_image.jpg";
 
 const HEADER_NAV_LINKS = [
@@ -14,8 +15,6 @@ const HEADER_NAV_LINKS = [
   { text: "Services", url: "/services" },
   { text: "Contact", url: "/contact" },
 ];
-
-const BUTTON_CLASSES = "btn-login";
 
 const Header = () => {
   const [showModal, setShowModal] = useState(false);
@@ -41,7 +40,6 @@ const Header = () => {
     checkLoginStatus();
   }, []);
 
-  // ✅ Updated this function to directly set login state
   const handleLoginRedirect = (role) => {
     setShowModal(false);
     if (role === "admin") {
@@ -49,7 +47,7 @@ const Header = () => {
     } else if (role === "student") {
       navigate("/login");
     } else {
-      console.error("Invalid login role:", role); // Handle invalid role
+      console.error("Invalid login role:", role);
     }
   };
 
@@ -63,32 +61,29 @@ const Header = () => {
   };
 
   return (
-    <header className="header11">
-      <div className="container">
-        <div className="logo">
-          <img aria-hidden="true" alt="Logo" src={Header_logo} />
+    <header className="header-container">
+      <div className="header-content">
+        <div className="header-logo">
+          <img aria-hidden="true" alt="Logo" src={HeaderLogo} />
         </div>
 
-        <nav className="nav-links">
+        <nav className="header-nav-links">
           {HEADER_NAV_LINKS.map((link, index) => (
-            <Link key={index} to={link.url} className="nav-link">
+            <Link key={index} to={link.url} className="header-nav-link">
               {link.text}
             </Link>
           ))}
 
-          {/* ✅ Real-time Profile Button Display */}
           {isLoggedIn ? (
-            <>
-              <img
-                src={ProfileImg}
-                onClick={() => navigate("/studentprofile")}
-                alt="notload"
-                className="profileimg"
-              />
-            </>
+            <img
+              src={ProfileImg}
+              onClick={() => navigate("/studentprofile")}
+              alt="Profile"
+              className="header-profile-img"
+            />
           ) : (
             <button
-              className={BUTTON_CLASSES}
+              className="header-btn-login"
               onClick={() => setShowModal(true)}
               aria-label="Login"
             >
@@ -99,42 +94,47 @@ const Header = () => {
       </div>
 
       {showModal && (
-        <div className="modal">
-          <button className="close-button" onClick={() => setShowModal(false)}>
-            &times;
-          </button>
-          <div className="modal-content">
-            <div className="modal-box">
-              <img src={User} alt="Student" />
-              <p>Welcome, Student!</p>
-              <button
-                className="login"
-                onClick={() => handleLoginRedirect("student")}
-              >
-                Login
-              </button>
-              <button
-                className="signup"
-                onClick={() => handleSignupChoice("student")}
-              >
-                Sign Up
-              </button>
-            </div>
-            <div className="modal-box">
-              <img src={Admin} alt="Admin" />
-              <p>Welcome, TPO!</p>
-              <button
-                className="login"
-                onClick={() => handleLoginRedirect("admin")}
-              >
-                Login
-              </button>
-              <button
-                className="signup"
-                onClick={() => handleSignupChoice("admin")}
-              >
-                Sign Up
-              </button>
+        <div className="header-modal-overlay">
+          <div className="header-modal">
+            <button
+              className="header-modal-close-btn"
+              onClick={() => setShowModal(false)}
+            >
+              X
+            </button>
+            <div className="header-modal-content">
+              <div className="header-modal-box">
+                <img src={User} alt="Student" />
+                <p>Welcome, Student!</p>
+                <button
+                  className="header-modal-login"
+                  onClick={() => handleLoginRedirect("student")}
+                >
+                  Login
+                </button>
+                <button
+                  className="header-modal-signup"
+                  onClick={() => handleSignupChoice("student")}
+                >
+                  Sign Up
+                </button>
+              </div>
+              <div className="header-modal-box">
+                <img src={Admin} alt="Admin" />
+                <p>Welcome, TPO!</p>
+                <button
+                  className="header-modal-login"
+                  onClick={() => handleLoginRedirect("admin")}
+                >
+                  Login
+                </button>
+                <button
+                  className="header-modal-signup"
+                  onClick={() => handleSignupChoice("admin")}
+                >
+                  Sign Up
+                </button>
+              </div>
             </div>
           </div>
         </div>
