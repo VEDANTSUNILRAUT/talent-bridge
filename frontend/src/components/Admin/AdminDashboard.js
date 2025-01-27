@@ -257,6 +257,12 @@ const AdminDashboard = () => {
           >
             Jobs
           </button>
+          <button
+            className="admin-actions-btn"
+            onClick={() => navigate("/viewApplication")}
+          >
+            View Application
+          </button>
 
           <button
             className="admin-actions-btn"

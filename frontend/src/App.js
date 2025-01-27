@@ -17,6 +17,7 @@ import About from "./Pages/aboutss"; // Ensure this path matches your file struc
 // Admin Dashboard
 import Admin from "./Pages/Admin_Dash";
 import AdminProfile from "./components/Admin/adminProfile";
+import ViewApplication from "./components/Admin/viewApplication";
 
 // Student Login
 import Login from "./Authentication/Student/login";
@@ -41,7 +42,6 @@ import ServiceSection from "./Pages/serviceSection";
 // Services
 
 import Test from "./components/Services/Test/Test";
-
 
 function App() {
   const location = useLocation();
@@ -74,7 +74,8 @@ function App() {
         <Route path="/view-cordinator" element={<ViewCordinator />} />
         <Route path="/contact" element={<ContactForm />} />
         <Route path="/services" element={<ServiceSection />} />
-        <Route path="/test" element={<Test/>}/>
+        <Route path="/test" element={<Test />} />
+        <Route path="/viewApplication" element={<ViewApplication />} />
       </Routes>
       {!adminRoutes.includes(location.pathname) && <Footer />}
       {/* <Footer /> */}
