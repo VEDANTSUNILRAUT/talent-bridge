@@ -18,7 +18,7 @@ const servicesData = [
       "Practice interviews with expert feedback to boost confidence.",
     icon: "🤝",
     buttonText: "Start Practice",
-    path: "/mock-interview",
+    path: "/mock",
   },
   {
     id: 3,
