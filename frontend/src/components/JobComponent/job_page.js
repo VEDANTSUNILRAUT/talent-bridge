@@ -188,6 +188,7 @@ function Job() {
             <p>
               <strong>Company Type:</strong> {selectedJob.company_type}
             </p>
+            <button onClick={handleClosePopup}>Close</button>
           </div>
         </div>
       )}
