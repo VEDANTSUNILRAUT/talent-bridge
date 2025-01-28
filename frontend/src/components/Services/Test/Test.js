@@ -1,369 +1,413 @@
-import React, { useState, useEffect } from 'react';
-import './test.css';
+import React, { useState, useEffect } from "react";
+import "./test.css";
 import { Link } from 'react-router-dom';
-
 const Test = () => {
   const [showModal, setShowModal] = useState(true);
+  const [currentSection, setCurrentSection] = useState(null);
   const [quizStarted, setQuizStarted] = useState(false);
   const [timeLeft, setTimeLeft] = useState(240); // Timer in seconds
   const [answers, setAnswers] = useState({});
   const [results, setResults] = useState(null);
+  const [shuffledQuestions, setShuffledQuestions] = useState([]);
 
-  const myQuestions = [
-    {
-      question: "1) A train running at 60 km/h crosses a pole in 9 seconds. What is the length of the train?",
-      answers: {
-        a: "120 meters",
-        b: "150 meters",
-        c: "180 meters",
+  const sections = {
+    Aptitude: [
+      {
+        question:
+          "A train running at 60 km/h crosses a pole in 9 seconds. What is the length of the train?",
+        answers: {
+          a: "120 meters",
+          b: "150 meters",
+          c: "180 meters",
+        },
+        correctAnswer: "b",
       },
-      correctAnswer: "b",
-    },
-    {
-      question: "2) In a certain code language, 'MANGO' is written as 'LZMFN'. How will 'APPLE' be written in the same code?",
-      answers: {
-        a: "ZOOMF",
-        b: "ZOONL",
-        c: "ZOOML",
+      {
+        question: "Find the next term in the series: 2, 6, 12, 20, 30, ?",
+        answers: {
+          a: "42",
+          b: "40",
+          c: "44",
+        },
+        correctAnswer: "a",
       },
-      correctAnswer: "c",
-    },
-    {
-      question: "3) Find the next term in the series: 2, 6, 12, 20, 30, ?",
-      answers: {
-        a: "42",
-        b: "40",
-        c: "44",
+      {
+        question: "What is the smallest number divisible by both 12 and 18?",
+        answers: {
+          a: "36",
+          b: "48",
+          c: "72",
+        },
+        correctAnswer: "c",
       },
-      correctAnswer: "a",
-    },
-    {
-      question: "4) If 7 workers can complete a task in 10 days, how long will it take 14 workers to complete the same task?",
-      answers: {
-        a: "5 days",
-        b: "7 days",
-        c: "6 days",
+      {
+        question:
+          "A person travels a distance of 120 km in 3 hours. What is the speed of the person?",
+        answers: {
+          a: "30 km/h",
+          b: "40 km/h",
+          c: "50 km/h",
+        },
+        correctAnswer: "b",
       },
-      correctAnswer: "a",
-    },
-    {
-      question: "5) A pipe can fill a tank in 4 hours, while another pipe can empty the same tank in 6 hours. How long will it take to fill the tank if both pipes are opened together?",
-      answers: {
-        a: "12 hours",
-        b: "10 hours",
-        c: "24 hours",
+      {
+        question:
+          "If a clock shows 3:15, what is the angle between the hour hand and minute hand?",
+        answers: {
+          a: "22.5°",
+          b: "30°",
+          c: "45°",
+        },
+        correctAnswer: "a",
       },
-      correctAnswer: "b",
-    },
-    {
-      question: "6) Rearrange the letters of the word 'LEMON' to form a meaningful word.",
-      answers: {
-        a: "NOLEM",
-        b: "MELON",
-        c: "LENOM",
+      {
+        question:
+          "What is the perimeter of a rectangle with length 12 cm and width 5 cm?",
+        answers: {
+          a: "34 cm",
+          b: "35 cm",
+          c: "36 cm",
+        },
+        correctAnswer: "a",
       },
-      correctAnswer: "b",
-    },
-    {
-      question: "7) A person spends 20% of his income on rent, 30% on food, and saves the remaining ₹10,000. What is his total income?",
-      answers: {
-        a: "₹20,000",
-        b: "₹25,000",
-        c: "₹50,000",
+      {
+        question:
+          "Find the area of a triangle with base 10 cm and height 8 cm.",
+        answers: {
+          a: "40 cm²",
+          b: "50 cm²",
+          c: "60 cm²",
+        },
+        correctAnswer: "a",
       },
-      correctAnswer: "c",
-    },
-    {
-      question: "8) In a class of 60 students, 45 like Math, and 25 like Science. If 5 students like neither, how many like both subjects?",
-      answers: {
-        a: "15",
-        b: "25",
-        c: "10",
+      {
+        question:
+          "If a car travels 150 km in 3 hours, what is its average speed?",
+        answers: {
+          a: "40 km/h",
+          b: "50 km/h",
+          c: "60 km/h",
+        },
+        correctAnswer: "b",
       },
-      correctAnswer: "c",
-    },
-    {
-      question: "9) If a clock strikes once at 1 o'clock, twice at 2 o'clock, and so on, how many times will it strike in 24 hours?",
-      answers: {
-        a: "156",
-        b: "78",
-        c: "84",
+      {
+        question:
+          "In how many years will $5000 become $6000 at an annual interest rate of 10%?",
+        answers: {
+          a: "5 years",
+          b: "6 years",
+          c: "7 years",
+        },
+        correctAnswer: "a",
       },
-      correctAnswer: "a",
-    },
-    {
-      question: "10) Find the odd one out: 2, 4, 8, 16, 30, 64.",
-      answers: {
-        a: "16",
-        b: "30",
-        c: "64",
+      {
+        question:
+          "The sum of two numbers is 60, and their difference is 10. What are the numbers?",
+        answers: {
+          a: "35 and 25",
+          b: "40 and 20",
+          c: "45 and 15",
+        },
+        correctAnswer: "a",
       },
-      correctAnswer: "b",
-    },
-    {
-      question: "11) If BEAR is coded as 2579 and RARE as 9495, how is BARE coded?",
-      answers: {
-        a: "2595",
-        b: "5295",
-        c: "2529",
+      {
+        question: "What is the next number in the sequence: 3, 5, 7, 11, 13, ?",
+        answers: {
+          a: "15",
+          b: "17",
+          c: "19",
+        },
+        correctAnswer: "b",
       },
-      correctAnswer: "b",
-    },
-    {
-      question: "12) If ‘+’ means ‘×’, ‘×’ means ‘-’, and ‘-’ means ‘+’, what is the value of 8 + 2 × 5 - 3?",
-      answers: {
-        a: "19",
-        b: "25",
-        c: "17",
+      {
+        question:
+          "A car travels 120 km in 2 hours and 30 minutes. What is the average speed?",
+        answers: {
+          a: "45 km/h",
+          b: "48 km/h",
+          c: "50 km/h",
+        },
+        correctAnswer: "b",
       },
-      correctAnswer: "c",
-    },
-    {
-      question: "13) The average of 8 numbers is 20. If one number is excluded, the average becomes 18. What is the excluded number?",
-      answers: {
-        a: "34",
-        b: "36",
-        c: "38",
+      {
+        question: "Find the value of x in the equation: 3x + 5 = 20",
+        answers: {
+          a: "5",
+          b: "4",
+          c: "3",
+        },
+        correctAnswer: "b",
       },
-      correctAnswer: "b",
-    },
-    {
-      question: "14) If A is the mother of B and B is the father of C, how is A related to C?",
-      answers: {
-        a: "Grandmother",
-        b: "Mother",
-        c: "Aunt",
+      {
+        question:
+          "A man sells a product for $20, gaining a profit of 25%. What is the cost price?",
+        answers: {
+          a: "$15",
+          b: "$16",
+          c: "$17",
+        },
+        correctAnswer: "a",
       },
-      correctAnswer: "a",
-    },
-    {
-      question: "15) Complete the analogy: Medicine : Disease :: Education : ?",
-      answers: {
-        a: "School",
-        b: "Ignorance",
-        c: "Teacher",
+      {
+        question: "What is the LCM of 8 and 12?",
+        answers: {
+          a: "48",
+          b: "24",
+          c: "36",
+        },
+        correctAnswer: "b",
       },
-      correctAnswer: "b",
-    },
-    {
-      question: "16) A bag contains 5 red balls, 4 green balls, and 3 blue balls. What is the probability of picking a green ball?",
-      answers: {
-        a: "1/4",
-        b: "2/3",
-        c: "4/12",
+      {
+        question:
+          "Find the compound interest on $1000 for 2 years at 10% per annum, compounded annually.",
+        answers: {
+          a: "$200",
+          b: "$210",
+          c: "$220",
+        },
+        correctAnswer: "b",
       },
-      correctAnswer: "a",
-    },
-    {
-      question: "17) If 5x - 3 = 27, what is the value of x?",
-      answers: {
-        a: "5",
-        b: "6",
-        c: "7",
+      {
+        question: "What is the average of 4, 7, 10, 12?",
+        answers: {
+          a: "8.5",
+          b: "9.5",
+          c: "10",
+        },
+        correctAnswer: "a",
       },
-      correctAnswer: "c",
-    },
-    {
-      question: "18) Which of the following numbers is not a prime number?",
-      answers: {
-        a: "29",
-        b: "27",
-        c: "23",
+      {
+        question:
+          "The cost of 3 pens and 2 pencils is $2.40. If the cost of a pen is $0.80, what is the cost of a pencil?",
+        answers: {
+          a: "$0.40",
+          b: "$0.60",
+          c: "$0.50",
+        },
+        correctAnswer: "a",
       },
-      correctAnswer: "b",
-    },
-    {
-      question: "19) If a person travels 4 km East, then 3 km South, and finally 4 km West, how far is he from the starting point?",
-      answers: {
-        a: "3 km",
-        b: "5 km",
-        c: "7 km",
+      {
+        question:
+          "What is the area of a circle with a radius of 7 cm? (Use π = 22/7)",
+        answers: {
+          a: "154 cm²",
+          b: "100 cm²",
+          c: "49 cm²",
+        },
+        correctAnswer: "c",
       },
-      correctAnswer: "a",
-    },
-    {
-      question: "20) What is the smallest number divisible by both 12 and 18?",
-      answers: {
-        a: "36",
-        b: "48",
-        c: "72",
+      {
+        question: "What is the value of x in the equation: 5x - 7 = 18?",
+        answers: {
+          a: "5",
+          b: "6",
+          c: "7",
+        },
+        correctAnswer: "b",
       },
-      correctAnswer: "c",
-    },
-    {
-      question: "21) Find the missing number in the series: 2, 6, 12, 20, 30, __?",
-      answers: {
-        a: "36",
-        b: "40",
-        c: "42",
+    ],
+
+    Reasoning: [
+      {
+        question:
+          "If all the apples are fruits and all fruits are sweet, then which of the following is true?",
+        answers: {
+          a: "All apples are sweet",
+          b: "All fruits are apples",
+          c: "Some apples are not sweet",
+        },
+        correctAnswer: "a",
       },
-      correctAnswer: "b",
-    },
-    {
-      question: "22) If TOMORROW is coded as 57851436, how will MORROW be coded?",
-      answers: {
-        a: "573436",
-        b: "751436",
-        c: "571436",
+      {
+        question: "Find the odd one out: 7, 13, 19, 21, 23",
+        answers: {
+          a: "7",
+          b: "21",
+          c: "19",
+        },
+        correctAnswer: "b",
       },
-      correctAnswer: "c",
-    },
-    {
-      question: "23) A is twice as old as B. Three years ago, A was three times as old as B. How old is A now?",
-      answers: {
-        a: "6 years",
-        b: "12 years",
-        c: "18 years",
+      {
+        question:
+          "If the day before yesterday was Thursday, what day will it be after tomorrow?",
+        answers: {
+          a: "Sunday",
+          b: "Friday",
+          c: "Saturday",
+        },
+        correctAnswer: "c",
       },
-      correctAnswer: "b",
-    },
-    {
-      question: "24) If CLOCK is coded as 31215, how is ROCK coded?",
-      answers: {
-        a: "5132",
-        b: "4215",
-        c: "5123",
+      {
+        question: "Choose the missing number in the series: 1, 4, 9, 16, ?, 36",
+        answers: {
+          a: "20",
+          b: "25",
+          c: "30",
+        },
+        correctAnswer: "b",
       },
-      correctAnswer: "c",
-    },
-    {
-      question: "25) Ravi walks 10 km North, then turns East and walks 5 km. Finally, he turns South and walks 10 km. How far is he from the starting point?",
-      answers: {
-        a: "5 km",
-        b: "10 km",
-        c: "15 km",
+      {
+        question: "If 2 pencils cost $1.50, what is the cost of 5 pencils?",
+        answers: {
+          a: "$3.50",
+          b: "$3.75",
+          c: "$4.00",
+        },
+        correctAnswer: "b",
       },
-      correctAnswer: "a",
-    },
-    {
-      question: "26) A family consists of 2 grandparents, 2 parents, and 4 children. What is the number of handshakes if each person shakes hands with every other person once?",
-      answers: {
-        a: "28",
-        b: "36",
-        c: "56",
+      {
+        question:
+          "Which of the following numbers is divisible by both 2 and 3?",
+        answers: {
+          a: "10",
+          b: "15",
+          c: "18",
+        },
+        correctAnswer: "c",
       },
-      correctAnswer: "a",
-    },
-    {
-      question: "27) In a certain code, STUDY is written as TUVFZ. How is PLANT written in that code?",
-      answers: {
-        a: "QMBOV",
-        b: "QNBOV",
-        c: "QMBNU",
+      {
+        question:
+          "If a man is facing north, then after making three right turns, which direction will he face?",
+        answers: {
+          a: "South",
+          b: "East",
+          c: "West",
+        },
+        correctAnswer: "a",
       },
-      correctAnswer: "a",
-    },
-    {
-      question: "28) If the day before yesterday was Friday, what will be the day after tomorrow?",
-      answers: {
-        a: "Monday",
-        b: "Tuesday",
-        c: "Wednesday",
+      {
+        question: "Which number replaces the question mark: 2, 4, 8, 16, ?",
+        answers: {
+          a: "24",
+          b: "30",
+          c: "32",
+        },
+        correctAnswer: "c",
       },
-      correctAnswer: "b",
-    },
-    {
-      question: "29) Choose the odd one out: 3, 5, 7, 12, 17",
-      answers: {
-        a: "7",
-        b: "12",
-        c: "17",
+      {
+        question:
+          "A clock shows 6:00. What is the angle between the hour hand and minute hand?",
+        answers: {
+          a: "180°",
+          b: "90°",
+          c: "45°",
+        },
+        correctAnswer: "a",
       },
-      correctAnswer: "b",
-    },
-  
-    {
-      question: "30) Choose the synonym of 'Eminent'.",
-      answers: {
-        a: "Famous",
-        b: "Unknown",
-        c: "Ordinary",
+      {
+        question: "Which one of the following figures is the odd one out?",
+        answers: {
+          a: "Circle",
+          b: "Square",
+          c: "Triangle",
+        },
+        correctAnswer: "b",
       },
-      correctAnswer: "a",
-    },
-    {
-      question: "31) Find the antonym of 'Optimistic'.",
-      answers: {
-        a: "Hopeful",
-        b: "Positive",
-        c: "Pessimistic",
+      {
+        question:
+          "If you rearrange the letters 'LOOSE' it will form the name of a:",
+        answers: {
+          a: "City",
+          b: "Animal",
+          c: "Country",
+        },
+        correctAnswer: "a",
       },
-      correctAnswer: "c",
-    },
-    {
-      question: "32) Fill in the blank: 'She is as ______ as her brother in studies.'",
-      answers: {
-        a: "Good",
-        b: "Better",
-        c: "Best",
+      {
+        question:
+          "If you rearrange the letters of the word 'SHINING', it will form the name of a:",
+        answers: {
+          a: "Animal",
+          b: "Country",
+          c: "City",
+        },
+        correctAnswer: "c",
       },
-      correctAnswer: "a",
-    },
-    {
-      question: "33) Identify the grammatical error: 'Neither the boy nor his parents is coming to the party.'",
-      answers: {
-        a: "'Is' should be 'are'.",
-        b: "No error.",
-        c: "'Parents' should be singular.",
+      {
+        question:
+          "If 6 workers can complete a job in 8 days, how many days will 12 workers take to complete the same job?",
+        answers: {
+          a: "2 days",
+          b: "3 days",
+          c: "4 days",
+        },
+        correctAnswer: "b",
       },
-      correctAnswer: "a",
-    },
-    {
-      question: "34) Choose the correct meaning of the idiom: 'Burning the midnight oil.'",
-      answers: {
-        a: "Sleeping early",
-        b: "Working late into the night",
-        c: "Wasting time",
+      {
+        question:
+          "If you see a clock showing 7:30, what is the angle between the hour and minute hand?",
+        answers: {
+          a: "15°",
+          b: "75°",
+          c: "90°",
+        },
+        correctAnswer: "b",
       },
-      correctAnswer: "b",
-    },
-  
-    {
-      question: "35) Which data structure uses LIFO (Last In First Out) order?",
-      answers: {
-        a: "Queue",
-        b: "Stack",
-        c: "Heap",
+      {
+        question: "Find the missing term in the series: A, D, G, J, ?",
+        answers: {
+          a: "K",
+          b: "M",
+          c: "L",
+        },
+        correctAnswer: "c",
       },
-      correctAnswer: "b",
-    },
-    {
-      question: "36) What is the time complexity of searching for an element in a balanced binary search tree?",
-      answers: {
-        a: "O(n)",
-        b: "O(log n)",
-        c: "O(1)",
+      {
+        question: "Which of the following is the smallest prime number?",
+        answers: {
+          a: "1",
+          b: "2",
+          c: "3",
+        },
+        correctAnswer: "b",
       },
-      correctAnswer: "b",
-    },
-    {
-      question: "37) Which sorting algorithm is the best for nearly sorted arrays?",
-      answers: {
-        a: "Merge Sort",
-        b: "Insertion Sort",
-        c: "Bubble Sort",
+      {
+        question:
+          "In a code language, if 'PLANT' is written as 'QMNUS', then how is 'MOUSE' written?",
+        answers: {
+          a: "NPTVF",
+          b: "NPTWG",
+          c: "NPUGF",
+        },
+        correctAnswer: "a",
       },
-      correctAnswer: "b",
-    },
-    {
-      question: "38) What is the space complexity of the recursive implementation of quicksort?",
-      answers: {
-        a: "O(n)",
-        b: "O(log n)",
-        c: "O(n^2)",
+      {
+        question:
+          "If two pencils cost 40 cents, how much do five pencils cost?",
+        answers: {
+          a: "1 dollar",
+          b: "2 dollars",
+          c: "1.50 dollars",
+        },
+        correctAnswer: "a",
       },
-      correctAnswer: "b",
-    },
-    {
-      question: "39) Which data structure is used for implementing a priority queue?",
-      answers: {
-        a: "Stack",
-        b: "Heap",
-        c: "Array",
+      {
+        question:
+          "Which of the following is the next term in the series: 1, 4, 9, 16, 25, ?",
+        answers: {
+          a: "30",
+          b: "36",
+          c: "40",
+        },
+        correctAnswer: "b",
       },
-      correctAnswer: "b",
-    },
-  ];
+      {
+        question:
+          "In a certain code, 'ABCD' is written as '1234'. How is 'EFGH' written in the same code?",
+        answers: {
+          a: "5678",
+          b: "6789",
+          c: "1234",
+        },
+        correctAnswer: "a",
+      },
+    ],
+  };
+
+  const shuffleQuestions = (section) => {
+    const shuffled = [...sections[section]].sort(() => Math.random() - 0.5);
+    setShuffledQuestions(shuffled.slice(0, 10)); // Limit to the first 10 questions after shuffle
+  };
 
   useEffect(() => {
     if (quizStarted && timeLeft > 0) {
@@ -374,54 +418,105 @@ const Test = () => {
     }
   }, [quizStarted, timeLeft]);
 
-  const startQuiz = () => {
+  const startQuiz = (section) => {
+    shuffleQuestions(section);
+    setCurrentSection(section);
     setShowModal(false);
     setQuizStarted(true);
-    setTimeLeft(2100); // Reset timer
+    setTimeLeft(600); // Reset timer
   };
 
   const handleAnswerChange = (questionIndex, answer) => {
-    setAnswers({ ...answers, [questionIndex]: answer });
+    setAnswers((prevAnswers) => ({
+      ...prevAnswers,
+      [questionIndex]: answer,
+    }));
   };
 
   const submitQuiz = () => {
     setQuizStarted(false);
     let numCorrect = 0;
 
-    myQuestions.forEach((q, index) => {
+    shuffledQuestions.forEach((q, index) => {
       if (answers[index] === q.correctAnswer) {
         numCorrect++;
       }
     });
 
-    setResults(`You scored ${numCorrect} out of ${myQuestions.length}!`);
-    setTimeLeft(240); // Reset timer
+    setResults(`You scored ${numCorrect} out of ${shuffledQuestions.length}!`);
+    setTimeLeft(600); // Reset timer
   };
 
   return (
-    <div className='mainDiv'>
+    <div className="mainDiv">
       {showModal && (
-        <div className="modal">
-          <h2>Having to solve the 20 quiz in 20 min </h2>
-          <h2>Ready to start the quiz?</h2>
-          <button onClick={startQuiz}>Start Quiz</button>
+        <div
+          className="modal"
+          style={{
+            backgroundColor: "#e3f2fd",
+            color: "#0d47a1",
+            padding: "20px",
+            borderRadius: "10px",
+          }}
+        >
+          <h2>Select a Section to Begin</h2>
+          {Object.keys(sections).map((section) => (
+            <div
+              key={section}
+              style={{
+                marginBottom: "15px",
+                padding: "10px",
+                border: "1px solid #0d47a1",
+                borderRadius: "10px",
+              }}
+            >
+              <h3>{section}</h3>
+              <button
+                onClick={() => startQuiz(section)}
+                style={{
+                  backgroundColor: "#0d47a1",
+                  color: "white",
+                  padding: "10px 20px",
+                  border: "none",
+                  borderRadius: "5px",
+                }}
+              >
+                Start
+              </button>
+            </div>
+          ))}
         </div>
       )}
 
       {quizStarted && (
-        <div className='quizdiv'>
-          <div className="timer">
-            <h3>Time Left: {Math.floor(timeLeft / 60)}:{timeLeft % 60 < 10 ? `0${timeLeft % 60}` : timeLeft % 60}</h3>
+        <div
+          className="quizdiv"
+          style={{
+            backgroundColor: "#e3f2fd",
+            color: "#0d47a1",
+            padding: "20px",
+            borderRadius: "10px",
+          }}
+        >
+          <div className="timer" style={{ marginBottom: "20px" }}>
+          <h3>Time Left: {Math.floor(timeLeft / 60)}:{timeLeft % 60 < 10 ? `0${timeLeft % 60}` : timeLeft % 60}</h3>
           </div>
 
           <div id="quiz">
-            {myQuestions.map((q, index) => (
-              <div key={index} className="question-container">
+            {shuffledQuestions.map((q, index) => (
+              <div
+                key={index}
+                className="question-container"
+                style={{ marginBottom: "20px" }}
+              >
                 <h4>{q.question}</h4>
                 {Object.entries(q.answers).map(([key, value]) => (
-                  <label key={key}>
+                  <label
+                    key={key}
+                    style={{ display: "block", margin: "5px 0" }}
+                  >
                     <input
-                      type="checkbox"
+                      type="radio"
                       name={`question${index}`}
                       value={key}
                       onChange={() => handleAnswerChange(index, key)}
@@ -432,22 +527,42 @@ const Test = () => {
               </div>
             ))}
 
-            <button id="submit" onClick={submitQuiz}>
-            Submit
-          </button>
+            <button
+              id="submit"
+              onClick={submitQuiz}
+              style={{
+                backgroundColor: "#0d47a1",
+                color: "white",
+                padding: "10px 20px",
+                border: "none",
+                borderRadius: "5px",
+              }}
+            >
+              Submit
+            </button>
           </div>
-
-          
         </div>
       )}
 
       {results && (
-        <div id="results">
+        <div
+          id="results"
+          style={{
+            backgroundColor: "#e3f2fd",
+            color: "#0d47a1",
+            padding: "20px",
+            borderRadius: "10px",
+            marginTop: "20px",
+            display:'flex',
+            justifyContent:'center',
+            flexDirection:'column',
+            alignItems:'center'
+          }}
+        >
           <h3>{results}</h3>
           <Link to={"/"} class="button"><svg class="svgIcon" viewBox="0 0 512 512" height="1em" xmlns="http://www.w3.org/2000/svg"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm50.7-186.9L162.4 380.6c-19.4 7.5-38.5-11.6-31-31l55.5-144.3c3.3-8.5 9.9-15.1 18.4-18.4l144.3-55.5c19.4-7.5 38.5 11.6 31 31L325.1 306.7c-3.2 8.5-9.9 15.1-18.4 18.4zM288 256a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"></path></svg>Home</Link>
+          
         </div>
-        
-        
       )}
     </div>
   );
