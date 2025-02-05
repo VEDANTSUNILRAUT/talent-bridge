@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import "./job_page.css"; // Assuming you have a corresponding CSS file
 
 function Job() {
@@ -75,6 +76,27 @@ function Job() {
     const sectionJobs = filteredJobs.filter(
       (job) => job.company_type === filterType
     );
+
+    // Add this function near other handlers
+    const handleApplyJob = async (jobId) => {
+      const studentId = localStorage.getItem("student_id");
+      if (!studentId) {
+        alert("Please login first!");
+        return;
+      }
+
+      try {
+        await axios.post("http://localhost:5000/applications", {
+          student_id: studentId,
+          job_id: jobId,
+        });
+        alert("Application submitted successfully!");
+      } catch (err) {
+        console.error("Application error:", err);
+        alert("You've already applied to this job!");
+      }
+    };
+
     return (
       <div className="companies-section">
         <h2>{title}</h2>
@@ -95,7 +117,7 @@ function Job() {
                 </button>
                 <button
                   className="apply-button"
-                  aria-label={`Apply for ${job.title} at ${job.company_name}`}
+                  onClick={() => handleApplyJob(job.job_id)}
                 >
                   Apply
                 </button>

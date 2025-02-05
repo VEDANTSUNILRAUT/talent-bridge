@@ -57,6 +57,7 @@ app.post("/student_signup", (req, res) => {
 
 // Student Login API : http://localhost:5000/student_login
 const bcrypt = require("bcrypt"); // Import bcrypt for password hashing
+// Student Login API
 app.post("/student_login", (req, res) => {
   const sql = "SELECT * FROM student WHERE email = ? AND password = ?";
   db.query(sql, [req.body.email, req.body.password], (err, data) => {
@@ -70,7 +71,11 @@ app.post("/student_login", (req, res) => {
         secure: false,
         maxAge: 24 * 60 * 60 * 1000,
       });
-      return res.json({ Status: "Success" });
+      // Return student_id in the response
+      return res.json({
+        Status: "Success",
+        student_id: data[0].id, // Add this line
+      });
     } else {
       return res.json("Invalid Credentials");
     }
@@ -551,6 +556,49 @@ app.delete("/coordinaterremove/:id", (req, res) => {
 });
 
 // working on the View page
+
+// Apply for Job
+// POST endpoint to apply for a job (server.js)
+app.post("/applications", (req, res) => {
+  const { student_id, job_id } = req.body;
+
+  // Validate input
+  if (!student_id || !job_id) {
+    return res.status(400).json({ error: "Missing student_id or job_id" });
+  }
+
+  // Insert into applications table
+  const sql = "INSERT INTO applications (student_id, job_id) VALUES (?, ?)";
+  db.query(sql, [student_id, job_id], (err, result) => {
+    if (err) {
+      console.error("Database Error:", err);
+      return res.status(500).json({
+        error: "Failed to apply. You might have already applied.",
+      });
+    }
+    res.json({ message: "Application submitted!" });
+  });
+});
+
+// Get Applied Jobs for a Student
+// GET endpoint to fetch applied jobs (server.js)
+app.get("/students/:student_id/applications", (req, res) => {
+  const { student_id } = req.params;
+  const sql = `
+    SELECT jobs.*, applications.status, applications.applied_at 
+    FROM applications 
+    JOIN jobs ON applications.job_id = jobs.job_id 
+    WHERE applications.student_id = ?
+  `;
+
+  db.query(sql, [student_id], (err, results) => {
+    if (err) {
+      console.error("Database Error:", err);
+      return res.status(500).json({ error: "Failed to fetch applications" });
+    }
+    res.json(results);
+  });
+});
 
 app.get("/", (req, res) => {
   return res.json("Backend is working");

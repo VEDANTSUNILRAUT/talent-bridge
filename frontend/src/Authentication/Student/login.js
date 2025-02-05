@@ -1,4 +1,3 @@
-// Login.js
 import React, { useState } from "react";
 import axios from "axios";
 import "./login.css";
@@ -7,26 +6,28 @@ import { useNavigate } from "react-router-dom";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigator=useNavigate();
-  axios.defaults.withCredentials=true;
+  const navigator = useNavigate();
+  axios.defaults.withCredentials = true;
+
   function handleSubmit(e) {
     e.preventDefault();
     axios
       .post("http://localhost:5000/student_login", { email, password })
       .then((res) => {
-        if(res.data.Status==="Success"){
-          console.log(res);
-        alert("Login Successful!"); // Alert on successful login
-        navigator("/"); 
-        window.location.reload(); 
+        console.log("Backend Response:", res.data); // Debugging line
+        if (res.data.Status === "Success") {
+          // Store student_id in localStorage
+          localStorage.setItem("student_id", res.data.student_id);
+          alert("Login Successful!");
+          navigator("/");
+          window.location.reload();
+        } else {
+          alert("Login Failed! Invalid credentials.");
         }
-          
-          
-       
       })
       .catch((err) => {
-        console.log(err);
-        alert("Login Failed! Please check your credentials."); // Alert on failed login
+        console.log("Error Details:", err.response?.data || err.message); // Enhanced error logging
+        alert("Login Failed! Server error.");
       });
   }
 
@@ -64,7 +65,9 @@ const Login = () => {
           Login
         </button>
       </form>
-      <p>If you are new here , please <a href="./signup">register</a></p>
+      <p>
+        If you are new here , please <a href="./signup">register</a>
+      </p>
     </div>
   );
 };
