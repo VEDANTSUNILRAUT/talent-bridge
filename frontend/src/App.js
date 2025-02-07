@@ -11,7 +11,6 @@ import Footer from "./components/Footer/footer";
 import Home from "./Pages/home";
 import Resume from "./Pages/resume";
 import Job from "./Pages/job";
-import AppliedJobsPage from "./components/JobComponent/AppliedJobsPage";
 import Testimonial from "./Pages/testimonial";
 import About from "./Pages/aboutss"; // Ensure this path matches your file structure
 
@@ -78,7 +77,6 @@ function App() {
         <Route path="/test" element={<Test />} />
         <Route path="/mock" element={<Mock />} />
         <Route path="/viewApplication" element={<ViewApplication />} />
-        <Route path="/applied-job" element={<AppliedJobsPage />} />
       </Routes>
       {!adminRoutes.includes(location.pathname) && <Footer />}
       {/* <Footer /> */}
