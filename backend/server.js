@@ -600,6 +600,45 @@ app.get("/students/:student_id/applications", (req, res) => {
   });
 });
 
+// Withdraw Application API
+app.delete(
+  "/students/:student_id/applications/:job_id",
+  verifyToken,
+  (req, res) => {
+    const { student_id, job_id } = req.params;
+    const studentEmail = req.user.id; // From token
+
+    // 1. Get actual student ID from database using email in token
+    db.query(
+      "SELECT id FROM student WHERE email = ?",
+      [studentEmail],
+      (err, studentResults) => {
+        if (err) return res.status(500).json({ error: "Database error" });
+        if (studentResults.length === 0)
+          return res.status(404).json({ error: "Student not found" });
+
+        const actualStudentId = studentResults[0].id;
+
+        // 2. Verify requested student_id matches logged-in student
+        if (parseInt(student_id) !== actualStudentId) {
+          return res.status(403).json({ error: "Unauthorized access" });
+        }
+
+        // 3. Delete application
+        const deleteSql =
+          "DELETE FROM applications WHERE student_id = ? AND job_id = ?";
+        db.query(deleteSql, [actualStudentId, job_id], (err, deleteResult) => {
+          if (err) return res.status(500).json({ error: "Withdrawal failed" });
+          if (deleteResult.affectedRows === 0) {
+            return res.status(404).json({ error: "Application not found" });
+          }
+          res.json({ message: "Application withdrawn successfully" });
+        });
+      }
+    );
+  }
+);
+
 app.get("/", (req, res) => {
   return res.json("Backend is working");
 });

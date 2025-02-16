@@ -63,6 +63,25 @@ const StudentProfile = () => {
     return <p className="student-dashboard__loading">Loading profile...</p>;
   }
 
+  const handleWithdraw = (jobId) => {
+    if (window.confirm("Are you sure you want to withdraw this application?")) {
+      axios
+        .delete(
+          `http://localhost:5000/students/${profile.id}/applications/${jobId}`
+        )
+        .then(() => {
+          setAppliedJobs((prevJobs) =>
+            prevJobs.filter((job) => job.job_id !== jobId)
+          );
+          alert("Application withdrawn successfully!");
+        })
+        .catch((error) => {
+          console.error("Withdraw Error:", error);
+          alert("Failed to withdraw application. Please try again.");
+        });
+    }
+  };
+
   return (
     <div className="student-dashboard__container">
       {/* Sidebar */}
@@ -187,10 +206,10 @@ const StudentProfile = () => {
                         Applied: {new Date(job.applied_at).toLocaleDateString()}
                       </span>
                       <button
-                        className="student-application__details-btn"
-                        onClick={() => navigate(`/jobs/${job.job_id}`)}
+                        className="student-application__withdraw-btn"
+                        onClick={() => handleWithdraw(job.job_id)}
                       >
-                        View Details
+                        Withdraw
                       </button>
                     </div>
                   </div>
