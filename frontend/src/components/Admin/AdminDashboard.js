@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./AdminDashboard.css";
@@ -15,6 +15,9 @@ const AdminDashboard = () => {
   const [coordinatorData, setCoordinatorData] = useState([]);
   const [student, setStudent] = useState([]);
   const [stats, setStats] = useState({});
+  const [showDropdown, setShowDropdown] = useState(false);
+  const dropdownRef = useRef(null);
+  const toggleDropdown = () => setShowDropdown(!showDropdown);
   useEffect(() => {
     const fetchAdminData = async () => {
       try {
@@ -74,6 +77,20 @@ const AdminDashboard = () => {
     navigate(`/view-cordinator/${id}`);
   };
   //
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setShowDropdown(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+  // Handle dropdown item click
+  const handleDropdownClick = (path) => {
+    navigate(path);
+    setShowDropdown(false);
+  };
 
   //HandleRemove function
   const handleRemove = async (id) => {
@@ -229,50 +246,70 @@ const AdminDashboard = () => {
             <p>{adminProfile.email}</p>
           </div>
         </div>
-        <div className="admin-actions">
-          <button
-            className="admin-actions-btn"
-            onClick={() => navigate("/add-student")}
-          >
-            Add Student
-          </button>
-          <button
-            className="admin-actions-btn"
-            onClick={() => navigate("/add-company")}
-          >
-            Add Company Drive
-          </button>
-          <button
-            className="admin-actions-btn"
-            onClick={() => navigate("/add-cordinator")}
-          >
-            Add Coordinator
-          </button>
-          <button className="admin-actions-btn" onClick={() => navigate("/")}>
-            Home
-          </button>
-          <button
-            className="admin-actions-btn"
-            onClick={() => navigate("/job")}
-          >
-            Jobs
-          </button>
-          <button
-            className="admin-actions-btn"
-            onClick={() => navigate("/viewApplication")}
-          >
-            View Application
-          </button>
 
-          <button
-            className="admin-actions-btn"
-            onClick={() => navigate("/admin-profile")}
-          >
-            View Profile
-          </button>
+        <div className="compact-actions">
+          {/* Primary Actions Dropdown */}
+          <div className="dropdown-container">
+            <button className="action-btn compact-btn">
+              <span className="btn-icon">➕</span>
+              <span className="btn-text">Add New</span>
+            </button>
+            <div className="dropdown-menu">
+              <button
+                className="dropdown-item"
+                onClick={() => navigate("/add-student")}
+              >
+                <span className="item-text">Add Student</span>
+              </button>
+              <button
+                className="dropdown-item"
+                onClick={() => navigate("/add-company")}
+              >
+                <span className="item-text">Add Drive</span>
+              </button>
+              <button
+                className="dropdown-item"
+                onClick={() => navigate("/add-cordinator")}
+              >
+                <span className="item-text">Add Coordinator</span>
+              </button>
+            </div>
+          </div>
+
+          {/* Quick Access Toolbar */}
+          <div className="toolbar">
+            <button
+              className="toolbar-btn"
+              onClick={() => navigate("/")}
+              data-tooltip="Home"
+            >
+              <span className="icon">🏠</span>
+            </button>
+            <button
+              className="toolbar-btn"
+              onClick={() => navigate("/job")}
+              data-tooltip="Jobs"
+            >
+              <span className="icon">💼</span>
+            </button>
+            <button
+              className="toolbar-btn"
+              onClick={() => navigate("/viewApplication")}
+              data-tooltip="Applications"
+            >
+              <span className="icon">📑</span>
+            </button>
+            <div className="separator"></div>
+            <button
+              className="toolbar-btn profile-btn"
+              onClick={() => navigate("/admin-profile")}
+              data-tooltip="Profile"
+            >
+              <span className="icon">👤</span>
+            </button>
+          </div>
         </div>
       </header>
-
       <div className="dashboard">
         <aside className="sidebar">
           <h2>Welcome TPO</h2>
