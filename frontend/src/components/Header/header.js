@@ -14,6 +14,7 @@ const HEADER_NAV_LINKS = [
   { text: "About", url: "/about" },
   { text: "Services", url: "/services" },
   { text: "Contact", url: "/contact" },
+  { text: "Notice", url: "/student-notice" },
 ];
 
 const Header = () => {

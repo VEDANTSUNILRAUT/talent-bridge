@@ -5,7 +5,8 @@ import "./App.css";
 // Components
 import Header from "./components/Header/header";
 import Footer from "./components/Footer/footer";
-//import Services from "./components/Services/services";
+import Notice from "./components/Notice/Notice";
+import StudentNotice from "./components/Notice/StudentNotice";
 
 // Pages
 import Home from "./Pages/home";
@@ -18,7 +19,6 @@ import About from "./Pages/aboutss"; // Ensure this path matches your file struc
 import Admin from "./Pages/Admin_Dash";
 import AdminProfile from "./components/Admin/adminProfile";
 import ViewApplication from "./components/Admin/viewApplication";
-import Notice from "./components/Admin/Notice/Notice";
 
 // Student Login
 import Login from "./Authentication/Student/login";
@@ -79,6 +79,7 @@ function App() {
         <Route path="/mock" element={<Mock />} />
         <Route path="/viewApplication" element={<ViewApplication />} />
         <Route path="/notice" element={<Notice />} />
+        <Route path="/student-notice" element={<StudentNotice />} />
       </Routes>
       {!adminRoutes.includes(location.pathname) && <Footer />}
       {/* <Footer /> */}
