@@ -299,6 +299,13 @@ const AdminDashboard = () => {
             >
               <span className="icon">📑</span>
             </button>
+            <button
+              className="toolbar-btn"
+              onClick={() => navigate("/notice")}
+              data-tooltip="Notice"
+            >
+              <span className="icon">📩</span>
+            </button>
             <div className="separator"></div>
             <button
               className="toolbar-btn profile-btn"

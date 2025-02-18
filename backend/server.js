@@ -639,6 +639,61 @@ app.delete(
   }
 );
 
+// Get all notices
+app.get("/shownotice", (req, res) => {
+  const sql = "SELECT * FROM notices ORDER BY created_at DESC";
+  db.query(sql, (err, results) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json(results);
+  });
+});
+
+// Add a new notice
+app.post("/addnotice", (req, res) => {
+  const { title, content } = req.body;
+  if (!title || !content) {
+    return res.status(400).json({ error: "Title and content are required" });
+  }
+
+  const sql = "INSERT INTO notices (title, content) VALUES (?, ?)";
+  db.query(sql, [title, content], (err, result) => {
+    if (err) return res.status(500).json({ error: err.message });
+
+    res.status(201).json({
+      id: result.insertId,
+      title,
+      content,
+      created_at: new Date(),
+    });
+  });
+});
+
+// Get all student messages
+app.get("/studentmessages", (req, res) => {
+  const sql =
+    "SELECT id, name, email, message, reply, created_at FROM contactdetail ORDER BY id DESC";
+  db.query(sql, (err, results) => {
+    if (err) return res.status(500).json({ error: "Failed to fetch messages" });
+    res.json(results);
+  });
+});
+
+// Reply perticular student
+app.put("/replymessage/:id", (req, res) => {
+  const { reply } = req.body;
+  const { id } = req.params;
+
+  if (!reply) {
+    return res.status(400).json({ error: "Reply cannot be empty" });
+  }
+
+  const sql = "UPDATE contactdetail SET reply = ? WHERE id = ?";
+  db.query(sql, [reply, id], (err, result) => {
+    if (err) return res.status(500).json({ error: "Failed to send reply" });
+    res.json({ success: true, message: "Reply sent successfully" });
+  });
+});
+
 app.get("/", (req, res) => {
   return res.json("Backend is working");
 });

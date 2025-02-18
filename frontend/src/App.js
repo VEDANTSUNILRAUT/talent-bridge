@@ -18,6 +18,7 @@ import About from "./Pages/aboutss"; // Ensure this path matches your file struc
 import Admin from "./Pages/Admin_Dash";
 import AdminProfile from "./components/Admin/adminProfile";
 import ViewApplication from "./components/Admin/viewApplication";
+import Notice from "./components/Admin/Notice/Notice";
 
 // Student Login
 import Login from "./Authentication/Student/login";
@@ -47,7 +48,7 @@ function App() {
   const location = useLocation();
 
   // Define routes where you don't want the Header and Footer
-  const adminRoutes = ["/admin", "/admin-profile"];
+  const adminRoutes = ["/admin", "/admin-profile", "/notice"];
 
   return (
     <>
@@ -77,6 +78,7 @@ function App() {
         <Route path="/test" element={<Test />} />
         <Route path="/mock" element={<Mock />} />
         <Route path="/viewApplication" element={<ViewApplication />} />
+        <Route path="/notice" element={<Notice />} />
       </Routes>
       {!adminRoutes.includes(location.pathname) && <Footer />}
       {/* <Footer /> */}
