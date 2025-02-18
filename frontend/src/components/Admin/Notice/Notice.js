@@ -104,6 +104,26 @@ const Notice = () => {
       })
       .catch((err) => console.error("Error sending reply:", err));
   };
+  // Add handleDeleteNotice function
+  const handleDeleteNotice = async (noticeId) => {
+    if (window.confirm("Are you sure you want to delete this notice?")) {
+      try {
+        const response = await fetch(
+          `http://localhost:5000/deletenotice/${noticeId}`,
+          {
+            method: "DELETE",
+          }
+        );
+
+        if (!response.ok) throw new Error("Failed to delete notice");
+
+        setNotices(notices.filter((notice) => notice.id !== noticeId));
+      } catch (error) {
+        console.error("Error deleting notice:", error);
+        setError("Failed to delete notice");
+      }
+    }
+  };
 
   return (
     <div className="notice-container">

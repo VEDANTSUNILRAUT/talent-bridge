@@ -429,11 +429,16 @@ app.post("/add_company", (req, res) => {
 // POST API to store contact details: http://localhost:5000/contact
 app.post("/contact", (req, res) => {
   const sql = `
-    INSERT INTO contactdetail (name, email, message) 
-    VALUES (?, ?, ?)
+    INSERT INTO contactdetail (name, email, message,student_id) 
+    VALUES (?, ?, ?,?)
   `;
 
-  const values = [req.body.name, req.body.email, req.body.message];
+  const values = [
+    req.body.name,
+    req.body.email,
+    req.body.message,
+    req.body.student_id,
+  ];
 
   db.query(sql, values, (err, result) => {
     if (err)
@@ -691,6 +696,31 @@ app.put("/replymessage/:id", (req, res) => {
   db.query(sql, [reply, id], (err, result) => {
     if (err) return res.status(500).json({ error: "Failed to send reply" });
     res.json({ success: true, message: "Reply sent successfully" });
+  });
+});
+
+// Get messages for a student
+app.get("/students/:id/messages", (req, res) => {
+  const studentId = req.params.id;
+  const sql = `
+    SELECT 
+      id,
+      name,
+      email,
+      message,
+      reply,
+      created_at
+    FROM contactdetail 
+    WHERE student_id = ?
+    ORDER BY created_at DESC
+  `;
+
+  db.query(sql, [studentId], (err, result) => {
+    if (err) {
+      console.error("Database error:", err);
+      return res.status(500).json({ error: "Failed to fetch messages" });
+    }
+    res.json(result);
   });
 });
 

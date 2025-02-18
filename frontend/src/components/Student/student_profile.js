@@ -8,6 +8,7 @@ const StudentProfile = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({});
   const [appliedJobs, setAppliedJobs] = useState(null);
+  const [messages, setMessages] = useState(null);
   const [activeTab, setActiveTab] = useState("profile");
   const navigate = useNavigate();
 
@@ -15,17 +16,29 @@ const StudentProfile = () => {
 
   useEffect(() => {
     axios.defaults.withCredentials = true;
-    axios
-      .get("http://localhost:5000/student_profile")
-      .then((response) => {
-        setProfile(response.data);
-        setFormData(response.data);
-        return axios.get(
-          `http://localhost:5000/students/${response.data.id}/applications`
+    const fetchData = async () => {
+      try {
+        const profileResponse = await axios.get(
+          "http://localhost:5000/student_profile"
         );
-      })
-      .then((res) => setAppliedJobs(res.data))
-      .catch((error) => console.error("Error:", error));
+        const studentId = profileResponse.data.id;
+
+        setProfile(profileResponse.data);
+        setFormData(profileResponse.data);
+
+        const [applicationsRes, messagesRes] = await Promise.all([
+          axios.get(`http://localhost:5000/students/${studentId}/applications`),
+          axios.get(`http://localhost:5000/students/${studentId}/messages`),
+        ]);
+
+        setAppliedJobs(applicationsRes.data);
+        setMessages(messagesRes.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
   }, []);
 
   const handleChange = (e) => {
@@ -59,10 +72,6 @@ const StudentProfile = () => {
       });
   };
 
-  if (!profile) {
-    return <p className="student-dashboard__loading">Loading profile...</p>;
-  }
-
   const handleWithdraw = (jobId) => {
     if (window.confirm("Are you sure you want to withdraw this application?")) {
       axios
@@ -81,6 +90,10 @@ const StudentProfile = () => {
         });
     }
   };
+
+  if (!profile) {
+    return <p className="student-dashboard__loading">Loading profile...</p>;
+  }
 
   return (
     <div className="student-dashboard__container">
@@ -105,6 +118,14 @@ const StudentProfile = () => {
             onClick={() => setActiveTab("jobs")}
           >
             Applied Jobs
+          </button>
+          <button
+            className={`student-dashboard__nav-btn ${
+              activeTab === "messages" ? "active" : ""
+            }`}
+            onClick={() => setActiveTab("messages")}
+          >
+            Your Messages
           </button>
         </div>
         <button
@@ -173,7 +194,7 @@ const StudentProfile = () => {
               )}
             </div>
           </>
-        ) : (
+        ) : activeTab === "jobs" ? (
           <div className="student-applications__container">
             <h2 className="student-applications__title">Applied Jobs</h2>
             {appliedJobs === null ? (
@@ -211,6 +232,59 @@ const StudentProfile = () => {
                       >
                         Withdraw
                       </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        ) : (
+          <div className="student-messages__container">
+            <h2 className="student-messages__title">Your Messages</h2>
+            {messages === null ? (
+              <p className="student-messages__loading">Loading messages...</p>
+            ) : messages.length === 0 ? (
+              <p className="student-messages__empty">No messages found.</p>
+            ) : (
+              <div className="student-messages__grid">
+                {messages.map((message) => (
+                  <div className="student-message__card" key={message.id}>
+                    {/* Sender Information */}
+                    <div className="student-message__header">
+                      <div className="student-message__sender-info">
+                        <div className="student-message__name">
+                          {message.name}
+                        </div>
+                        <div className="student-message__email">
+                          {message.email}
+                        </div>
+                      </div>
+                      <div className="student-message__date">
+                        {new Date(message.created_at).toLocaleDateString()}
+                      </div>
+                    </div>
+
+                    {/* Message Content */}
+                    <div className="student-message__content">
+                      <div className="student-message__original">
+                        <div className="student-message__section-label">
+                          Your Message:
+                        </div>
+                        <p className="student-message__text">
+                          {message.message}
+                        </p>
+                      </div>
+
+                      {message.reply && (
+                        <div className="student-message__reply">
+                          <div className="student-message__section-label">
+                            TPO Reply:
+                          </div>
+                          <p className="student-message__reply-text">
+                            {message.reply}
+                          </p>
+                        </div>
+                      )}
                     </div>
                   </div>
                 ))}

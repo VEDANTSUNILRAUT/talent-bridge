@@ -9,9 +9,9 @@ const ContactForm = () => {
     email: "",
     message: "",
   });
-   const navigate=useNavigate();
+  const navigate = useNavigate();
   const [responseMessage, setResponseMessage] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false); // Track submission state
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -20,92 +20,141 @@ const ContactForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsSubmitting(true); // Set submission state
-    setResponseMessage(""); // Clear previous messages
+    setIsSubmitting(true);
+    setResponseMessage("");
+
+    // Get student ID from localStorage with correct key
+    const studentId = localStorage.getItem("student_id");
+
+    if (!studentId) {
+      setResponseMessage("You must be logged in to contact us.");
+      setIsSubmitting(false);
+      return;
+    }
 
     try {
-      const response = await axios.post("http://localhost:5000/contact", formData); // Update endpoint here
-      setResponseMessage(response.data.message || "Your message has been sent successfully!");
-      setFormData({ name: "", email: "", message: "" }); // Clear the form
-       navigate("/");
+      const dataToSend = {
+        ...formData,
+        student_id: studentId, // Correct property name
+      };
+
+      const response = await axios.post(
+        "http://localhost:5000/contact",
+        dataToSend
+      );
+
+      setResponseMessage(response.data.message || "Message sent successfully!");
+      setFormData({ name: "", email: "", message: "" });
+      navigate("/");
     } catch (error) {
+      console.error("Submission error:", {
+        status: error.response?.status,
+        data: error.response?.data,
+        message: error.message,
+      });
       setResponseMessage(
-        error.response?.data?.message || "Failed to submit the form. Please try again."
+        error.response?.data?.message ||
+          "Failed to submit the form. Please try again later."
       );
     } finally {
-      setIsSubmitting(false); // Reset submission state
+      setIsSubmitting(false);
     }
   };
 
   return (
     <div className="fcf-body">
-        <div id="fcf-form">
-      <h3 className="fcf-h3">Contact us</h3>
-      {responseMessage && <p className="response-message">{responseMessage}</p>}
-      <form id="fcf-form-id" className="fcf-form-class" onSubmit={handleSubmit}>
-        <div className="fcf-form-group">
-          <label htmlFor="Name" className="fcf-label">
-            Your name
-          </label>
-          <div className="fcf-input-group">
-            <input
-              type="text"
-              id="Name"
-              name="name"
-              className="fcf-form-control"
-              value={formData.name}
-              onChange={handleChange}
-              required
-            />
-          </div>
-        </div>
+      <div id="fcf-form">
+        <h3 className="fcf-h3">Contact Us</h3>
 
-        <div className="fcf-form-group">
-          <label htmlFor="Email" className="fcf-label">
-            Your email address
-          </label>
-          <div className="fcf-input-group">
-            <input
-              type="email"
-              id="Email"
-              name="email"
-              className="fcf-form-control"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
-          </div>
-        </div>
-
-        <div className="fcf-form-group">
-          <label htmlFor="Message" className="fcf-label">
-            Your message
-          </label>
-          <div className="fcf-input-group">
-            <textarea
-              id="Message"
-              name="message"
-              className="fcf-form-control"
-              rows="6"
-              maxLength="3000"
-              value={formData.message}
-              onChange={handleChange}
-              required
-            ></textarea>
-          </div>
-        </div>
-
-        <div className="fcf-form-group">
-          <button
-            type="submit"
-            id="fcf-button"
-            className="fcf-btn fcf-btn-primary fcf-btn-lg fcf-btn-block"
-            disabled={isSubmitting} // Disable button during submission
+        {responseMessage && (
+          <div
+            className={`fcf-response ${
+              responseMessage.includes("success") ? "success" : "error"
+            }`}
           >
-            {isSubmitting ? "Sending..." : "Send Message"}
-          </button>
-        </div>
-      </form>
+            {responseMessage}
+          </div>
+        )}
+
+        <form
+          id="fcf-form-id"
+          className="fcf-form-class"
+          onSubmit={handleSubmit}
+        >
+          <div className="fcf-form-group">
+            <label htmlFor="Name" className="fcf-label">
+              Your Name
+            </label>
+            <div className="fcf-input-group">
+              <input
+                type="text"
+                id="Name"
+                name="name"
+                className="fcf-form-control"
+                value={formData.name}
+                onChange={handleChange}
+                required
+                autoComplete="name"
+              />
+            </div>
+          </div>
+
+          <div className="fcf-form-group">
+            <label htmlFor="Email" className="fcf-label">
+              Your Email Address
+            </label>
+            <div className="fcf-input-group">
+              <input
+                type="email"
+                id="Email"
+                name="email"
+                className="fcf-form-control"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                autoComplete="email"
+              />
+            </div>
+          </div>
+
+          <div className="fcf-form-group">
+            <label htmlFor="Message" className="fcf-label">
+              Your Message
+            </label>
+            <div className="fcf-input-group">
+              <textarea
+                id="Message"
+                name="message"
+                className="fcf-form-control"
+                rows="6"
+                maxLength="3000"
+                value={formData.message}
+                onChange={handleChange}
+                required
+                placeholder="Type your message here..."
+              ></textarea>
+            </div>
+          </div>
+
+          <div className="fcf-form-group">
+            <button
+              type="submit"
+              id="fcf-button"
+              className="fcf-btn fcf-btn-primary fcf-btn-lg fcf-btn-block"
+              disabled={isSubmitting}
+              aria-busy={isSubmitting}
+            >
+              {isSubmitting ? (
+                <>
+                  <span className="spinner"></span>
+                  Sending...
+                </>
+              ) : (
+                "Send Message"
+              )}
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );

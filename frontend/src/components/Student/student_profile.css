@@ -295,3 +295,147 @@
     grid-column: span 1;
   }
 }
+/* Messages Section */
+.student-messages__container {
+  padding: 2rem;
+}
+
+.student-messages__title {
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+}
+
+.student-messages__grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+.student-message__card {
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  transition: transform 0.2s ease;
+}
+
+.student-message__card:hover {
+  transform: translateY(-3px);
+}
+
+.student-message__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.student-message__subject {
+  font-size: 1.1rem;
+  margin: 0;
+  color: #34495e;
+}
+
+.student-message__date {
+  font-size: 0.85rem;
+  color: #7f8c8d;
+}
+
+.student-message__content {
+  line-height: 1.6;
+}
+
+.student-message__text {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.student-message__contact {
+  border-top: 1px solid #ecf0f1;
+  padding-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.student-message__contact a {
+  color: #3498db;
+  text-decoration: none;
+}
+
+.student-message__contact a:hover {
+  text-decoration: underline;
+}
+
+.student-messages__loading,
+.student-messages__empty {
+  text-align: center;
+  padding: 2rem;
+  color: #7f8c8d;
+  font-size: 1.1rem;
+}
+/* Message Header */
+.student-message__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #eee;
+}
+
+.student-message__sender-info {
+  flex-grow: 1;
+}
+
+.student-message__name {
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 0.3rem;
+}
+
+.student-message__email {
+  color: #3498db;
+  font-size: 0.9rem;
+}
+
+.student-message__date {
+  color: #95a5a6;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  margin-left: 1rem;
+}
+
+/* Message Content Sections */
+.student-message__section-label {
+  font-weight: 600;
+  color: #34495e;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.student-message__original {
+  margin-bottom: 1.5rem;
+}
+
+.student-message__text {
+  color: #2c3e50;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0.5rem;
+  background: #f8f9fa;
+  border-radius: 4px;
+}
+
+.student-message__reply {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px dashed #ecf0f1;
+}
+
+.student-message__reply-text {
+  color: #27ae60;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0.5rem;
+  background: #e8f5e9;
+  border-radius: 4px;
+}
