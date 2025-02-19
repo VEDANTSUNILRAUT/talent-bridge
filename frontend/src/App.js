@@ -19,6 +19,7 @@ import About from "./Pages/aboutss"; // Ensure this path matches your file struc
 import Admin from "./Pages/Admin_Dash";
 import AdminProfile from "./components/Admin/adminProfile";
 import ViewApplication from "./components/Admin/viewApplication";
+import JobApplications from "./components/Admin/JobApplications";
 
 // Student Login
 import Login from "./Authentication/Student/login";
@@ -80,6 +81,7 @@ function App() {
         <Route path="/viewApplication" element={<ViewApplication />} />
         <Route path="/notice" element={<Notice />} />
         <Route path="/student-notice" element={<StudentNotice />} />
+        <Route path="/jobs/:jobId/applications" element={<JobApplications />} />
       </Routes>
       {!adminRoutes.includes(location.pathname) && <Footer />}
       {/* <Footer /> */}

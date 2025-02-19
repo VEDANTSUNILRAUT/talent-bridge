@@ -724,6 +724,69 @@ app.get("/students/:id/messages", (req, res) => {
   });
 });
 
+// ✅ API to Fetch Students by Job ID
+app.get("/jobs/:jobId/applications", (req, res) => {
+  const jobId = parseInt(req.params.jobId);
+
+  if (isNaN(jobId)) {
+    return res.status(400).json({ error: "Invalid job ID format" });
+  }
+
+  const query = `
+  SELECT 
+    student.id AS student_id,
+    student.first_name,
+    student.email,
+    applications.status,
+    applications.applied_at
+  FROM applications
+  INNER JOIN student 
+    ON applications.student_id = student.id
+  WHERE applications.job_id = ?`;
+
+  db.query(query, [jobId], (err, results) => {
+    if (err) {
+      console.error("❌ Database error:", err.message);
+      return res.status(500).json({
+        error: "Database operation failed",
+        details: err.message,
+      });
+    }
+
+    if (results.length === 0) {
+      return res
+        .status(404)
+        .json({ error: "No applications found for this job." });
+    }
+
+    res.json(results);
+  });
+});
+
+// ✅ API to Fetch Job Details
+app.get("/jobs/:jobId", (req, res) => {
+  const jobId = parseInt(req.params.jobId);
+
+  if (isNaN(jobId)) {
+    return res.status(400).json({ error: "Invalid job ID format" });
+  }
+
+  const query = `SELECT * FROM jobs WHERE job_id = ?`;
+
+  db.query(query, [jobId], (err, result) => {
+    if (err) {
+      console.error("Database error:", err.message);
+      return res.status(500).json({ error: "Database operation failed" });
+    }
+
+    if (result.length === 0) {
+      return res.status(404).json({ error: "Job not found" });
+    }
+
+    res.json(result[0]);
+  });
+});
+
 app.get("/", (req, res) => {
   return res.json("Backend is working");
 });
