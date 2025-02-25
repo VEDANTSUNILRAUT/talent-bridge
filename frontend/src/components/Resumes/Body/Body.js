@@ -1,10 +1,11 @@
-import React, { useRef, useState } from "react";
-import { useReactToPrint } from "react-to-print"; // Updated import
+import React, { useRef, useState, forwardRef } from "react";
+import { useReactToPrint } from "react-to-print";
 import { ArrowDown } from "react-feather";
-
 import Editor from "../Editor/Editor";
-import Resume from "../Resume/Resume";
-
+import TemplateSwitcher from "../Template/TemplateSwitcher";
+import DefaultTemplate from "../Template/DefaultTemplate";
+import ModernTemplate from "../Template/ModernTemplate";
+import ClassicTemplate from "../Template/ClassicTemplate";
 import styles from "./Body.module.css";
 
 function Body() {
@@ -19,8 +20,9 @@ function Body() {
     other: "Other",
   };
 
-  const resumeRef = useRef(); // Create a ref to hold the Resume content
+  const resumeRef = useRef();
   const [activeColor, setActiveColor] = useState(colors[0]);
+  const [activeTemplate, setActiveTemplate] = useState("default");
   const [resumeInformation, setResumeInformation] = useState({
     [sections.basicInfo]: {
       id: sections.basicInfo,
@@ -59,43 +61,65 @@ function Body() {
     },
   });
 
-  // New way to trigger print using useReactToPrint
-  const reactToPrintFn = useReactToPrint({
-    contentRef: resumeRef, // Pass the ref to the content to be printed
+  const handlePrint = useReactToPrint({
+    content: () => resumeRef.current,
   });
+
+  const templates = {
+    default: forwardRef((props, ref) => (
+      <DefaultTemplate ref={ref} {...props} />
+    )),
+    modern: forwardRef((props, ref) => <ModernTemplate ref={ref} {...props} />),
+    classic: forwardRef((props, ref) => (
+      <ClassicTemplate ref={ref} {...props} />
+    )),
+  };
 
   return (
     <div className={styles.container}>
-      <p className={styles.heading}>Resume Builder</p>
+      <h1 className={styles.heading}>Resume Builder</h1>
+
       <div className={styles.toolbar}>
+        <TemplateSwitcher
+          activeTemplate={activeTemplate}
+          onChange={setActiveTemplate}
+        />
+
         <div className={styles.colors}>
-          {colors.map((item) => (
+          {colors.map((color) => (
             <span
-              key={item}
-              style={{ backgroundColor: item }}
+              key={color}
+              style={{ backgroundColor: color }}
               className={`${styles.color} ${
-                activeColor === item ? styles.active : ""
+                activeColor === color ? styles.active : ""
               }`}
-              onClick={() => setActiveColor(item)}
+              onClick={() => setActiveColor(color)}
             />
           ))}
         </div>
-        <button onClick={reactToPrintFn}>
-          Download <ArrowDown />
+
+        <button onClick={handlePrint}>
+          Download PDF <ArrowDown size={18} />
         </button>
       </div>
+
       <div className={styles.main}>
-        <Editor
-          sections={sections}
-          information={resumeInformation}
-          setInformation={setResumeInformation}
-        />
-        <Resume
-          ref={resumeRef} // Reference for the Resume component
-          sections={sections}
-          information={resumeInformation}
-          activeColor={activeColor}
-        />
+        <div className={styles.editorContainer}>
+          <Editor
+            sections={sections}
+            information={resumeInformation}
+            setInformation={setResumeInformation}
+          />
+        </div>
+
+        <div className={styles.resumePreview}>
+          {React.createElement(templates[activeTemplate], {
+            ref: resumeRef,
+            sections,
+            information: resumeInformation,
+            activeColor,
+          })}
+        </div>
       </div>
     </div>
   );

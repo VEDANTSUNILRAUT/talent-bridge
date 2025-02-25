@@ -532,9 +532,7 @@ function Editor(props) {
       companyName: activeInfo?.details
         ? activeInfo.details[0]?.companyName || ""
         : "",
-      college: activeInfo?.details
-        ? activeInfo.details[0]?.college || ""
-        : "",
+      college: activeInfo?.details ? activeInfo.details[0]?.college || "" : "",
       location: activeInfo?.details
         ? activeInfo.details[0]?.location || ""
         : "",
@@ -591,11 +589,11 @@ function Editor(props) {
 
   return (
     <div className={styles.container}>
-      <div className={styles.header}>
+      <div className={styles.sidebar}>
         {Object.keys(sections)?.map((key) => (
           <div
-            className={`${styles.section} ${
-              activeSectionKey === key ? styles.active : ""
+            className={`${styles.sectionItem} ${
+              activeSectionKey === key ? styles.activeSection : ""
             }`}
             key={key}
             onClick={() => setActiveSectionKey(key)}
@@ -605,49 +603,60 @@ function Editor(props) {
         ))}
       </div>
 
-      <div className={styles.body}>
-        <InputControl
-          label="Title"
-          placeholder="Enter section title"
-          value={sectionTitle}
-          onChange={(event) => setSectionTitle(event.target.value)}
-        />
-
-        <div className={styles.chips}>
-          {activeInformation?.details
-            ? activeInformation?.details?.map((item, index) => (
-                <div
-                  className={`${styles.chip} ${
-                    activeDetailIndex === index ? styles.active : ""
-                  }`}
-                  key={item.title + index}
-                  onClick={() => setActiveDetailIndex(index)}
-                >
-                  <p>
-                    {sections[activeSectionKey]} {index + 1}
-                  </p>
-                  <X
-                    onClick={(event) => {
-                      event.stopPropagation();
-                      handleDeleteDetail(index);
-                    }}
-                  />
-                </div>
-              ))
-            : ""}
-          {activeInformation?.details &&
-          activeInformation?.details?.length > 0 ? (
-            <div className={styles.new} onClick={handleAddNew}>
-              +New
-            </div>
-          ) : (
-            ""
-          )}
+      <div className={styles.mainContent}>
+        <div className={styles.header}>
+          <InputControl
+            label="Section Title"
+            placeholder="Enter section title"
+            value={sectionTitle}
+            onChange={(event) => setSectionTitle(event.target.value)}
+          />
         </div>
 
-        {generateBody()}
+        <div className={styles.body}>
+          <InputControl
+            label="Title"
+            placeholder="Enter section title"
+            value={sectionTitle}
+            onChange={(event) => setSectionTitle(event.target.value)}
+          />
 
-        <button onClick={handleSubmission}>Save</button>
+          <div className={styles.chips}>
+            {activeInformation?.details
+              ? activeInformation?.details?.map((item, index) => (
+                  <div
+                    className={`${styles.chip} ${
+                      activeDetailIndex === index ? styles.active : ""
+                    }`}
+                    key={item.title + index}
+                    onClick={() => setActiveDetailIndex(index)}
+                  >
+                    <p>
+                      {sections[activeSectionKey]} {index + 1}
+                    </p>
+                    <X
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        handleDeleteDetail(index);
+                      }}
+                    />
+                  </div>
+                ))
+              : ""}
+            {activeInformation?.details &&
+            activeInformation?.details?.length > 0 ? (
+              <div className={styles.new} onClick={handleAddNew}>
+                +New
+              </div>
+            ) : (
+              ""
+            )}
+          </div>
+
+          {generateBody()}
+
+          <button onClick={handleSubmission}>Save</button>
+        </div>
       </div>
     </div>
   );
