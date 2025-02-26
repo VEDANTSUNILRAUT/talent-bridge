@@ -59,6 +59,7 @@
     height: 80px;
     margin: 70px 70px;
 }
+
 @keyframes moveTopBottom {
     0% {
         transform: translateY(0.3cm); /* Moves 5cm left */

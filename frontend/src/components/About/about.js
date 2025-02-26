@@ -32,8 +32,10 @@ export default function About(){
             </div>
             <div className="Companysection">
 
-            <center><h2 style={{textTransform:'uppercase' , color:"darkcyan"}}>our Technical Partner</h2>
-            <p style={{color:"gray", fontWeight:700,fontSize:'18px',marginTop:'-10px'}}>Make Your Future With Ous With 50+ Companies</p></center>
+            <center><h2 style={{textTransform:'uppercase' , color:"black", fontSize:"45px",fontWeight:"800"}}>our Technical Partner</h2>
+            <p style={{color:"#747474", fontWeight:700,fontSize:'18px',marginTop:'-10px'}}>Make Your Future With Ous With 50+ Companies</p></center>
+            <div className="marqueeDiv">
+
                 <Marquee pauseOnHover speed={40}>
                 <div  className="allimages">
                     <img src={img1} alt="" className="imgPartner"/>
@@ -58,7 +60,7 @@ export default function About(){
                     <img src={img5} alt=""  className="imgPartner2"/>
                     <img src={img9} alt=""  className="imgPartner2"/>
                 </div>
-                </Marquee></center>
+                </Marquee></center></div>
             </div>
         </div>
        

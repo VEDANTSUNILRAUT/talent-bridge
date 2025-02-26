@@ -3,7 +3,7 @@ import "./Hero.css";
 import { useNavigate,Link } from "react-router-dom";
 import img2 from "../../assets/images/imagesinPlacement/hero-carousel-3.svg";
 import { HiArrowSmDown  } from "react-icons/hi";
-import img1 from "../../assets/images/Header_Logo/talentBridgeLogo2.jpeg";
+import img1 from "../../assets/images/Header_Logo/talentBridgeLogo2.png";
  export default function Hero(){
     const navigate = useNavigate();
 

@@ -1,15 +1,25 @@
+*{
+    background-color: transparent;
+}
 #fcf-form {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    width: 60%;
-    border: 2px solid gray;
+    width: 100%;  
     padding: 30px;
-    border-radius: 10px;
     font-size: 30px;
-  
+    display: flex;
+     
   }
-  
+ .contactimg{
+     width: 50%;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+ } 
+ .contactform{
+    width: 40%;
+    padding: 9px;
+    border: 2px solid black;
+    border-radius: 7px;
+ }
   .fcf-body {
       margin: 0;
     font-family: -apple-system, Arial, sans-serif;
@@ -18,23 +28,23 @@
     line-height: 1.5;
     color: #212529;
     text-align: left;
-    background-color: #fff;
+    /* background-color: #fff; */
     padding: 30px;
     padding-bottom: 35px;
-    border: 1px solid #ced4da;
-    border-radius: 0.25rem;
+    /* border: 1px solid #ced4da; */
+    /* border-radius: 0.25rem; */
     max-width: 100%;
-    display: flex;
-    align-content: center;
-    justify-content: center;
-    flex-direction: column;
-    flex-wrap: wrap;
   }
-  
+   
   .fcf-form-group {
       margin-bottom: 1rem;
   }
-  
+  .fcf-h3{
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
+    font-weight: 800;
+  }
   .fcf-input-group {
       position: relative;
       display: -ms-flexbox;
@@ -57,7 +67,7 @@
       color: #495057;
       background-color: #fff;
       background-clip: padding-box;
-      border: 1px solid #ced4da;
+      border: 1px solid black;
       outline: none;
       border-radius: 0.25rem;
       transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;

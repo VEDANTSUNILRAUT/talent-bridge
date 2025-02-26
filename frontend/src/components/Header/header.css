@@ -63,6 +63,7 @@
   border: 2px solid black;
   border-radius: 50%;
   cursor: pointer;
+  margin-top:-13px
 }
 
 /* Modal Overlay */
