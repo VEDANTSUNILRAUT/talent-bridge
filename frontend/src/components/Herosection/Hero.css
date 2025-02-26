@@ -10,7 +10,8 @@
    align-items: center;
   flex-wrap: wrap;
   color: rgb(0, 0, 0); 
-  padding: 0 5% 0 5%;  
+  padding: 0 5% 0 5%; 
+  background: white; 
 }
 .Mainpart1{
 width: 50%;

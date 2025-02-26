@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./contact.css";
 import { useNavigate } from "react-router-dom";
-
+import contactimag from "../../assets/images/imagesinPlacement/contactusSVG.webp"
 const ContactForm = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -63,10 +63,13 @@ const ContactForm = () => {
 
   return (
     <div className="fcf-body">
-      <div id="fcf-form">
-        <h3 className="fcf-h3">Contact Us</h3>
-
-        {responseMessage && (
+     <h3 className="fcf-h3">Contact Us</h3> <div id="fcf-form">
+        
+        <div className="contactimg">
+          <img src={contactimag} style={{height:"50%"}}/>
+        </div>
+        <div className="contactform"> 
+          {responseMessage && (
           <div
             className={`fcf-response ${
               responseMessage.includes("success") ? "success" : "error"
@@ -75,7 +78,6 @@ const ContactForm = () => {
             {responseMessage}
           </div>
         )}
-
         <form
           id="fcf-form-id"
           className="fcf-form-class"
@@ -95,6 +97,7 @@ const ContactForm = () => {
                 onChange={handleChange}
                 required
                 autoComplete="name"
+                placeholder="Please Enter Your Name"
               />
             </div>
           </div>
@@ -113,6 +116,7 @@ const ContactForm = () => {
                 onChange={handleChange}
                 required
                 autoComplete="email"
+                placeholder="Please Enter Valid Email"
               />
             </div>
           </div>
@@ -131,7 +135,7 @@ const ContactForm = () => {
                 value={formData.message}
                 onChange={handleChange}
                 required
-                placeholder="Type your message here..."
+                placeholder="Type Your Message Here..."
               ></textarea>
             </div>
           </div>
@@ -155,6 +159,10 @@ const ContactForm = () => {
             </button>
           </div>
         </form>
+        </div>
+       
+
+        
       </div>
     </div>
   );

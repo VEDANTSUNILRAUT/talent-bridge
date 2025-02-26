@@ -3,12 +3,14 @@ import React from 'react';
 import Hero from '../components/Herosection/Hero';
 import About from '../components/About/about';
 import Services from '../components/Services/services';
+import ContactForm from '../components/Contact/contact';
 export default function Home() {
   return (
     <>
       <Hero />
       <About />
       <Services/>
+      <ContactForm/>
     </>
   );
 }
