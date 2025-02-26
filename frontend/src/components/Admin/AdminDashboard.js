@@ -9,10 +9,10 @@ const AdminDashboard = () => {
   const navigate = useNavigate();
   const [adminProfile, setAdminProfile] = useState({});
   const [activeDrives, setActiveDrives] = useState([]);
-  //console.log("Current drives:", activeDrives);
   const [upcomingCompany, setUpcomingCompany] = useState([]);
   const [partnerdrive, setpartnerdrive] = useState([]);
   const [coordinatorData, setCoordinatorData] = useState([]);
+  const [testimonialData, setTestimonialData] = useState([]);
   const [student, setStudent] = useState([]);
   const [stats, setStats] = useState({});
   const [showDropdown, setShowDropdown] = useState(false);
@@ -48,6 +48,11 @@ const AdminDashboard = () => {
         );
         setCoordinatorData(fetchCoordinatorData.data);
 
+        const fetchTestimonialData = await axios.get(
+          "http://localhost:5000/testimonial"
+        );
+        setTestimonialData(fetchTestimonialData.data);
+
         // Fetch dashboard stats
         const statsResponse = await axios.get(
           "http://localhost:5000/dashboard-stats"
@@ -58,6 +63,7 @@ const AdminDashboard = () => {
           upcomingCount: statsResponse.data.upcomingCount,
           partnerCount: statsResponse.data.partnerCount,
           coordinators: statsResponse.data.coordinatorCount,
+          testimonial: statsResponse.data.testimonialCount,
         });
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -233,6 +239,7 @@ const AdminDashboard = () => {
     { name: " Upcoming Drives", icon: "🏢", section: "companies" },
     { name: "Partners", icon: "👤", section: "Partners" },
     { name: "Coordinators", icon: "👩‍💼", section: "coordinators" },
+    { name: "Testimonials", icon: "🌟", section: "testimonials" },
     { name: "Logout", icon: "🚪", section: "logout" },
   ];
 
@@ -367,6 +374,10 @@ const AdminDashboard = () => {
                 <div className="stat-box purple">
                   <h3>Coordinators</h3>
                   <p>{stats.coordinators}</p>
+                </div>
+                <div className="stat-box teal">
+                  <h3>Testimonials</h3>
+                  <p>{stats.testimonial}</p>
                 </div>
               </div>
             </div>
@@ -580,6 +591,43 @@ const AdminDashboard = () => {
                             coordinator.coordinator_id
                           )
                         }
+                      >
+                        Remove
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
+          {activeSection === "testimonials" && (
+            <table className="job-table">
+              <thead>
+                <tr>
+                  <th>Testimonial_ID</th>
+                  <th>Full Name</th>
+                  <th>Email</th>
+                  <th>Rating</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {testimonialData.map((testi, index) => (
+                  <tr key={index}>
+                    <td>{testi.id}</td>
+                    <td>{testi.name}</td>
+                    <td>{testi.email}</td>
+                    <td>{testi.rating}</td>
+                    <td>
+                      <button
+                        className="view-button"
+                        onClick={() => handleCordinator(testi.id)}
+                      >
+                        View
+                      </button>
+                      <button
+                        className="remove-button"
+                        onClick={() => handleCoordinaterDriveRemove(testi.id)}
                       >
                         Remove
                       </button>

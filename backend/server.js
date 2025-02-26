@@ -241,7 +241,8 @@ app.get("/dashboard-stats", (req, res) => {
       (SELECT COUNT(*) FROM jobs WHERE company_type = 'upcoming') AS upcomingCount,
       (SELECT COUNT(*) FROM jobs WHERE company_type = 'partner') AS partnerCount,
       (SELECT COUNT(*) FROM student) AS studentCount,
-      (SELECT COUNT(*) FROM coordinator) AS coordinatorCount
+      (SELECT COUNT(*) FROM coordinator) AS coordinatorCount,
+       (SELECT COUNT(*) FROM testimonial) AS testimonialCount
   `;
 
   db.query(sql, (err, data) => {
@@ -784,6 +785,18 @@ app.get("/jobs/:jobId", (req, res) => {
     }
 
     res.json(result[0]);
+  });
+});
+
+// For Fetching the Testimonial from backend
+
+app.get("/testimonial", (req, res) => {
+  // Corrected: req comes first, then res
+  const sql = "SELECT * FROM testimonial"; // Corrected: "from" → "FROM" (SQL is case-insensitive, but best practice)
+
+  db.query(sql, (err, data) => {
+    if (err) return res.json({ error: err.message }); // Better error handling
+    return res.json(data); // Returns the fetched testimonials as JSON
   });
 });
 
