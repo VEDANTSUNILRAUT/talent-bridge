@@ -247,15 +247,50 @@ const AdminDashboard = () => {
     <div className="admin-dashboard">
       <header className="header">
         <div className="profile-section">
-          <img src={img} alt="Admin" className="profile-photo" />
           <div className="profile-info">
             <h2>{adminProfile.full_name}</h2>
             <p>{adminProfile.email}</p>
           </div>
         </div>
-
-        <div className="compact-actions">
-          {/* Primary Actions Dropdown */}
+        <div className="centre-div">
+          <div className="toolbar">
+            <button
+              className="toolbar-btn"
+              onClick={() => navigate("/")}
+              data-tooltip="Home"
+            >
+              🏠
+              <br />
+              <span className="toolbar-text">Home</span>
+            </button>
+            <button
+              className="toolbar-btn"
+              onClick={() => navigate("/job")}
+              data-tooltip="Jobs"
+            >
+              💼
+              <br />
+              <span className="toolbar-text">Jobs</span>
+            </button>
+            <button
+              className="toolbar-btn"
+              onClick={() => navigate("/viewApplication")}
+              data-tooltip="Applications"
+            >
+              📑
+              <br />
+              <span className="toolbar-text">Applications</span>
+            </button>
+            <button
+              className="toolbar-btn"
+              onClick={() => navigate("/notice")}
+              data-tooltip="Notice"
+            >
+              📩
+              <br />
+              <span className="toolbar-text">Notice</span>
+            </button>
+          </div>
           <div className="dropdown-container">
             <button className="action-btn compact-btn">
               <span className="btn-icon">➕</span>
@@ -282,45 +317,17 @@ const AdminDashboard = () => {
               </button>
             </div>
           </div>
-
-          {/* Quick Access Toolbar */}
-          <div className="toolbar">
-            <button
-              className="toolbar-btn"
-              onClick={() => navigate("/")}
-              data-tooltip="Home"
-            >
-              <span className="icon">🏠</span>
-            </button>
-            <button
-              className="toolbar-btn"
-              onClick={() => navigate("/job")}
-              data-tooltip="Jobs"
-            >
-              <span className="icon">💼</span>
-            </button>
-            <button
-              className="toolbar-btn"
-              onClick={() => navigate("/viewApplication")}
-              data-tooltip="Applications"
-            >
-              <span className="icon">📑</span>
-            </button>
-            <button
-              className="toolbar-btn"
-              onClick={() => navigate("/notice")}
-              data-tooltip="Notice"
-            >
-              <span className="icon">📩</span>
-            </button>
-            <div className="separator"></div>
-            <button
-              className="toolbar-btn profile-btn"
+        </div>
+        <div className="compact-actions">
+          {/* {profile button} */}
+          <div className="tooltip-container">
+            <img
+              src={img}
+              alt="Admin"
               onClick={() => navigate("/admin-profile")}
-              data-tooltip="Profile"
-            >
-              <span className="icon">👤</span>
-            </button>
+              className="profile-photo"
+            />
+            <span className="tooltip-text">Profile</span>
           </div>
         </div>
       </header>
@@ -345,7 +352,7 @@ const AdminDashboard = () => {
         </aside>
 
         <main className="content">
-          <h2>{activeSection.toUpperCase()}</h2>
+          <h2 className="dashboard-heading">{activeSection.toUpperCase()}</h2>
           {/* {activeSection !== "dashboard" && (
             <button className="mainbutton">
               ADD {activeSection.toUpperCase()}

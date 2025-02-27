@@ -257,7 +257,9 @@ body {
 
 /* Dropdown Styles */
 .dropdown-container {
-  position: relative;
+  position: absolute;
+  right: 1.5rem;
+  top: 145px;
 }
 
 .action-btn {
@@ -268,7 +270,7 @@ body {
   background: #4a90e2;
   color: white;
   border: none;
-  border-radius: 50;
+  border-radius: 50px;
   cursor: pointer;
   transition: background 0.3s ease;
 }
@@ -321,68 +323,81 @@ body {
 }
 
 /* Toolbar Styles */
+.centre-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .toolbar {
   display: flex;
   align-items: center;
-  gap: 0.8rem;
+  justify-content: center;
+  gap: 1rem;
   background: #4a90e2;
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
   border-radius: 50px;
+  width: 30rem;
+  height: 3rem;
 }
 
 .toolbar-btn {
   position: relative;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  padding: 0.5rem 1rem;
   border: none;
   background: none;
-  border-radius: 50%;
+  border-radius: 20px;
   cursor: pointer;
   transition: all 0.2s ease;
-  margin-bottom: 10px;
+  font-size: 1rem;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: auto;
+  margin: 0px;
 }
 
 .toolbar-btn:hover {
   background: #84b3e9;
 }
 
-.toolbar-btn[data-tooltip]::after {
-  content: attr(data-tooltip);
-  position: absolute;
-  bottom: -30px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(0, 0, 0, 0.8);
-  color: white;
-  padding: 0.3rem 0.8rem;
-  border-radius: 4px;
-  font-size: 0.8rem;
-  white-space: nowrap;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.2s ease;
-}
-
-.toolbar-btn:hover::after {
-  opacity: 1;
-  visibility: visible;
-}
-
-.separator {
-  width: 1px;
-  height: 24px;
-  background: #dee2e6;
-  margin: 0 0.5rem;
-}
-
 .profile-btn {
+  width: 4rem;
+  height: 4rem;
   background: #4a90e2;
   color: white;
+  font-weight: bold;
+  border-radius: 50px;
 }
 
 .profile-btn:hover {
   background: #357abd;
+}
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip-text {
+  visibility: hidden;
+  background-color: rgb(122, 122, 122);
+  color: #000000;
+  text-align: center;
+  padding: 5px;
+  border-radius: 5px;
+  position: absolute;
+  top: 3.5rem;
+  right: -20px;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+.tooltip-container:hover .tooltip-text {
+  visibility: visible;
+}
+.dashboard-heading {
+  position: relative;
+  left: -122px;
 }
