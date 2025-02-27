@@ -2,7 +2,7 @@
     display: flex;
     flex-wrap: wrap;
     /* padding: 100px; */
-    height: 100vh;
+    height: 100%;
 }
 .aboutPart1{
     width: 40%;
@@ -28,16 +28,16 @@
   font-size: 36px;
   font-weight: 600;
 }
+.marqueeDiv{
+    background-color: white;
+}
 .Companysection{
    width: 100%;
-  height: 54%;
-  
+  height: 54%; 
   margin-top: 30px;
-
 }
 .allimages{
-    height:120px ;
-    
+    height:120px ;  
     display: flex;
     flex-wrap: nowrap;
     align-items: center;

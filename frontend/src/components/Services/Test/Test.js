@@ -520,6 +520,7 @@ const Test = () => {
                       name={`question${index}`}
                       value={key}
                       onChange={() => handleAnswerChange(index, key)}
+                      style={{width:"auto"}}
                     />
                     {key}: {value}
                   </label>
