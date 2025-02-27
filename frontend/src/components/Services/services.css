@@ -20,12 +20,11 @@
 }
 
 .service-card {
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
+  border: 1px solid #b1b1b1;
   border-radius: 8px;
   padding: 20px;
   transition: transform 0.3s, box-shadow 0.3s;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.1);
 }
 
 .service-card:hover {
@@ -133,7 +132,7 @@
   text-align: center;
   margin: 40px auto;
   padding: 20px;
-  background-color: #f9f9f9;
+  /* background-color: #f9f9f9; */
   border-radius: 8px;
   margin-top: 8rem;
 }
