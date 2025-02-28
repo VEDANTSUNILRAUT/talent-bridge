@@ -1,139 +1,243 @@
-.Main{
-  /* background-image: url(../../assets/images/imagesinPlacement/homepageimage.jpg); */
-  height: 95vh;
-  width: 100vw;
-  /* background-repeat: no-repeat;
-  background-position: center;
-   background-size: cover;  */
-   display: flex;
-   justify-content: space-around;
-   align-items: center;
-  flex-wrap: wrap;
-  color: rgb(0, 0, 0); 
-  padding: 0 5% 0 5%;  
-}
-.Mainpart1{
-width: 50%;
-height: 100vh;
-display: flex;
-flex-direction: column;
-justify-content: center;
-}
-.Mainpart2{
-width: 50%;
-width: 50%;
-height: 100vh;
-display: flex;
-
-}
-/* .center{
-  padding-top: 30px;
-  height: 85vh;
-} */
-.headText{
-background-clip: text;
-background-image: linear-gradient(to right, #ff9e48,#5d07db,#000);
-color: transparent;
-font-size: 50px;
-display: flex;
-margin: 0px;
-}
-.img1{
-width: 100px;
-height: 100px;
-margin-top: -17px;
-
-}
-.HeroPara{
-font-size: 32px;
-margin-top: 35px;
-background-image: linear-gradient(to Bottom, rgb(0, 0, 0),rgb(74, 37, 127), rgb(16, 190, 218));
-background-clip: text;
-color: transparent;
-font-weight: 700;
+/* Hero.css */
+.main-container {
+  position: relative;
+  min-height: 75vh;
+  padding: 2rem;
+  overflow: hidden;
+  background: linear-gradient(45deg, #f3f9ff, #f8f5ff);
+  margin-top: 5rem;
 }
 
-.spanhero{
-background-color: #fdb7ef;
-height: 40px;
-width: 42%;
-margin-top: -59px;
-z-index: -1;
-opacity: 0.5;
-}
-/*  full button compoenent */
-
-/* From Uiverse.io by StealthWorm */ 
-/* .btn{
+.content-wrapper {
   display: flex;
+  flex-wrap: wrap;
+  gap: 4rem;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.text-content {
+  flex: 1 1 50%;
+  min-width: 300px;
+}
+
+.visual-content {
+  flex: 1 1 40%;
+  position: relative;
+}
+
+/* Header styles */
+.main-heading {
+  font-size: 4.5rem;
+  line-height: 1.1;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.gradient-text {
+  background: linear-gradient(120deg, #6d07db 0%, #ff8e53 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: block;
+  animation: textFloat 3s ease-in-out infinite;
+}
+
+.logo-bridge {
+  position: relative;
+  display: inline-block;
+  background: linear-gradient(120deg, #000 30%, #4a257f 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.logo-img {
+  position: absolute;
+  right: -6rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8rem;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+}
+
+/* Image styles */
+.image-container {
+  position: relative;
+  max-width: 800px;
+}
+
+.floating-image {
+  width: 100%;
+  height: auto;
+  animation: float 6s ease-in-out infinite;
+  filter: drop-shadow(0 25px 25px rgba(109, 7, 219, 0.15));
+}
+
+.gradient-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(109, 7, 219, 0.1) 0%,
+    transparent 60%
+  );
+  z-index: -1;
+}
+
+/* Button Styles */
+.modern-button {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-
-} */
-/* From Uiverse.io by vinodjangid07 */ 
-.buttondiv{
-display: flex;
-align-items: center;
-justify-content: space-around;
-}
-.button {
-width: 350px;
-height: 50px;
-display: flex;
-align-items: center;
-justify-content: center;
-gap: 10px;
-background-color: #6dff51;
-border-radius: 4px;
-color: rgb(0, 0, 0);
-font-weight: 600;
-border: 2px solid black;
-cursor: pointer;
-transition-duration: .2s;
-box-shadow: 1px 1px 10px 6px rgba(1, 1, 1, 0.12);
-padding-left: 8px;
-transition-duration: .5s;
-font-size: 22px;
-margin: 30px 0px;
+  min-width: 150px;
+  height: 4rem;
+  padding: 1.2rem 2.5rem;
+  border-radius: 50px;
+  border: none;
+  background: linear-gradient(135deg, #6d07db 0%, #4a257f 100%);
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  gap: 0.8rem;
 }
 
-.svgIcon {
-  height: 25px;
-  transition-duration: 1.5s;
+.modern-button.secondary {
+  position: relative;
+  top: 6px;
+  height: 33px;
+  background: linear-gradient(135deg, #ff8e53 0%, #ff6b6b 100%);
 }
 
-.bell path {
-  fill: rgb(19, 19, 19);
+/* Hover effects */
+.modern-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-.button:hover {
-  background-color: rgb(183, 255, 0);
-
-  color: rgb(0, 0, 0);
-  
-  transition-duration: .4s;
+.modern-button:hover .button-icon {
+  transform: translateX(3px);
 }
 
-.button:active {
-  transform: scale(0.97);
-  transition-duration: .2s;
+.button-icon {
+  transition: transform 0.2s ease;
+}
+.modern-button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.2) 0%,
+    transparent 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
-.button:hover .svgIcon {
-  transform: rotate(250deg);
-  transition-duration: 1.5s;
+.modern-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(109, 7, 219, 0.2);
 }
 
-
-.imghero{
-  width: 75%;
-  animation: moveLeftRight 0.5s infinite alternate ease-in-out;
+.modern-button:hover::before {
+  opacity: 1;
 }
-@keyframes moveLeftRight {
+
+.modern-button:hover .button-icon {
+  transform: translateX(4px);
+}
+
+.button-icon {
+  transition: transform 0.3s ease;
+}
+
+/* Animated background circles */
+.animated-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.floating-circle {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at center,
+    rgba(109, 7, 219, 0.05) 0%,
+    transparent 70%
+  );
+  animation: float 10s infinite ease-in-out;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(5deg);
+  }
+}
+
+@keyframes textFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .content-wrapper {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .main-heading {
+    font-size: 3rem;
+  }
+
+  .logo-img {
+    right: -4rem;
+    width: 6rem;
+  }
+
+  .button-group {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+.bridge-line {
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #6d07db 0%, #ff8e53 100%);
+  transform: scaleX(0);
+  transform-origin: left center;
+  animation: bridgeAnim 1.2s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+  animation-delay: 0.8s;
+  border-radius: 2px;
+}
+
+@keyframes bridgeAnim {
   0% {
-      transform: translateY(0.5cm); /* Moves 5cm left */
+    transform: scaleX(0);
+    opacity: 0;
   }
   100% {
-      transform: translateY(0.5m); /* Moves 5cm right */
+    transform: scaleX(1);
+    opacity: 1;
   }
 }
