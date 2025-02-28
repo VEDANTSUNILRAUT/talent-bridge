@@ -24,11 +24,9 @@ export default function Hero() {
             </h1>
           </div>
 
-          <p className="hero-description">
-            Empowering students to build successful careers through
-            comprehensive resources and opportunities.
-          </p>
-
+          <div class="hero-container">
+            <p class="hero-description">Connecting dreams to destinations</p>
+          </div>
           <div className="button-group">
             <button className="modern-button" onClick={handleClick}>
               <span className="button-text">Explore Jobs</span>

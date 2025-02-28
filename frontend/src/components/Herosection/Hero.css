@@ -241,3 +241,63 @@
     opacity: 1;
   }
 }
+.hero-description {
+  /* Typography */
+  font-family: "Inter", "Helvetica Neue", system-ui, -apple-system, sans-serif;
+  font-size: clamp(1.5rem, 2.5vw, 2.25rem); /* Responsive size */
+  font-weight: 500; /* Semi-bold for better readability */
+  line-height: 1.4;
+  letter-spacing: -0.02em; /* Modern tight spacing */
+
+  /* Color Grading */
+  background: linear-gradient(45deg, #2f3c4f, #4a6075);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+
+  /* Layout */
+  max-width: 800px;
+  margin: 0 auto 3rem;
+  text-align: center;
+
+  /* Animation */
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 1s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+  animation-delay: 0.5s;
+  will-change: transform, opacity;
+
+  /* Effects */
+  text-shadow: 0 4px 12px rgba(45, 55, 70, 0.15);
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .hero-description {
+    font-size: 1.1rem;
+    text-align: center;
+    max-width: 100%;
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-description {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+}
