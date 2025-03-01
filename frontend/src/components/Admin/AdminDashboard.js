@@ -132,7 +132,7 @@ const AdminDashboard = () => {
       }
     }
   };
-
+// 
   //Removing the drive
   const handleDriveRemove = async (id) => {
     console.log(id);
