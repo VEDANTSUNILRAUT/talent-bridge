@@ -37,6 +37,7 @@ import ViewDrive from "./components/Crud/CompanyCrud/viewDrive";
 import AddCompany from "./components/Crud/CompanyCrud/addCompany";
 import AddCordinator from "./components/Crud/CordCrud/addCordinator";
 import ViewCordinator from "./components/Crud/CordCrud/viewCordinator";
+import ViewTestimonial from "./components/Crud/TesimonialCrud/viewTesimonial";
 // Contact Form
 import ContactForm from "./components/Contact/contact";
 import ServiceSection from "./Pages/serviceSection";
@@ -73,7 +74,9 @@ function App() {
         <Route path="/view-drive/:id" element={<ViewDrive />} />
         <Route path="/add-company" element={<AddCompany />} />
         <Route path="/add-cordinator" element={<AddCordinator />} />
-        <Route path="/view-cordinator" element={<ViewCordinator />} />
+        <Route path="/view-cordinator/:id" element={<ViewCordinator />} />
+        <Route path="/view-testimonial/:id" element={<ViewTestimonial />} />
+
         <Route path="/contact" element={<ContactForm />} />
         <Route path="/services" element={<ServiceSection />} />
         <Route path="/test" element={<Test />} />

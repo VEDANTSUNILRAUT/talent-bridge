@@ -16,6 +16,7 @@ export default function Hero() {
     <div className="main-container">
       <div className="content-wrapper">
         <div className="text-content">
+        <div className="herotextContent" >
           <div className="header-wrapper">
             <h1 className="main-heading">
               <span className="gradient-text">Talent</span>
@@ -27,6 +28,8 @@ export default function Hero() {
           <div class="hero-container">
             <p class="hero-description">Connecting dreams to destinations</p>
           </div>
+        </div>
+          {/*  */}
           <div className="button-group">
             <button className="modern-button" onClick={handleClick}>
               <span className="button-text">Explore Jobs</span>

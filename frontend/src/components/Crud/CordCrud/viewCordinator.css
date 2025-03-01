@@ -29,11 +29,13 @@
 }
 
 .view-cordinator-close {
-  background: none;
-  border: none;
+  border: 3px solid black;
   font-size: 1.2rem;
   cursor: pointer;
   color: #ff5c5c;
+  width: auto;
+  background: #dcdcdc;
+  margin-top: -10px;
 }
 
 .view-cordinator-details {

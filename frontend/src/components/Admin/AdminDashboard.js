@@ -10,7 +10,7 @@ const AdminDashboard = () => {
   const [adminProfile, setAdminProfile] = useState({});
   const [activeDrives, setActiveDrives] = useState([]);
   const [upcomingCompany, setUpcomingCompany] = useState([]);
-  const [partnerdrive, setpartnerdrive] = useState([]);
+ // const [partnerdrive, setpartnerdrive] = useState([]);
   const [coordinatorData, setCoordinatorData] = useState([]);
   const [testimonialData, setTestimonialData] = useState([]);
   const [student, setStudent] = useState([]);
@@ -34,8 +34,8 @@ const AdminDashboard = () => {
         );
         setUpcomingCompany(upcomingCompany.data);
 
-        const partnerCompany = await axios.get("http://localhost:5000/partner");
-        setpartnerdrive(partnerCompany.data);
+ //       const partnerCompany = await axios.get("http://localhost:5000/partner");
+ //       setpartnerdrive(partnerCompany.data);
 
         const fetchStudentdata = await axios.get(
           "http://localhost:5000/student"
@@ -61,7 +61,7 @@ const AdminDashboard = () => {
           registeredStudents: statsResponse.data.studentCount,
           currentCount: statsResponse.data.currentCount,
           upcomingCount: statsResponse.data.upcomingCount,
-          partnerCount: statsResponse.data.partnerCount,
+ //         partnerCount: statsResponse.data.partnerCount,
           coordinators: statsResponse.data.coordinatorCount,
           testimonial: statsResponse.data.testimonialCount,
         });
@@ -72,6 +72,7 @@ const AdminDashboard = () => {
 
     fetchAdminData();
   }, []);
+  // ......
   /// view pages
   const handleView = (id) => {
     navigate(`/view-student/${id}`);
@@ -82,6 +83,12 @@ const AdminDashboard = () => {
   const handleCordinator = (id) => {
     navigate(`/view-cordinator/${id}`);
   };
+  const handleTestimonial = (id) => {
+    navigate(`/view-testimonial/${id}`);
+  };
+
+
+
   //
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -130,7 +137,7 @@ const AdminDashboard = () => {
   const handleDriveRemove = async (id) => {
     console.log(id);
     const confirmDelete = window.confirm(
-      "Are you sure you want to delete this student?"
+      "Are you sure you want to delete this Drive?"
     );
     if (confirmDelete) {
       try {
@@ -159,7 +166,7 @@ const AdminDashboard = () => {
   const handleupcommingDriveRemove = async (id) => {
     console.log(id);
     const confirmDelete = window.confirm(
-      "Are you sure you want to delete this student?"
+      "Are you sure you want to delete this upcommingDrive?"
     );
     if (confirmDelete) {
       try {
@@ -183,35 +190,35 @@ const AdminDashboard = () => {
   };
 
   // Remove the Partner
-  const handlePartnerDriveRemove = async (id) => {
-    console.log(id);
-    const confirmDelete = window.confirm(
-      "Are you sure you want to delete this student?"
-    );
-    if (confirmDelete) {
-      try {
-        // Make DELETE request to the backend
+  // const handlePartnerDriveRemove = async (id) => {
+  //   console.log(id);
+  //   const confirmDelete = window.confirm(
+  //     "Are you sure you want to delete this partner?"
+  //   );
+  //   if (confirmDelete) {
+  //     try {
+  //       // Make DELETE request to the backend
 
-        const response = await axios.delete(
-          `http://localhost:5000/partnerremove/${id}`
-        );
-        //for the Drive
-        if (response.status === 200) {
-          window.location.reload();
-          alert("Partner deleted successfully!");
-        }
-      } catch (error) {
-        console.error("Error deleting Partner:", error);
-        alert("Failed to delete Partner. Please try again.");
-      }
-    }
-  };
+  //       const response = await axios.delete(
+  //         `http://localhost:5000/partnerremove/${id}`
+  //       );
+  //       //for the Drive
+  //       if (response.status === 200) {
+  //         window.location.reload();
+  //         alert("Partner deleted successfully!");
+  //       }
+  //     } catch (error) {
+  //       console.error("Error deleting Partner:", error);
+  //       alert("Failed to delete Partner. Please try again.");
+  //     }
+  //   }
+  // };
 
   // Coordinater remove
   const handleCoordinaterDriveRemove = async (id) => {
     console.log(id);
     const confirmDelete = window.confirm(
-      "Are you sure you want to delete this student?"
+      "Are you sure you want to delete this Co-ordinator?"
     );
     if (confirmDelete) {
       try {
@@ -231,13 +238,37 @@ const AdminDashboard = () => {
       }
     }
   };
+// Remove Button Work in Testimonial
+const handleTestimonialRemove = async (id) => {
+  console.log(id);
+  const confirmDelete = window.confirm(
+    "Are you sure you want to delete this Testimonial?"
+  );
+  if (confirmDelete) {
+    try {
+      // Make DELETE request to the backend
+
+      const response = await axios.delete(
+        `http://localhost:5000/testimonialremove/${id}`
+      );
+      //for the Drive
+      if (response.status === 200) {
+        window.location.reload();
+        alert("Testimonial deleted successfully!");
+      }
+    } catch (error) {
+      console.error("Error deleting testimonial:", error);
+      alert("Failed to delete Testimonial. Please try again.");
+    }
+  }
+};
 
   const menuItems = [
     { name: "Dashboard", icon: "🏠", section: "dashboard" },
     { name: "Students", icon: "👩‍🎓", section: "students" },
     { name: "Active Drives", icon: "📋", section: "active-drives" },
     { name: " Upcoming Drives", icon: "🏢", section: "companies" },
-    { name: "Partners", icon: "👤", section: "Partners" },
+    //{ name: "Partners", icon: "👤", section: "Partners" },
     { name: "Coordinators", icon: "👩‍💼", section: "coordinators" },
     { name: "Testimonials", icon: "🌟", section: "testimonials" },
     { name: "Logout", icon: "🚪", section: "logout" },
@@ -374,10 +405,10 @@ const AdminDashboard = () => {
                   <h3>Upcoming Companies</h3>
                   <p>{stats.upcomingCount}</p>
                 </div>
-                <div className="stat-box green">
+                {/* <div className="stat-box green">
                   <h3>Partner Companies</h3>
                   <p>{stats.partnerCount}</p>
-                </div>
+                </div> */}
                 <div className="stat-box purple">
                   <h3>Coordinators</h3>
                   <p>{stats.coordinators}</p>
@@ -517,7 +548,7 @@ const AdminDashboard = () => {
             </table>
           )}
 
-          {activeSection === "Partners" && (
+          {/* {activeSection === "Partners" && (
             <table className="job-table">
               <thead>
                 <tr>
@@ -557,8 +588,8 @@ const AdminDashboard = () => {
                 ))}
               </tbody>
             </table>
-          )}
-          {activeSection === "coordinators" && (
+          )}*/}
+          {activeSection === "coordinators" && ( 
             <table className="job-table">
               <thead>
                 <tr>
@@ -628,13 +659,13 @@ const AdminDashboard = () => {
                     <td>
                       <button
                         className="view-button"
-                        onClick={() => handleCordinator(testi.id)}
+                        onClick={() => handleTestimonial(testi.id)}
                       >
                         View
                       </button>
                       <button
                         className="remove-button"
-                        onClick={() => handleCoordinaterDriveRemove(testi.id)}
+                        onClick={() => handleTestimonialRemove(testi.id)}
                       >
                         Remove
                       </button>

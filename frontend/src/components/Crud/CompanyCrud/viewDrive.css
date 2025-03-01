@@ -38,13 +38,14 @@ body {
 }
 
 .view-drive-close {
-  color: white; /* Red Close Button */
+  color: #000000;
   font-size: 1.5rem;
   cursor: pointer;
   transition: transform 0.3s, color 0.3s;
-  width: 40px;
+  width: auto;
   height: 40px;
-  background-color: #ff5c5c;
+  background-color: #ccc;
+  border: 2px solid;
 }
 
 .view-drive-close:hover {

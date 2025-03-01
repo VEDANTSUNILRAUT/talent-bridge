@@ -5,7 +5,8 @@
   padding: 2rem;
   overflow: hidden;
   background: linear-gradient(45deg, #f3f9ff, #f8f5ff);
-  margin-top: 5rem;
+  /* margin-top: 5rem; */
+  padding-top: 6rem;
 }
 
 .content-wrapper {
@@ -39,12 +40,14 @@
   transform: translateY(-30px);
   animation: headerEntrance 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
 }
+
 @keyframes headerEntrance {
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
+
 .gradient-text {
   background: linear-gradient(120deg, #6d07db 0%, #ff8e53 100%);
   -webkit-background-clip: text;
@@ -110,7 +113,6 @@
   color: white;
   font-size: 1.1rem;
   font-weight: 600;
-  cursor: pointer;
   transition: all 0.3s ease;
   text-decoration: none;
   gap: 0.8rem;
@@ -136,6 +138,7 @@
 .button-icon {
   transition: transform 0.2s ease;
 }
+
 .modern-button::before {
   content: "";
   position: absolute;
@@ -225,6 +228,7 @@
     gap: 1rem;
   }
 }
+
 .bridge-line {
   position: absolute;
   bottom: -10px;
@@ -249,13 +253,14 @@
     opacity: 1;
   }
 }
+
 .hero-description {
   /* Typography */
   font-family: "Inter", "Helvetica Neue", system-ui, -apple-system, sans-serif;
-  font-size: clamp(1.5rem, 2.5vw, 2.25rem); /* Responsive size */
-  font-weight: 500; /* Semi-bold for better readability */
+  font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+  font-weight: 500;
   line-height: 1.4;
-  letter-spacing: -0.02em; /* Modern tight spacing */
+  letter-spacing: -0.02em;
 
   /* Color Grading */
   background: linear-gradient(45deg, #2f3c4f, #4a6075);
@@ -277,13 +282,6 @@
 
   /* Effects */
   text-shadow: 0 4px 12px rgba(45, 55, 70, 0.15);
-}
-
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 @keyframes fadeInUp {

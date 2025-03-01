@@ -6,6 +6,7 @@
     "axios": "^1.7.9",
     "bootstrap": "^5.3.3",
     "cra-template": "1.2.0",
+    "framer-motion": "^12.4.7",
     "i": "^0.3.7",
     "lucide-react": "^0.469.0",
     "npm": "^11.0.0",

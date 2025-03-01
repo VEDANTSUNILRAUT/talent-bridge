@@ -355,7 +355,7 @@ app.get("/drive/:id", (req, res) => {
 
 app.get("/cordinator/:id", (req, res) => {
   const cordinatorId = req.params.id;
-  const sql = "SELECT * FROM cordinator WHERE coordinator_id = ?";
+  const sql = "SELECT * FROM coordinator WHERE coordinator_id = ?";
   db.query(sql, [cordinatorId], (err, result) => {
     if (err) {
       console.error("Error fetching coordinator data:", err);
@@ -365,6 +365,23 @@ app.get("/cordinator/:id", (req, res) => {
     }
     if (result.length === 0) {
       return res.status(404).json({ error: "Coordinator not found" });
+    }
+    res.json(result[0]); // Return a single object
+  });
+});
+// Testimonial view Pages
+app.get("/testimonial/:id", (req, res) => {
+  const testimonialId = req.params.id;
+  const sql = "SELECT * FROM testimonial WHERE id = ?";
+  db.query(sql, [testimonialId], (err, result) => {
+    if (err) {
+      console.error("Error fetching coordinator data:", err);
+      return res
+        .status(500)
+        .json({ error: "Database error", details: err.message });
+    }
+    if (result.length === 0) {
+      return res.status(404).json({ error: "Testimonial not found" });
     }
     res.json(result[0]); // Return a single object
   });
@@ -454,88 +471,186 @@ app.post("/contact", (req, res) => {
 });
 //Remove the Student From the Database
 // Delete Student API: http://localhost:5000/student/:id
+// app.delete("/studentremove/:id", (req, res) => {
+//   const studentId = req.params.id;
+//   console.log(studentId);
+//   const sql = "DELETE FROM student WHERE id = ?";
+//   db.query(sql, [studentId], (err, result) => {
+//     if (err) {
+//       console.error("Error deleting student:", err);
+//       return res
+//         .status(500)
+//         .json({ error: "Database error", details: err.message });
+//     }
+
+//     if (result.affectedRows === 0) {
+//       return res.status(404).json({ error: "Student not found" });
+//     }
+
+//     return res.status(200).json({ message: "Student deleted successfully!" });
+//   });
+// });
+
 app.delete("/studentremove/:id", (req, res) => {
   const studentId = req.params.id;
   console.log(studentId);
-  const sql = "DELETE FROM student WHERE id = ?";
-  db.query(sql, [studentId], (err, result) => {
+
+  // Step 1: Delete related applications first
+  const deleteApplicationsSQL = "DELETE FROM applications WHERE student_id = ?";
+  db.query(deleteApplicationsSQL, [studentId], (err, result) => {
     if (err) {
-      console.error("Error deleting student:", err);
+      console.error("Error deleting applications:", err);
       return res
         .status(500)
         .json({ error: "Database error", details: err.message });
     }
 
-    if (result.affectedRows === 0) {
-      return res.status(404).json({ error: "Student not found" });
-    }
+    // Step 2: Delete student after applications are removed
+    const deleteStudentSQL = "DELETE FROM student WHERE id = ?";
+    db.query(deleteStudentSQL, [studentId], (err, result) => {
+      if (err) {
+        console.error("Error deleting student:", err);
+        return res
+          .status(500)
+          .json({ error: "Database error", details: err.message });
+      }
 
-    return res.status(200).json({ message: "Student deleted successfully!" });
+      if (result.affectedRows === 0) {
+        return res.status(404).json({ error: "Student not found" });
+      }
+
+      return res.status(200).json({ message: "Student deleted successfully!" });
+    });
   });
 });
+
 //(`http://localhost:5000/drive_remove/${id}`)
+// app.delete("/driveremove/:id", (req, res) => {
+//   const driveid = req.params.id;
+//   console.log(driveid);
+//   const sql = "DELETE FROM jobs WHERE job_id = ?";
+//   db.query(sql, [driveid], (err, result) => {
+//     if (err) {
+//       console.error("Error deleting Drive:", err);
+//       return res
+//         .status(500)
+//         .json({ error: "Database error", details: err.message });
+//     }
+
+//     if (result.affectedRows === 0) {
+//       return res.status(404).json({ error: "Drive not found" });
+//     }
+
+//     return res.status(200).json({ message: "Drive  deleted successfully!" });
+//   });
+// });
+
 app.delete("/driveremove/:id", (req, res) => {
   const driveid = req.params.id;
-  console.log(driveid);
-  const sql = "DELETE FROM jobs WHERE job_id = ?";
-  db.query(sql, [driveid], (err, result) => {
+
+  // First, delete dependent records from applications
+  const deleteApplicationsSQL = "DELETE FROM applications WHERE job_id = ?";
+  db.query(deleteApplicationsSQL, [driveid], (err, result) => {
     if (err) {
-      console.error("Error deleting Drive:", err);
+      console.error("Error deleting related applications:", err);
       return res
         .status(500)
         .json({ error: "Database error", details: err.message });
     }
 
-    if (result.affectedRows === 0) {
-      return res.status(404).json({ error: "Drive not found" });
-    }
+    // Now delete the job from jobs table
+    const deleteJobSQL = "DELETE FROM jobs WHERE job_id = ?";
+    db.query(deleteJobSQL, [driveid], (err, result) => {
+      if (err) {
+        console.error("Error deleting Drive:", err);
+        return res
+          .status(500)
+          .json({ error: "Database error", details: err.message });
+      }
 
-    return res.status(200).json({ message: "Drive  deleted successfully!" });
+      if (result.affectedRows === 0) {
+        return res.status(404).json({ error: "Drive not found" });
+      }
+
+      return res.status(200).json({ message: "Drive deleted successfully!" });
+    });
   });
 });
 
 // const response = await axios.delete(`http://localhost:5000/upcommingdriveremove/${id}`);
+// app.delete("/upcommingdriveremove/:id", (req, res) => {
+//   const driveid = req.params.id;
+//   console.log(driveid);
+//   const sql = "DELETE FROM jobs WHERE job_id = ?";
+//   db.query(sql, [driveid], (err, result) => {
+//     if (err) {
+//       console.error("Error deleting Drive:", err);
+//       return res
+//         .status(500)
+//         .json({ error: "Database error", details: err.message });
+//     }
+
+//     if (result.affectedRows === 0) {
+//       return res.status(404).json({ error: "Drive not found" });
+//     }
+
+//     return res.status(200).json({ message: "Drive  deleted successfully!" });
+//   });
+// });
+
 app.delete("/upcommingdriveremove/:id", (req, res) => {
   const driveid = req.params.id;
-  console.log(driveid);
-  const sql = "DELETE FROM jobs WHERE job_id = ?";
-  db.query(sql, [driveid], (err, result) => {
+
+  // First, delete dependent records from applications
+  const deleteApplicationsSQL = "DELETE FROM applications WHERE job_id = ?";
+  db.query(deleteApplicationsSQL, [driveid], (err, result) => {
     if (err) {
-      console.error("Error deleting Drive:", err);
+      console.error("Error deleting related applications:", err);
       return res
         .status(500)
         .json({ error: "Database error", details: err.message });
     }
 
-    if (result.affectedRows === 0) {
-      return res.status(404).json({ error: "Drive not found" });
-    }
+    // Now delete the job from jobs table
+    const deleteJobSQL = "DELETE FROM jobs WHERE job_id = ?";
+    db.query(deleteJobSQL, [driveid], (err, result) => {
+      if (err) {
+        console.error("Error deleting Drive:", err);
+        return res
+          .status(500)
+          .json({ error: "Database error", details: err.message });
+      }
 
-    return res.status(200).json({ message: "Drive  deleted successfully!" });
+      if (result.affectedRows === 0) {
+        return res.status(404).json({ error: "Drive not found" });
+      }
+
+      return res.status(200).json({ message: "Drive deleted successfully!" });
+    });
   });
 });
 
 // Remove the Partner
 // const response = await axios.delete(`http://localhost:5000/partnerdriveremove/${id}`);
-app.delete("/partnerremove/:id", (req, res) => {
-  const driveid = req.params.id;
-  console.log(driveid);
-  const sql = "DELETE FROM jobs WHERE job_id = ?";
-  db.query(sql, [driveid], (err, result) => {
-    if (err) {
-      console.error("Error deleting partner:", err);
-      return res
-        .status(500)
-        .json({ error: "Database error", details: err.message });
-    }
+// app.delete("/partnerremove/:id", (req, res) => {
+//   const driveid = req.params.id;
+//   console.log(driveid);
+//   const sql = "DELETE FROM jobs WHERE job_id = ?";
+//   db.query(sql, [driveid], (err, result) => {
+//     if (err) {
+//       console.error("Error deleting partner:", err);
+//       return res
+//         .status(500)
+//         .json({ error: "Database error", details: err.message });
+//     }
 
-    if (result.affectedRows === 0) {
-      return res.status(404).json({ error: "partner not found" });
-    }
+//     if (result.affectedRows === 0) {
+//       return res.status(404).json({ error: "partner not found" });
+//     }
 
-    return res.status(200).json({ message: "partner  deleted successfully!" });
-  });
-});
+//     return res.status(200).json({ message: "partner  deleted successfully!" });
+//   });
+// });
 
 // coordinater Remove
 // const response = await axios.delete(`http://localhost:5000/coordinaterremove/${id}`);
@@ -560,6 +675,29 @@ app.delete("/coordinaterremove/:id", (req, res) => {
       .json({ message: "Coordinater  deleted successfully!" });
   });
 });
+
+// testimonial Remove 
+app.delete("/testimonialremove/:id", (req, res) => {
+  const testimonialid = req.params.id;
+  console.log(testimonialid);
+  const sql = "DELETE FROM testimonial WHERE id = ?";
+  db.query(sql, [testimonialid], (err, result) => {
+    if (err) {
+      console.error("Error deleting testimonial:", err);
+      return res
+        .status(500)
+        .json({ error: "Database error", details: err.message });
+    }
+
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ error: "Testimonial not found" });
+    }
+
+    return res.status(200).json({ message: "testimonial deleted successfully!" });
+  });
+});
+
+
 
 // working on the View page
 
