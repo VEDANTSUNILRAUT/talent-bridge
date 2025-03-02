@@ -14,6 +14,7 @@ import Resume from "./Pages/resume";
 import Job from "./Pages/job";
 import Testimonial from "./Pages/testimonial";
 import About from "./Pages/aboutss"; // Ensure this path matches your file structure
+import Partners from "./components/Partners/partners";
 
 // Admin Dashboard
 import Admin from "./Pages/Admin_Dash";
@@ -45,6 +46,7 @@ import ServiceSection from "./Pages/serviceSection";
 // Services
 import Mock from "./components/Services/Mock/mock";
 import Test from "./components/Services/Test/Test";
+import References from "./components/Services/References/References";
 
 function App() {
   const location = useLocation();
@@ -85,6 +87,8 @@ function App() {
         <Route path="/notice" element={<Notice />} />
         <Route path="/student-notice" element={<StudentNotice />} />
         <Route path="/jobs/:jobId/applications" element={<JobApplications />} />
+        <Route path="/references" element={<References />} />
+        <Route path="/partners" element={<Partners />} />
       </Routes>
       {!adminRoutes.includes(location.pathname) && <Footer />}
       {/* <Footer /> */}

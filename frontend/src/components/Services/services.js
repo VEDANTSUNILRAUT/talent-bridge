@@ -1,8 +1,27 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./services.css";
-// import breadcrumbImg from "../../assets/images/Breadcrump/breadcrumb.png";
+
 const servicesData = [
+  // AI Integrated Services
+  {
+    id: 5,
+    title: "Resume Analyzer",
+    description: "Get instant feedback on your resume with AI analysis.",
+    icon: "🤖",
+    buttonText: "Analyze Now",
+    path: "https://smart-ats-ayush.streamlit.app/",
+  },
+  {
+    id: 6,
+    title: "AI Mock Interviews",
+    description:
+      "Practice interviews with AI-powered simulations and feedback.",
+    icon: "🧠",
+    buttonText: "Start AI Interview",
+    path: "http://localhost:3001",
+  },
+  // Career Services
   {
     id: 1,
     title: "Resume Builder",
@@ -10,15 +29,6 @@ const servicesData = [
     icon: "📄",
     buttonText: "Build Now",
     path: "/resume",
-  },
-  {
-    id: 2,
-    title: "Mock Interviews",
-    description:
-      "Practice interviews with expert feedback to boost confidence.",
-    icon: "🤝",
-    buttonText: "Start Practice",
-    path: "/mock",
   },
   {
     id: 3,
@@ -41,53 +51,47 @@ const servicesData = [
 const Services = () => {
   return (
     <div className="services-container">
-      {/* Breadcrumb Section */}
-      {/* <div className="breadcrumb-section">
-        <img
-          src={breadcrumbImg}
-          alt="Breadcrumb Banner"
-          className="breadcrumb-photo"
-        />
-        <div className="breadcrumb-overlay"></div>
-      </div> */}
-
-      {/* Introduction Section */}
-      <section className="services-intro">
-        <h1 className="services-title">Our Services</h1>
-        <p className="services-intro-text">
-          At Talent-Bridge, we provide a comprehensive suite of tools to help
-          you achieve your career goals. Whether you're crafting your first
-          resume, preparing for interviews, or looking for your dream job, our
-          platform is designed to support you at every step of the way. Explore
-          our services to unlock your full potential!
-        </p>
+      <section className="section ai-integration-section">
+        <div className="section-header">
+          <h2 className="section-title">Enter the AI Career Revolution</h2>
+          <p className="section-subtitle">
+            Experience next-generation career development with our intelligent
+            AI systems
+          </p>
+        </div>
+        <div className="services-grid">
+          {servicesData.slice(0, 2).map((service) => (
+            <div className="service-card premium" key={service.id}>
+              <div className="service-icon-container">{service.icon}</div>
+              <h3 className="service-title">{service.title}</h3>
+              <p className="service-description">{service.description}</p>
+              <Link to={service.path} className="service-button">
+                {service.buttonText}
+              </Link>
+            </div>
+          ))}
+        </div>
       </section>
-
-      {/* Services Grid Section */}
-      <div className="services-grid">
-        {servicesData.map((service) => (
-          <div className="service-card" key={service.id}>
-            <div className="service-icon">{service.icon}</div>
-            <h2 className="service-title">{service.title}</h2>
-            <p className="service-description">{service.description}</p>
-            <Link to={service.path} className="service-button">
-              {service.buttonText}
-            </Link>
-          </div>
-        ))}
-      </div>
-
-      {/* Call-to-Action Footer */}
-      <section className="services-cta">
-        <h2 className="cta-title">Ready to Take the Next Step?</h2>
-        <p className="cta-description">
-          Join our platform today and start your journey towards a brighter
-          career. With our AI-powered tools and expert guidance, success is just
-          a few clicks away.
-        </p>
-        <Link to="/signup" className="cta-button">
-          Get Started Now
-        </Link>
+      <section className="section career-services-section">
+        <div className="section-header">
+          <h2 className="section-title">Comprehensive Career Solutions</h2>
+          <p className="section-subtitle">
+            Everything you need for successful career development in one
+            platform
+          </p>
+        </div>
+        <div className="services-grid">
+          {servicesData.slice(2).map((service) => (
+            <div className="service-card" key={service.id}>
+              <div className="service-icon-container">{service.icon}</div>
+              <h3 className="service-title">{service.title}</h3>
+              <p className="service-description">{service.description}</p>
+              <Link to={service.path} className="service-button">
+                {service.buttonText}
+              </Link>
+            </div>
+          ))}
+        </div>
       </section>
     </div>
   );

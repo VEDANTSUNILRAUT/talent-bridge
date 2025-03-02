@@ -1,85 +1,33 @@
 .aboutMain {
-    display: flex;
-    flex-wrap: wrap;
-    height: 100%;
-    padding: 50px;
-  }
-  
-  .aboutPart1 {
-    width: 40%;
-    display: flex;
-    justify-content: space-around;
-  }
-  
-  .imgAbout {
-    width: 440px;
-    height: 340px;
-    animation: moveTopBottom 1.5s infinite alternate ease-in-out;
-  }
-  
-  .aboutpart2 {
-    width: 50%;
-  }
-  
-  .aboutpart2 p {
-    font-size: 18px;
-    line-height: 1.6;
-    color: #333;
-  }
-  
-  .aboutheader {
-    color: #6a6aff;
-    font-size: 36px;
-    font-weight: 700;
-  }
-  
-  .marqueeDiv {
-    background-color: #dee9ff;
-    padding: 20px 0;
-  }
-  
-  .Companysection {
-    width: 100%;
-    margin-top: 30px;
-    text-align: center;
-  }
-  
-  .companyHeader {
-    text-transform: uppercase;
-    color: black;
-    font-size: 40px;
-    font-weight: 800;
-  }
-  
-  .companySubText {
-    color: #747474;
-    font-weight: 700;
-    font-size: 18px;
-    margin-top: -10px;
-  }
-  
-  .allimages, .allimages2 {
-    height: 100px;
-    display: flex;
-    align-items: center;
-    gap: 60px;
-  }
-  
-  .imgPartner, .imgPartner2 {
-    height: 80px;
-    transition: transform 0.3s ease-in-out;
-  }
-  
-  .imgPartner:hover, .imgPartner2:hover {
-    transform: scale(1.1);
-  }
-  
-  @keyframes moveTopBottom {
-    0% {
-      transform: translateY(0.3cm);
-    }
-    100% {
-      transform: translateY(0);
-    }
-  }
-  
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+  padding: 50px;
+}
+
+.aboutPart1 {
+  width: 40%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.imgAbout {
+  width: 440px;
+  height: 340px;
+}
+
+.aboutpart2 {
+  width: 50%;
+}
+
+.aboutpart2 p {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #333;
+}
+
+.aboutheader {
+  color: #6a6aff;
+  font-size: 36px;
+  font-weight: 700;
+}
