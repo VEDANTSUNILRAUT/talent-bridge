@@ -29,48 +29,41 @@ const Header = () => {
           "http://localhost:5000/student_profile",
           { withCredentials: true }
         );
-        if (response.status === 200) {
-          setIsLoggedIn(true);
-        }
+        if (response.status === 200) setIsLoggedIn(true);
       } catch (error) {
         setIsLoggedIn(false);
-        console.error("Error checking login status:", error);
       }
     };
-
     checkLoginStatus();
   }, []);
 
-  const handleLoginRedirect = (role) => {
+  const handleAuthAction = (path, role) => {
     setShowModal(false);
-    if (role === "admin") {
-      navigate("/adminlogin");
-    } else if (role === "student") {
-      navigate("/login");
-    } else {
-      console.error("Invalid login role:", role);
-    }
-  };
-
-  const handleSignupChoice = (role) => {
-    setShowModal(false);
-    if (role === "admin") {
-      navigate("/adminsignup");
-    } else if (role === "student") {
-      navigate("/signup");
-    }
+    navigate(`/${role}${path}`);
   };
 
   return (
     <header className="header-container">
       <div className="header-content">
-        <div className="header-logo">
-          <img aria-hidden="true" alt="Logo" src={HeaderLogo} />
+        <div className="logo-container">
+          <img
+            src={HeaderLogo}
+            alt="Talent Bridge Logo"
+            className="main-logo"
+          />
+          <div className="logo-text">
+            <h1>Talent Bridge</h1>
+            <p>Connecting dreams to destinations</p>
+          </div>
         </div>
 
-        <nav className="header-nav-links">
+        <nav className="nav-container">
           {HEADER_NAV_LINKS.map((link, index) => (
-            <Link key={index} to={link.url} className="header-nav-link">
+            <Link
+              key={index}
+              to={link.url}
+              className={`nav-link ${link.className || ""}`}
+            >
               {link.text}
             </Link>
           ))}
@@ -78,16 +71,12 @@ const Header = () => {
           {isLoggedIn ? (
             <img
               src={ProfileImg}
-              onClick={() => navigate("/studentprofile")}
               alt="Profile"
-              className="header-profile-img"
+              className="profile-image"
+              onClick={() => navigate("/studentprofile")}
             />
           ) : (
-            <button
-              className="header-btn-login"
-              onClick={() => setShowModal(true)}
-              aria-label="Login"
-            >
+            <button className="login-button" onClick={() => setShowModal(true)}>
               Login
             </button>
           )}
@@ -95,46 +84,36 @@ const Header = () => {
       </div>
 
       {showModal && (
-        <div className="header-modal-overlay">
-          <div className="header-modal">
-            <button
-              className="header-modal-close-btn"
-              onClick={() => setShowModal(false)}
-            >
-              X
+        <div className="modal-overlay">
+          <div className="auth-modal">
+            <button className="close-modal" onClick={() => setShowModal(false)}>
+              &times;
             </button>
-            <div className="header-modal-content">
-              <div className="header-modal-box">
+            <div className="auth-options">
+              <div className="auth-option student-option">
                 <img src={User} alt="Student" />
-                <p>Welcome, Student!</p>
-                <button
-                  className="header-modal-login"
-                  onClick={() => handleLoginRedirect("student")}
-                >
-                  Login
-                </button>
-                <button
-                  className="header-modal-signup"
-                  onClick={() => handleSignupChoice("student")}
-                >
-                  Sign Up
-                </button>
+                <h3>Student Access</h3>
+                <div className="auth-buttons">
+                  <button onClick={() => handleAuthAction("login", "student")}>
+                    Login
+                  </button>
+                  <button onClick={() => handleAuthAction("signup", "student")}>
+                    Sign Up
+                  </button>
+                </div>
               </div>
-              <div className="header-modal-box">
+
+              <div className="auth-option admin-option">
                 <img src={Admin} alt="Admin" />
-                <p>Welcome, TPO!</p>
-                <button
-                  className="header-modal-login"
-                  onClick={() => handleLoginRedirect("admin")}
-                >
-                  Login
-                </button>
-                <button
-                  className="header-modal-signup"
-                  onClick={() => handleSignupChoice("admin")}
-                >
-                  Sign Up
-                </button>
+                <h3>TPO Access</h3>
+                <div className="auth-buttons">
+                  <button onClick={() => handleAuthAction("login", "admin")}>
+                    Login
+                  </button>
+                  <button onClick={() => handleAuthAction("signup", "admin")}>
+                    Sign Up
+                  </button>
+                </div>
               </div>
             </div>
           </div>
