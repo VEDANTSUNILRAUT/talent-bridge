@@ -176,5 +176,6 @@
   text-align: center;
   margin-bottom: 3rem;
 }
-
-/* ... (keep all other existing styles the same) */
+.service-icon-container {
+  font-size: 3rem;
+}
