@@ -72,7 +72,7 @@ const Header = () => {
             <img
               src={ProfileImg}
               alt="Profile"
-              className="profile-image"
+              className="header-profile-image"
               onClick={() => navigate("/studentprofile")}
             />
           ) : (

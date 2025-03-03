@@ -9,7 +9,7 @@ const AdminLogin = () => {
   const navigate = useNavigate(); // Initialize the navigate function
 
   // Hardcoded admin credentials
-  const adminEmail = "admin@gmail.com";
+  const adminEmail = "tpo@gmail.com";
   const adminPassword = "pass1234";
 
   const handleAdminSubmit = (event) => {

@@ -87,7 +87,7 @@
   background: #3182ce;
 }
 
-.profile-image {
+.header-profile-image {
   height: 45px;
   width: 45px;
   border-radius: 50%;
@@ -136,7 +136,7 @@
 }
 
 .close-modal:hover {
-  color: #2d3748;
+  background-color: rgb(225, 97, 97);
 }
 
 .auth-options {

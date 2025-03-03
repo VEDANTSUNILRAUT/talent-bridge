@@ -5,25 +5,12 @@ import imgAbout from "../../assets/images/imagesinPlacement/homePageMainImage.pn
 
 export default function About() {
   return (
-    <div className="aboutMain" id="About">
-      {/* Left Image Section */}
-      <motion.div
-        className="aboutPart1"
-        initial={{ opacity: 0, x: -100 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        transition={{ duration: 2 }}
-      >
+    <div id="About">
+      <div className="aboutMain">
         <img src={imgAbout} alt="About Talent-Bridge" className="imgAbout" />
-      </motion.div>
-
-      {/* Right Text Section */}
-      <motion.div
-        className="aboutpart2"
-        initial={{ opacity: 0, x: 100 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        transition={{ duration: 2 }}
-      >
-        <h2 className="aboutheader">About Talent-Bridge</h2>
+      </div>
+      <div className="aboutheader">
+        <h2 className="aboutheading">About Talent-Bridge</h2>
         <p>
           At Talent Bridge Technology, we are committed to empowering students
           by providing exceptional job opportunities and career growth. We offer
@@ -36,9 +23,7 @@ export default function About() {
           generation of professionals, making career dreams a reality through
           quality placements and continuous support.
         </p>
-      </motion.div>
-
-      {/* Partners Section */}
+      </div>
     </div>
   );
 }
