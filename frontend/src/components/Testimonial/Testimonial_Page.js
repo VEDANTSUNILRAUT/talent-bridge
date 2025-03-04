@@ -7,7 +7,13 @@ import Testimonial from "../../assets/images/Testimonial_BG/testimonial.png";
 const renderStars = (rating) =>
   "★".repeat(Math.floor(rating)) + "☆".repeat(5 - Math.floor(rating));
 
-const TestimonialCard = ({ name, email, testimonial, rating }) => (
+const TestimonialCard = ({
+  name,
+  email,
+  testimonial,
+  rating,
+  placed_company,
+}) => (
   <div className="testimonial-card">
     <div className="card-header">
       <img src={Testimonial} alt={name} />
@@ -16,6 +22,7 @@ const TestimonialCard = ({ name, email, testimonial, rating }) => (
         <p>{email}</p>
       </div>
     </div>
+    <p>Company : {placed_company}</p>
     <p className="card-text">{testimonial}</p>
     <div className="card-rating">{renderStars(rating)}</div>{" "}
     {/* Render Stars */}

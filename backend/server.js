@@ -676,7 +676,7 @@ app.delete("/coordinaterremove/:id", (req, res) => {
   });
 });
 
-// testimonial Remove 
+// testimonial Remove
 app.delete("/testimonialremove/:id", (req, res) => {
   const testimonialid = req.params.id;
   console.log(testimonialid);
@@ -693,11 +693,11 @@ app.delete("/testimonialremove/:id", (req, res) => {
       return res.status(404).json({ error: "Testimonial not found" });
     }
 
-    return res.status(200).json({ message: "testimonial deleted successfully!" });
+    return res
+      .status(200)
+      .json({ message: "testimonial deleted successfully!" });
   });
 });
-
-
 
 // working on the View page
 
@@ -924,6 +924,29 @@ app.get("/jobs/:jobId", (req, res) => {
 
     res.json(result[0]);
   });
+});
+
+app.post("/feedback", (req, res) => {
+  const { name, email, testimonial, rating, placed_company } = req.body;
+  const created_at = new Date();
+  const updated_at = new Date();
+
+  const sql =
+    "INSERT INTO testimonial (name, email, testimonial, rating, created_at, updated_at, placed_company) VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+  db.query(
+    sql,
+    [name, email, testimonial, rating, created_at, updated_at, placed_company],
+    (err, result) => {
+      if (err) {
+        console.error("Database Insertion Error: ", err); // Log error
+        return res
+          .status(500)
+          .json({ message: "Error inserting data", error: err });
+      }
+      res.json({ message: "Feedback submitted successfully" });
+    }
+  );
 });
 
 // For Fetching the Testimonial from backend

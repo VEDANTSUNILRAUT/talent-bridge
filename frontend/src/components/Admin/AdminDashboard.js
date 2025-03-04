@@ -10,7 +10,7 @@ const AdminDashboard = () => {
   const [adminProfile, setAdminProfile] = useState({});
   const [activeDrives, setActiveDrives] = useState([]);
   const [upcomingCompany, setUpcomingCompany] = useState([]);
- // const [partnerdrive, setpartnerdrive] = useState([]);
+  // const [partnerdrive, setpartnerdrive] = useState([]);
   const [coordinatorData, setCoordinatorData] = useState([]);
   const [testimonialData, setTestimonialData] = useState([]);
   const [student, setStudent] = useState([]);
@@ -34,8 +34,8 @@ const AdminDashboard = () => {
         );
         setUpcomingCompany(upcomingCompany.data);
 
- //       const partnerCompany = await axios.get("http://localhost:5000/partner");
- //       setpartnerdrive(partnerCompany.data);
+        //       const partnerCompany = await axios.get("http://localhost:5000/partner");
+        //       setpartnerdrive(partnerCompany.data);
 
         const fetchStudentdata = await axios.get(
           "http://localhost:5000/student"
@@ -61,7 +61,7 @@ const AdminDashboard = () => {
           registeredStudents: statsResponse.data.studentCount,
           currentCount: statsResponse.data.currentCount,
           upcomingCount: statsResponse.data.upcomingCount,
- //         partnerCount: statsResponse.data.partnerCount,
+          //         partnerCount: statsResponse.data.partnerCount,
           coordinators: statsResponse.data.coordinatorCount,
           testimonial: statsResponse.data.testimonialCount,
         });
@@ -86,8 +86,6 @@ const AdminDashboard = () => {
   const handleTestimonial = (id) => {
     navigate(`/view-testimonial/${id}`);
   };
-
-
 
   //
   useEffect(() => {
@@ -132,7 +130,7 @@ const AdminDashboard = () => {
       }
     }
   };
-// 
+  //
   //Removing the drive
   const handleDriveRemove = async (id) => {
     console.log(id);
@@ -238,30 +236,30 @@ const AdminDashboard = () => {
       }
     }
   };
-// Remove Button Work in Testimonial
-const handleTestimonialRemove = async (id) => {
-  console.log(id);
-  const confirmDelete = window.confirm(
-    "Are you sure you want to delete this Testimonial?"
-  );
-  if (confirmDelete) {
-    try {
-      // Make DELETE request to the backend
+  // Remove Button Work in Testimonial
+  const handleTestimonialRemove = async (id) => {
+    console.log(id);
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this Testimonial?"
+    );
+    if (confirmDelete) {
+      try {
+        // Make DELETE request to the backend
 
-      const response = await axios.delete(
-        `http://localhost:5000/testimonialremove/${id}`
-      );
-      //for the Drive
-      if (response.status === 200) {
-        window.location.reload();
-        alert("Testimonial deleted successfully!");
+        const response = await axios.delete(
+          `http://localhost:5000/testimonialremove/${id}`
+        );
+        //for the Drive
+        if (response.status === 200) {
+          window.location.reload();
+          alert("Testimonial deleted successfully!");
+        }
+      } catch (error) {
+        console.error("Error deleting testimonial:", error);
+        alert("Failed to delete Testimonial. Please try again.");
       }
-    } catch (error) {
-      console.error("Error deleting testimonial:", error);
-      alert("Failed to delete Testimonial. Please try again.");
     }
-  }
-};
+  };
 
   const menuItems = [
     { name: "Dashboard", icon: "🏠", section: "dashboard" },
@@ -345,6 +343,12 @@ const handleTestimonialRemove = async (id) => {
                 onClick={() => navigate("/add-cordinator")}
               >
                 <span className="item-text">Add Coordinator</span>
+              </button>
+              <button
+                className="dropdown-item"
+                onClick={() => navigate("/feedback")}
+              >
+                <span className="item-text">Add Testimonial</span>
               </button>
             </div>
           </div>
@@ -589,7 +593,7 @@ const handleTestimonialRemove = async (id) => {
               </tbody>
             </table>
           )}*/}
-          {activeSection === "coordinators" && ( 
+          {activeSection === "coordinators" && (
             <table className="job-table">
               <thead>
                 <tr>

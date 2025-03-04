@@ -48,6 +48,9 @@ import Mock from "./components/Services/Mock/mock";
 import Test from "./components/Services/Test/Test";
 import References from "./components/Services/References/References";
 
+//feedback form
+import FeedbackForm from "./components/Testimonial/Feedback/feedbackForm";
+
 function App() {
   const location = useLocation();
 
@@ -89,6 +92,7 @@ function App() {
         <Route path="/jobs/:jobId/applications" element={<JobApplications />} />
         <Route path="/references" element={<References />} />
         <Route path="/partners" element={<Partners />} />
+        <Route path="/feedback" element={<FeedbackForm />} />
       </Routes>
       {!adminRoutes.includes(location.pathname) && <Footer />}
       {/* <Footer /> */}
