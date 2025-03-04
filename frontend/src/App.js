@@ -44,7 +44,7 @@ import ContactForm from "./components/Contact/contact";
 import ServiceSection from "./Pages/serviceSection";
 
 // Services
-import Mock from "./components/Services/Mock/mock";
+// import Mock from "./components/Services/Mock/mock";
 import Test from "./components/Services/Test/Test";
 import References from "./components/Services/References/References";
 
@@ -85,7 +85,7 @@ function App() {
         <Route path="/contact" element={<ContactForm />} />
         <Route path="/services" element={<ServiceSection />} />
         <Route path="/test" element={<Test />} />
-        <Route path="/mock" element={<Mock />} />
+        {/* <Route path="/mock" element={<Mock />} /> */}
         <Route path="/viewApplication" element={<ViewApplication />} />
         <Route path="/notice" element={<Notice />} />
         <Route path="/student-notice" element={<StudentNotice />} />

@@ -6,7 +6,7 @@ const servicesData = [
   // AI Integrated Services
   {
     id: 5,
-    title: "Resume Analyzer",
+    title: "AI Resume Analyzer",
     description: "Get instant feedback on your resume with AI analysis.",
     icon: "🤖",
     buttonText: "Analyze Now",

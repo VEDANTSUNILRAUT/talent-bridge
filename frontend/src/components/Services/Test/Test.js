@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./test.css";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 const Test = () => {
   const [showModal, setShowModal] = useState(true);
   const [currentSection, setCurrentSection] = useState(null);
@@ -499,7 +499,10 @@ const Test = () => {
           }}
         >
           <div className="timer" style={{ marginBottom: "20px" }}>
-          <h3>Time Left: {Math.floor(timeLeft / 60)}:{timeLeft % 60 < 10 ? `0${timeLeft % 60}` : timeLeft % 60}</h3>
+            <h3>
+              Time Left: {Math.floor(timeLeft / 60)}:
+              {timeLeft % 60 < 10 ? `0${timeLeft % 60}` : timeLeft % 60}
+            </h3>
           </div>
 
           <div id="quiz">
@@ -520,7 +523,7 @@ const Test = () => {
                       name={`question${index}`}
                       value={key}
                       onChange={() => handleAnswerChange(index, key)}
-                      style={{width:"auto"}}
+                      style={{ width: "auto" }}
                     />
                     {key}: {value}
                   </label>
@@ -554,15 +557,24 @@ const Test = () => {
             padding: "20px",
             borderRadius: "10px",
             marginTop: "20px",
-            display:'flex',
-            justifyContent:'center',
-            flexDirection:'column',
-            alignItems:'center'
+            display: "flex",
+            justifyContent: "center",
+            flexDirection: "column",
+            alignItems: "center",
           }}
         >
           <h3>{results}</h3>
-          <Link to={"/"} class="button"><svg class="svgIcon" viewBox="0 0 512 512" height="1em" xmlns="http://www.w3.org/2000/svg"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm50.7-186.9L162.4 380.6c-19.4 7.5-38.5-11.6-31-31l55.5-144.3c3.3-8.5 9.9-15.1 18.4-18.4l144.3-55.5c19.4-7.5 38.5 11.6 31 31L325.1 306.7c-3.2 8.5-9.9 15.1-18.4 18.4zM288 256a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"></path></svg>Home</Link>
-          
+          <Link to={"/"} class="button">
+            <svg
+              class="svgIcon"
+              viewBox="0 0 512 512"
+              height="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm50.7-186.9L162.4 380.6c-19.4 7.5-38.5-11.6-31-31l55.5-144.3c3.3-8.5 9.9-15.1 18.4-18.4l144.3-55.5c19.4-7.5 38.5 11.6 31 31L325.1 306.7c-3.2 8.5-9.9 15.1-18.4 18.4zM288 256a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"></path>
+            </svg>
+            Home
+          </Link>
         </div>
       )}
     </div>
