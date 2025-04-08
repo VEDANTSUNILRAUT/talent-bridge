@@ -1,8 +1,17 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios"; // Import axios for API calls
+import axios from "axios";
 import "./Testimonial_Page.css";
 import Testimonial_BreadCrumb from "../../assets/images/Testimonial_BG/testi_BG.png";
-import Testimonial from "../../assets/images/Testimonial_BG/testimonial.png";
+
+// Import multiple testimonial images
+// ... your imports
+import Testimonial1 from "../../assets/images/Testimonial_BG/testimonial1.jpeg";
+import Testimonial2 from "../../assets/images/Testimonial_BG/testimonial2.jpeg";
+import Testimonial3 from "../../assets/images/Testimonial_BG/testimonial3.jpeg";
+import Testimonial4 from "../../assets/images/Testimonial_BG/testimonial4.jpeg";
+import Testimonial5 from "../../assets/images/Testimonial_BG/testimonial5.jpeg";
+
+const testimonialImages = [Testimonial1, Testimonial2, Testimonial3, Testimonial4, Testimonial5];
 
 const renderStars = (rating) =>
   "★".repeat(Math.floor(rating)) + "☆".repeat(5 - Math.floor(rating));
@@ -13,10 +22,11 @@ const TestimonialCard = ({
   testimonial,
   rating,
   placed_company,
+  image,
 }) => (
   <div className="testimonial-card">
     <div className="card-header">
-      <img src={Testimonial} alt={name} />
+      <img src={image} alt={name} />
       <div>
         <h3>{name}</h3>
         <p>{email}</p>
@@ -24,21 +34,20 @@ const TestimonialCard = ({
     </div>
     <p>Company : {placed_company}</p>
     <p className="card-text">{testimonial}</p>
-    <div className="card-rating">{renderStars(rating)}</div>{" "}
-    {/* Render Stars */}
+    <div className="card-rating">{renderStars(rating)}</div>
   </div>
 );
 
 const Testimonials = () => {
-  const [testimonials, setTestimonials] = useState([]); // State to store API data
-  const [loading, setLoading] = useState(true); // State for loading indicator
-  const [error, setError] = useState(null); // State for error handling
+  const [testimonials, setTestimonials] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchTestimonials = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/testimonial"); // Replace with your actual API URL
-        setTestimonials(response.data); // Store data in state
+        const response = await axios.get("http://localhost:5000/testimonial");
+        setTestimonials(response.data);
         setLoading(false);
       } catch (err) {
         setError("Failed to fetch testimonials");
@@ -67,15 +76,16 @@ const Testimonials = () => {
         </p>
       </div>
 
-      {/* Show loading or error message */}
       {loading ? <p>Loading testimonials...</p> : null}
       {error ? <p style={{ color: "red" }}>{error}</p> : null}
 
-      {/* Display fetched testimonials */}
       <div className="testimonial-grid">
-        {testimonials.map((testimonial, index) => (
-          <TestimonialCard key={index} {...testimonial} />
-        ))}
+        {testimonials.map((testimonial, index) => {
+          const image = testimonialImages[index % testimonialImages.length]; // Loop through images
+          return (
+            <TestimonialCard key={index} {...testimonial} image={image} />
+          );
+        })}
       </div>
 
       <div className="spacer"></div>
