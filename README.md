@@ -1,6 +1,6 @@
 # Talent-Bridge: AI-Integrated Placement Portal
 
-![Project Banner](https://via.placeholder.com/1200x400?text=Talent-Bridge+AI-Placement+Portal) <!-- Replace with actual banner image -->
+![Project Banner](./assets/Banner.png)
 
 **Talent-Bridge** is an advanced AI-driven placement web application designed to modernize campus recruitment processes. This comprehensive platform bridges the gap between academic institutions and industry recruiters through intelligent automation and AI-powered features.
 
