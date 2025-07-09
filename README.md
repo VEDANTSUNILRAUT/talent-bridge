@@ -17,6 +17,11 @@ Talent-Bridge addresses inefficiencies in traditional placement systems by provi
 - Create a unified platform with role-based dashboards for all stakeholders
 - Implement fair, data-driven recruitment processes
 
+## 📥 Downloads
+- 📘 [Download Project Report](https://github.com/VEDANTSUNILRAUT/talent-bridge/raw/main/Document/Talent%20Bridge%20Final%20Thesis%20Report.pdf)
+- 📊 [Download Project PPT](https://github.com/VEDANTSUNILRAUT/talent-bridge/raw/main/Document/Talent%20Bridge.pptx)
+- 📄 [View Published Research Paper](https://lnkd.in/g4jERbZm)
+
 ## ⚙️ Technology Stack
 
 ### Application Architecture
