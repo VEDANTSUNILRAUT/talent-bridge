@@ -25,18 +25,22 @@ Frontend → Backend → Database
   ↑           ↑
   AI Services ↔ External APIs
 ```
+## 🛠️ Tech Skills & Tools Used
 
 ### Technical Components
-| Layer               | Technologies                          |
-|---------------------|---------------------------------------|
-| **Frontend**        | React.js, Bootstrap, HTML5, CSS3      |
-| **Backend**         | Node.js, Express.js                   |
-| **API & Client**    | REST APIs, Axios                      |
-| **Database**        | MySQL (MySQL Workbench)               |
-| **AI Services**     | Google Gemini API, Botpress, PyPDF2   |
-| **Version Control** | Git & GitHub                          |
-| **Editor**          | Visual Studio Code                    |
-| **Future Plans**    | Next.js (SSR implementation)          |
+
+| Layer               | Technologies |
+|---------------------|--------------|
+| **Frontend**        | <img src="https://img.shields.io/badge/React-%2361DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React" /> <img src="https://img.shields.io/badge/Bootstrap-%23563D7C?style=for-the-badge&logo=bootstrap&logoColor=white" alt="Bootstrap" /> <img src="https://img.shields.io/badge/HTML5-%23E34F26?style=for-the-badge&logo=html5&logoColor=white" alt="HTML5" /> <img src="https://img.shields.io/badge/CSS3-%231572B6?style=for-the-badge&logo=css3&logoColor=white" alt="CSS3" /> |
+| **Backend**         | <img src="https://img.shields.io/badge/Node.js-%23339933?style=for-the-badge&logo=node.js&logoColor=white" alt="Node.js" /> <img src="https://img.shields.io/badge/Express.js-%23000000?style=for-the-badge&logo=express&logoColor=white" alt="Express.js" /> |
+| **API & Client**    | <img src="https://img.shields.io/badge/REST%20API-%23000000?style=for-the-badge&logo=api&logoColor=white" alt="REST API" /> <img src="https://img.shields.io/badge/Axios-%230087C1?style=for-the-badge&logo=axios&logoColor=white" alt="Axios" /> |
+| **Database**        | <img src="https://img.shields.io/badge/MySQL-%2300758F?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL" /> <img src="https://img.shields.io/badge/MySQL%20Workbench-4479A1?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL Workbench" /> |
+| **AI Services**     | <img src="https://img.shields.io/badge/Gemini%20AI-by%20Google-blue?style=for-the-badge&logo=google&logoColor=white" alt="Google Gemini AI" /> <img src="https://img.shields.io/badge/Botpress-%2300AEEF?style=for-the-badge&logo=chatbot&logoColor=white" alt="Botpress" /> <img src="https://img.shields.io/badge/Python%20Library-PyPDF2-306998?style=for-the-badge&logo=python&logoColor=white" alt="Python + PyPDF2" /> |
+| **Version Control** | <img src="https://img.shields.io/badge/Git-%23F05032?style=for-the-badge&logo=git&logoColor=white" alt="Git" /> <img src="https://img.shields.io/badge/GitHub-%23121011?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" /> |
+| **Editor**          | <img src="https://img.shields.io/badge/VSCode-%23007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white" alt="VS Code" /> |
+| **Future Plans**    | <img src="https://img.shields.io/badge/Next.js-%23000000?style=for-the-badge&logo=next.js&logoColor=white" alt="Next.js" /> |
+
+ 
 
 ## ✨ Key Features
 
